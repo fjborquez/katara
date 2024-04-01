@@ -1,3 +1,3 @@
 export const environment = {
-  aangBaseUrl: ''
+  aangBaseUrl: 'https://aang-7s4sq47lha-rj.a.run.app/api/'
 };
