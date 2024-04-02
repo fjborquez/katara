@@ -8,5 +8,5 @@ RUN npm run build
 FROM nginx:alpine
 ARG name
 COPY --from=angular /ng-app/dist/$name /usr/share/nginx/html
-RUN mv -rf /usr/share/nginx/html/katara/* /usr/share/nginx/html
+RUN mv -f /usr/share/nginx/html/katara/* /usr/share/nginx/html
 EXPOSE 80
