@@ -47,14 +47,14 @@ steps:
         "--cpu",
         "2000m",
         "--port",
-        "8080",
+        "80",
         "--timeout",
         "3600",
         "--min-instances",
         "0",
       ]
     env:
-      - "PORT=8080"
+      - "PORT=80"
 images:
   - gcr.io/avatar-419000/github.com/fjborquez/katara:$SHORT_SHA
   - gcr.io/avatar-419000/github.com/fjborquez/katara:latest
