@@ -25,9 +25,7 @@ export class UserListComponent {
   }
 
   ngOnInit() {
-    this.userService.list().subscribe((response: any) => {
-      this.dataSource = new MatTableDataSource(response);
-    });
+    this.getUserList();
   }
 
   delete(userId: Number) {
@@ -43,12 +41,9 @@ export class UserListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
         this.userService.delete(userId).subscribe((response: any) => {
           this.snackBar.open('User deleted', 'Close');
-          this.userService.list().subscribe((response: any) => {
-            this.dataSource = new MatTableDataSource(response);
-          });
+          this.getUserList();
         },
         (error) => {
           this.snackBar.open(error.error.message, 'Close');
@@ -56,5 +51,11 @@ export class UserListComponent {
       }
     });
 
+  }
+
+  getUserList() {
+    return this.userService.list().subscribe((response: any) => {
+      this.dataSource = new MatTableDataSource(response);
+    });
   }
 }

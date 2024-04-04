@@ -12,7 +12,6 @@ export class ConfirmUserDeleteComponent {
 
   constructor(public dialogRef: MatDialogRef<ConfirmUserDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    // Update view with given values
     this.title = data.title;
     this.message = data.message;
   }
