@@ -13,4 +13,8 @@ export class UserService {
     return this.http.post(environment.aangBaseUrl + 'user', params)
   }
 
+  list() {
+    return this.http.get(environment.aangBaseUrl + 'user')
+  }
+
 }
