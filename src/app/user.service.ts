@@ -17,4 +17,8 @@ export class UserService {
     return this.http.get(environment.aangBaseUrl + 'user')
   }
 
+  delete(userId: Number) {
+    return this.http.delete(environment.aangBaseUrl + 'user' + '/' + userId);
+  }
+
 }
