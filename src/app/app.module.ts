@@ -13,6 +13,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { UsersComponent } from './users/users.component';
+import { UserProfileUpdateComponent } from './user-profile-update/user-profile-update.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UsersComponent } from './users/users.component';
     UserProfileComponent,
     UserListComponent,
     ConfirmUserDeleteComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    UserProfileUpdateComponent
   ],
   imports: [
     BrowserModule,

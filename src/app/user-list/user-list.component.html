@@ -24,14 +24,16 @@
     <th mat-header-cell *matHeaderCellDef> Profile </th>
     <td mat-cell *matCellDef="let user">
       <div *ngIf="user.user_profile != null">
-        Date of Birth: {{user.user_profile.date_of_birth}} |
-        Is Vegetarian?: {{user.user_profile.is_vegetarian}} |
-        Is Vegan?: {{user.user_profile.is_vegan}} |
-        Is Celiac?: {{user.user_profile.is_celiac}} |
-        Is Keto?: {{user.user_profile.is_keto}} |
-        Is Diabetic?: {{user.user_profile.is_diabetic}} |
-        Is lactose?: {{user.user_profile.is_lactose}} |
-        Is Glutten?: {{user.user_profile.is_gluten}}
+        <a [routerLink]="[user.id, 'user-profile', 'update']">
+          Date of Birth: {{user.user_profile.date_of_birth}} |
+          Is Vegetarian?: {{user.user_profile.is_vegetarian}} |
+          Is Vegan?: {{user.user_profile.is_vegan}} |
+          Is Celiac?: {{user.user_profile.is_celiac}} |
+          Is Keto?: {{user.user_profile.is_keto}} |
+          Is Diabetic?: {{user.user_profile.is_diabetic}} |
+          Is lactose?: {{user.user_profile.is_lactose}} |
+          Is Glutten?: {{user.user_profile.is_gluten}}
+        </a>
       </div>
       <div *ngIf="user.user_profile == null">
         <a [routerLink]="[user.id, 'user-profile', 'add']">Create profile</a>
