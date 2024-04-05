@@ -2,6 +2,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ConfirmUserDeleteComponent } from './confirm-user-delete/confirm-user-delete.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -10,8 +11,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 import { UsersComponent } from './users/users.component';
-import { ConfirmUserDeleteComponent } from './confirm-user-delete/confirm-user-delete.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ConfirmUserDeleteComponent } from './confirm-user-delete/confirm-user-d
     UsersComponent,
     UserProfileComponent,
     UserListComponent,
-    ConfirmUserDeleteComponent
+    ConfirmUserDeleteComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

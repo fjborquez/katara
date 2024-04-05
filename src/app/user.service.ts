@@ -21,4 +21,12 @@ export class UserService {
     return this.http.delete(environment.aangBaseUrl + 'user' + '/' + userId);
   }
 
+  get(userId: Number) {
+    return this.http.get(environment.aangBaseUrl + 'user' + '/' + userId);
+  }
+
+  update(userId: Number, params = {}) {
+    return this.http.put(environment.aangBaseUrl + 'user' + '/' + userId, params);
+  }
+
 }

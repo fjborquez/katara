@@ -1,0 +1,30 @@
+<a [routerLink]="'/users'">Back</a>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <div>
+    <label for="lastname">
+      Lastname
+    </label>
+    <input id="lastname" type="text" formControlName="lastname">
+  </div>
+  <div>
+    <label for="email">
+      Email
+    </label>
+    <input id="email" type="text" formControlName="email">
+  </div>
+  <div>
+    <label for="password">
+      Password
+    </label>
+    <input id="password" type="password" formControlName="password">
+  </div>
+  <div>
+    <button class="button" type="submit">Register</button>
+  </div>
+</form>
