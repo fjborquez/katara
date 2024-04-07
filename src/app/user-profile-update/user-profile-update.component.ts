@@ -41,7 +41,7 @@ export class UserProfileUpdateComponent {
     let userId: number = Number(this.route.snapshot.paramMap.get('id'));
     this.userProfileService.put(userId, this.userProfileForm.value).subscribe(() => {
       this.router.navigate(['/users']).then(() => {
-        this.snackBar.open("User profile modified", "Close");
+        this.snackBar.open("User profile edited", "Close");
       });
     },
     (error: any) => {
