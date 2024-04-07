@@ -39,7 +39,7 @@ export class UserUpdateComponent {
   onSubmit(): void {
     this.userService.update(this.user.id, this.userForm.value).subscribe(() => {
       this.router.navigate(['/users']).then(() => {
-        this.snackBar.open("User edited", "Close");
+        this.snackBar.open("User updated", "Close");
       });
     },
     (error) => {
