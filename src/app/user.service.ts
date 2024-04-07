@@ -1,0 +1,32 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  constructor(private http: HttpClient) { }
+
+  add(params = {}) {
+    return this.http.post(environment.aangBaseUrl + 'user', params)
+  }
+
+  list() {
+    return this.http.get(environment.aangBaseUrl + 'user')
+  }
+
+  delete(userId: Number) {
+    return this.http.delete(environment.aangBaseUrl + 'user' + '/' + userId);
+  }
+
+  get(userId: Number) {
+    return this.http.get(environment.aangBaseUrl + 'user' + '/' + userId);
+  }
+
+  update(userId: Number, params = {}) {
+    return this.http.put(environment.aangBaseUrl + 'user' + '/' + userId, params);
+  }
+
+}
