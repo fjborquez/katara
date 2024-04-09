@@ -28,10 +28,10 @@ export class UserListComponent {
     this.getUserList();
   }
 
-  delete(userId: Number) {
-    const message = 'Are you sure of delete this user?';
+  enable(userId: Number) {
+    const message = 'Are you sure of enable this user?';
     const dialogData = {
-      'title': 'Delete User',
+      'title': 'Enable User',
       'message': message,
     };
     const dialogRef = this.dialog.open(ConfirmUserDeleteComponent, {
@@ -41,8 +41,32 @@ export class UserListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userService.delete(userId).subscribe((response: any) => {
-          this.snackBar.open('User deleted', 'Close');
+        this.userService.enable(userId).subscribe((_: any) => {
+          this.snackBar.open('User enabled', 'Close');
+          this.getUserList();
+        },
+        (error) => {
+          this.snackBar.open(error.error.message, 'Close');
+        });
+      }
+    });
+  }
+
+  disable(userId: Number) {
+    const message = 'Are you sure of disable this user?';
+    const dialogData = {
+      'title': 'Disable User',
+      'message': message,
+    };
+    const dialogRef = this.dialog.open(ConfirmUserDeleteComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.userService.disable(userId).subscribe((_: any) => {
+          this.snackBar.open('User disabled', 'Close');
           this.getUserList();
         },
         (error) => {

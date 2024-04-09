@@ -17,10 +17,6 @@ export class UserService {
     return this.http.get(environment.aangBaseUrl + 'user')
   }
 
-  delete(userId: Number) {
-    return this.http.delete(environment.aangBaseUrl + 'user' + '/' + userId);
-  }
-
   get(userId: Number) {
     return this.http.get(environment.aangBaseUrl + 'user' + '/' + userId);
   }
@@ -29,4 +25,11 @@ export class UserService {
     return this.http.put(environment.aangBaseUrl + 'user' + '/' + userId, params);
   }
 
+  enable(userId: Number) {
+    return this.http.put(environment.aangBaseUrl + 'user' + '/' + userId + '/enable', {});
+  }
+
+  disable(userId: Number) {
+    return this.http.put(environment.aangBaseUrl + 'user' + '/' + userId + '/disable', {});
+  }
 }
