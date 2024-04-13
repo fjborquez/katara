@@ -1,3 +1,4 @@
+import { PersonsService } from './../persons.service';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,14 +14,21 @@ export class UsersComponent {
   userForm = this.formBuilder.group({
     email: '',
     password: '',
+    person_id: ''
   });
+  persons: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private personsService: PersonsService
 ) { }
+
+  ngOnInit(): void {
+    this.personsService.list().subscribe(persons => this.persons = persons);
+  }
 
   onSubmit(): void {
     this.userService.add(this.userForm.value).subscribe(() => {

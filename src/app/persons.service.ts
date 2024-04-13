@@ -12,4 +12,9 @@ export class PersonsService {
   add(params = {}) {
     return this.http.post(environment.aangBaseUrl + 'person', params)
   }
+
+  list() {
+    return this.http.get(environment.aangBaseUrl + 'person')
+  }
+
 }
