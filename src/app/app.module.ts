@@ -14,6 +14,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { UsersComponent } from './users/users.component';
 import { UserProfileUpdateComponent } from './user-profile-update/user-profile-update.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +38,10 @@ import { UserProfileUpdateComponent } from './user-profile-update/user-profile-u
     MatTableModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

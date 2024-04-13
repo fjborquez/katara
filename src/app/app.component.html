@@ -1,1 +1,11 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+      <span>Katara</span>
+      <div class="space"></div>
+      <button mat-button>Persons</button>
+      <a [routerLink]="['/users']">
+        <button mat-button>Users</button>
+      </a>
+    </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>
