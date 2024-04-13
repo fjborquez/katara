@@ -6,6 +6,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileUpdateComponent } from './user-profile-update/user-profile-update.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { UsersComponent } from './users/users.component';
+import { PersonaCreateComponent } from './persona-create/persona-create.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'users/:id/update', component: UserUpdateComponent},
   {path: 'users/:id/user-profile/add', component: UserProfileComponent},
   {path: 'users/:id/user-profile/update', component: UserProfileUpdateComponent},
+  {path: 'persons/add', component: PersonaCreateComponent}
 ];
 
 @NgModule({

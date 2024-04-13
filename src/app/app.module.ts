@@ -17,6 +17,7 @@ import { UserProfileUpdateComponent } from './user-profile-update/user-profile-u
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { PersonaCreateComponent } from './persona-create/persona-create.component';
 
 
 
@@ -28,7 +29,8 @@ import { MatButtonModule } from '@angular/material/button';
     UserListComponent,
     ConfirmUserDeleteComponent,
     UserUpdateComponent,
-    UserProfileUpdateComponent
+    UserProfileUpdateComponent,
+    PersonaCreateComponent
   ],
   imports: [
     BrowserModule,
