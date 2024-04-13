@@ -11,8 +11,6 @@ import { UserService } from '../user.service';
 })
 export class UsersComponent {
   userForm = this.formBuilder.group({
-    name: '',
-    lastname: '',
     email: '',
     password: '',
   });

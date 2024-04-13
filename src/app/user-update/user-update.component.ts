@@ -14,8 +14,6 @@ export class UserUpdateComponent {
   user: any = null;
 
   userForm = this.formBuilder.group({
-    name: '',
-    lastname: '',
     email: '',
     password: '',
   });
