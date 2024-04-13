@@ -12,7 +12,6 @@ import { UserProfileService } from '../user-profile.service';
 })
 export class UserProfileUpdateComponent {
   userProfileForm = this.formBuilder.group({
-    date_of_birth: '',
     is_vegetarian: false,
     is_vegan: false,
     is_celiac: false,
