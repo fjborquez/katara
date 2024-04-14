@@ -25,31 +25,38 @@ export class UserProfileUpdateComponent {
   ) {}
 
   ngOnInit(): void {
-    /*let userId: number = Number(this.route.snapshot.paramMap.get('id'));
+    const userId: number = Number(this.route.snapshot.paramMap.get('id'));
     this.userProfileForm = this.formBuilder.group({});
 
     this.nutritionalRestrictionService.list().subscribe((nutritionalRestrictions: any) => {
       this.nutritionalRestrictions = nutritionalRestrictions;
 
       this.nutritionalRestrictions.forEach((nutritionalRestriction: any) => {
-        this.userProfileForm.addControl(nutritionalRestriction.description, this.formBuilder.control(false));
+        this.userProfileForm.addControl('nutritionalProfile[' + nutritionalRestriction.id + ']', this.formBuilder.control(false));
       });
     });
 
-    this.userProfileService.get(userId).subscribe((data) => {
-      this.userProfileForm.patchValue(data);
-    })*/
+    this.userProfileService.get(userId).subscribe((data: any) => {
+      const nutritionalProfile:any = [];
+      for (const key in data) {
+        const newKey = "nutritionalProfile[" + data[key].id + "]";
+        nutritionalProfile[newKey] = true;
+      }
+      this.userProfileForm.patchValue(nutritionalProfile);
+    })
   }
 
   onSubmit(): void {
-    /*let userId: number = Number(this.route.snapshot.paramMap.get('id'));
-    this.userProfileService.put(userId, this.userProfileForm.value).subscribe(() => {
-      this.router.navigate(['/users']).then(() => {
-        this.snackBar.open("User profile updated", "Close");
-      });
-    },
-    (error: any) => {
-      this.snackBar.open(error.error.message, "Close");
-    });*/
+    const userId: number = Number(this.route.snapshot.paramMap.get('id'));
+    const nutritionalProfile = Object.entries(this.userProfileForm.value).filter((value) => {
+      return value[1] === true;
+    }).map((value) => {
+      return Number(value[0].replace(/\D/g, ''));
+    });
+
+    this.userProfileService.update(userId, {nutritionalProfile}).subscribe(response => {
+      this.snackBar.open("Nutritional profile updated", "Close");
+      this.router.navigate(['/persons']);
+    });
   }
 }

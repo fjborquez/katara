@@ -10,6 +10,16 @@ export class UserProfileService {
   constructor(private http: HttpClient) { }
 
   add(userId: Number, params = {}) {
-    return this.http.post(environment.aangBaseUrl + 'user/' + userId + '/nutritional-profile', params)
+    return this.http.post(environment.aangBaseUrl + 'person/' + userId + '/nutritional-profile', params)
   }
+
+  get(personId: Number) {
+    return this.http.get(environment.aangBaseUrl + 'person/' + personId + '/nutritional-profile')
+  }
+
+  update(userId: Number, params = {}) {
+    return this.http.put(environment.aangBaseUrl + 'person/' + userId + '/nutritional-profile', params);
+  }
+
+
 }
