@@ -25,7 +25,7 @@ export class UserProfileUpdateComponent {
   ) {}
 
   ngOnInit(): void {
-    let userId: number = Number(this.route.snapshot.paramMap.get('id'));
+    /*let userId: number = Number(this.route.snapshot.paramMap.get('id'));
     this.userProfileForm = this.formBuilder.group({});
 
     this.nutritionalRestrictionService.list().subscribe((nutritionalRestrictions: any) => {
@@ -38,11 +38,11 @@ export class UserProfileUpdateComponent {
 
     this.userProfileService.get(userId).subscribe((data) => {
       this.userProfileForm.patchValue(data);
-    })
+    })*/
   }
 
   onSubmit(): void {
-    let userId: number = Number(this.route.snapshot.paramMap.get('id'));
+    /*let userId: number = Number(this.route.snapshot.paramMap.get('id'));
     this.userProfileService.put(userId, this.userProfileForm.value).subscribe(() => {
       this.router.navigate(['/users']).then(() => {
         this.snackBar.open("User profile updated", "Close");
@@ -50,6 +50,6 @@ export class UserProfileUpdateComponent {
     },
     (error: any) => {
       this.snackBar.open(error.error.message, "Close");
-    });
+    });*/
   }
 }

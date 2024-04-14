@@ -30,12 +30,22 @@ export class UserProfileComponent {
       this.nutritionalRestrictions = nutritionalRestrictions;
 
       this.nutritionalRestrictions.forEach((nutritionalRestriction: any) => {
-        this.userProfileForm.addControl(nutritionalRestriction.description, this.formBuilder.control(false));
+        this.userProfileForm.addControl('nutritionalProfile[' + nutritionalRestriction.id + ']', this.formBuilder.control(false));
       });
     });
   }
 
   onSubmit(): void {
+    const userId: number = Number(this.route.snapshot.paramMap.get('id'));
+    const nutritionalProfile = Object.entries(this.userProfileForm.value).filter((value) => {
+      return value[1] === true;
+    }).map((value) => {
+      return Number(value[0].replace(/\D/g, ''));
+    });
 
+    this.userProfileService.add(userId, {nutritionalProfile}).subscribe(response => {
+      this.snackBar.open("Nutritional profile created", "Close");
+      this.router.navigate(['/persons']);
+    });
   }
 }
