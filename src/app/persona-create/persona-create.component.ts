@@ -25,7 +25,7 @@ export class PersonaCreateComponent {
 
   onSubmit(): void {
     this.personsService.add(this.personForm.value).subscribe(() => {
-      this.router.navigate(['/persons/add']).then(() => {
+      this.router.navigate(['/persons']).then(() => {
         this.snackBar.open("Person added", "Close");
       });
     },

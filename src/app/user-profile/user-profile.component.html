@@ -1,46 +1,10 @@
-<a [routerLink]="'/users'">Back</a>
+<a [routerLink]="'/persons'">Back</a>
 <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="is_vegan">
-      Is vegan?
+  <div *ngFor="let nutritionalRestriction of nutritionalRestrictions">
+    <label for="{{nutritionalRestriction.description}}">
+      {{nutritionalRestriction.description}}
     </label>
-    <input id="is_vegan" type="checkbox" formControlName="is_vegan">
-  </div>
-  <div>
-    <label for="is_vegetarian">
-      Is vegetarian?
-    </label>
-    <input id="is_vegetarian" type="checkbox" formControlName="is_vegetarian">
-  </div>
-  <div>
-    <label for="is_celiac">
-      Is celiac?
-    </label>
-    <input id="is_celiac" type="checkbox" formControlName="is_celiac">
-  </div>
-  <div>
-    <label for="is_keto">
-      Is keto?
-    </label>
-    <input id="is_keto" type="checkbox" formControlName="is_keto">
-  </div>
-  <div>
-    <label for="is_diabetic">
-      Is diabetic?
-    </label>
-    <input id="is_diabetic" type="checkbox" formControlName="is_diabetic">
-  </div>
-  <div>
-    <label for="is_lactose">
-      Is lactose?
-    </label>
-    <input id="is_lactose" type="checkbox" formControlName="is_lactose">
-  </div>
-  <div>
-    <label for="is_gluten">
-      Is gluten?
-    </label>
-    <input id="is_gluten" type="checkbox" formControlName="is_gluten">
+    <input id="{{nutritionalRestriction.description}}" type="checkbox" formControlName="{{nutritionalRestriction.description}}">
   </div>
   <div>
     <button class="button" type="submit">Register</button>

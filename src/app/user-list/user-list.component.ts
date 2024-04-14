@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent {
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['id', 'name', 'lastname', 'email', 'profile', 'options'];
+  columnsToDisplay = ['id', 'name', 'lastname', 'email', 'options'];
 
   constructor(
     private userService: UserService,

@@ -7,14 +7,18 @@ import { UserProfileUpdateComponent } from './user-profile-update/user-profile-u
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { UsersComponent } from './users/users.component';
 import { PersonaCreateComponent } from './persona-create/persona-create.component';
+import { PersonListComponent } from './person-list/person-list.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
   {path: 'users/add', component: UsersComponent},
   {path: 'users/:id/update', component: UserUpdateComponent},
-  {path: 'users/:id/user-profile/add', component: UserProfileComponent},
-  {path: 'users/:id/user-profile/update', component: UserProfileUpdateComponent},
-  {path: 'persons/add', component: PersonaCreateComponent}
+
+  {path: 'persons', component: PersonListComponent},
+  {path: 'persons/add', component: PersonaCreateComponent},
+  {path: 'persons/:id/nutritional-profile/add', component: UserProfileComponent},
+  {path: 'persons/:id/nutritional-profile/update', component: UserProfileUpdateComponent},
+
 ];
 
 @NgModule({
