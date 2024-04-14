@@ -1,15 +1,5 @@
-<a [routerLink]="'/users'">Back</a>
+<a [routerLink]="'/persons'">Back</a>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="person_id">
-      Person
-    </label>
-    <mat-select id="person_id" placeholder="Select a person" formControlName="person_id">
-        <mat-option *ngFor="let person of persons" [value]="person.id">
-          {{person.name + ' ' + person.lastname}}
-        </mat-option>
-    </mat-select>
-  </div>
   <div>
     <label for="email">
       Email

@@ -1,8 +1,7 @@
-import { PersonsService } from './../persons.service';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -16,23 +15,21 @@ export class UsersComponent {
     password: '',
     person_id: ''
   });
-  persons: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private personsService: PersonsService
+    private route: ActivatedRoute
 ) { }
 
-  ngOnInit(): void {
-    this.personsService.list().subscribe(persons => this.persons = persons);
-  }
-
   onSubmit(): void {
+    const personId = this.route.snapshot.paramMap.get('id');
+    this.userForm.patchValue({ person_id: personId });
+
     this.userService.add(this.userForm.value).subscribe(() => {
-      this.router.navigate(['/users']).then(() => {
+      this.router.navigate(['/persons']).then(() => {
         this.snackBar.open("User added", "Close");
       });
     },

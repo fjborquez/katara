@@ -17,4 +17,8 @@ export class PersonsService {
     return this.http.get(environment.aangBaseUrl + 'person')
   }
 
+  get(id: Number) {
+    return this.http.get(environment.aangBaseUrl + 'person/' + id)
+  }
+
 }

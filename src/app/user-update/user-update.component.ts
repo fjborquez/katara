@@ -30,18 +30,16 @@ export class UserUpdateComponent {
   ) {}
 
   ngOnInit() {
-    let userId: number = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.get(userId).subscribe(user => {
-      this.user = user;
-      console.log(user);
-      this.userForm.patchValue(user);
+    let personId: number = Number(this.route.snapshot.paramMap.get('id'));
+    this.personsService.get(personId).subscribe((person: any) => {
+      this.user = person.user;
+      this.userForm.patchValue(this.user);
     });
-    this.personsService.list().subscribe(persons => this.persons = persons);
   }
 
   onSubmit(): void {
     this.userService.update(this.user.id, this.userForm.value).subscribe(() => {
-      this.router.navigate(['/users']).then(() => {
+      this.router.navigate(['/persons']).then(() => {
         this.snackBar.open("User updated", "Close");
       });
     },
