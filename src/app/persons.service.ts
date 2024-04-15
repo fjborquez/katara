@@ -21,4 +21,8 @@ export class PersonsService {
     return this.http.get(environment.aangBaseUrl + 'person/' + id)
   }
 
+  update(id: Number, params = {}) {
+    return this.http.put(environment.aangBaseUrl + 'person/' + id, params)
+  }
+
 }
