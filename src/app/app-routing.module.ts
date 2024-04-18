@@ -9,6 +9,7 @@ import { UserProfileUpdateComponent } from './user-profile-update/user-profile-u
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { UsersComponent } from './users/users.component';
 import { HouseCreateComponent } from './house-create/house-create.component';
+import { PersonHouseCreateComponent } from './person-house-create/person-house-create.component';
 
 const routes: Routes = [
   {path: 'persons', component: PersonListComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'persons/:id/nutritional-profile/update', component: UserProfileUpdateComponent},
   {path: 'persons/:id/user/add', component: UsersComponent},
   {path: 'persons/:id/user/update', component: UserUpdateComponent},
+  {path: 'persons/:id/houses/add', component: PersonHouseCreateComponent},
   {path: 'houses/add', component: HouseCreateComponent},
 ];
 

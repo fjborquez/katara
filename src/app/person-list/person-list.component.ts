@@ -14,7 +14,7 @@ import { UserService } from '../user.service';
 })
 export class PersonListComponent {
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['id', 'name', 'lastname', 'date_of_birth', 'email', 'user', 'nutritional_profile', 'options'];
+  columnsToDisplay = ['id', 'name', 'lastname', 'date_of_birth', 'email', 'user', 'nutritional_profile', 'houses', 'options'];
 
   constructor(
     private personService: PersonsService,

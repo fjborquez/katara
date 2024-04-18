@@ -22,6 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { PersonListComponent } from './person-list/person-list.component';
 import { PersonUpdateComponent } from './person-update/person-update.component';
 import { HouseCreateComponent } from './house-create/house-create.component';
+import { PersonHouseCreateComponent } from './person-house-create/person-house-create.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { HouseCreateComponent } from './house-create/house-create.component';
     PersonaCreateComponent,
     PersonListComponent,
     PersonUpdateComponent,
-    HouseCreateComponent
+    HouseCreateComponent,
+    PersonHouseCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { HouseCreateComponent } from './house-create/house-create.component';
     MatMenuModule,
     MatButtonModule,
     MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

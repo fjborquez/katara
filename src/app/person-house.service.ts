@@ -5,15 +5,11 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class HouseService {
+export class PersonHouseService {
 
   constructor(private http: HttpClient) { }
 
-  add(params = {}) {
-    return this.http.post(environment.aangBaseUrl + 'house', params)
-  }
-
-  list() {
-    return this.http.get(environment.aangBaseUrl + 'house')
+  add(idPerson: Number, params = {}) {
+    return this.http.post(environment.aangBaseUrl + 'person/' + idPerson + "/house", params)
   }
 }
