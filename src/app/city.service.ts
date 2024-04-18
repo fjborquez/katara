@@ -10,7 +10,7 @@ export class CityService {
 
   list() {
     return of([
-      {id: 1, description: 'New York'},
+      {id: 1, description: 'Santiago'},
     ])
   }
 }
