@@ -20,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { PersonaCreateComponent } from './persona-create/persona-create.component';
 import { MatSelectModule } from '@angular/material/select';
 import { PersonListComponent } from './person-list/person-list.component';
+import { PersonUpdateComponent } from './person-update/person-update.component';
+import { HouseCreateComponent } from './house-create/house-create.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { PersonListComponent } from './person-list/person-list.component';
     UserUpdateComponent,
     UserProfileUpdateComponent,
     PersonaCreateComponent,
-    PersonListComponent
+    PersonListComponent,
+    PersonUpdateComponent,
+    HouseCreateComponent
   ],
   imports: [
     BrowserModule,

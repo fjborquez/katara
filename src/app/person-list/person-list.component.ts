@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { PersonsService } from '../persons.service';
+import { ConfirmUserDeleteComponent } from '../confirm-user-delete/confirm-user-delete.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { PersonsService } from '../persons.service';
 import { Router } from '@angular/router';
-import { ConfirmUserDeleteComponent } from '../confirm-user-delete/confirm-user-delete.component';
 import { UserService } from '../user.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { UserService } from '../user.service';
 })
 export class PersonListComponent {
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['id', 'name', 'lastname', 'date_of_birth', 'user', 'nutritional_profile', 'options'];
+  columnsToDisplay = ['id', 'name', 'lastname', 'date_of_birth', 'email', 'user', 'nutritional_profile', 'options'];
 
   constructor(
     private personService: PersonsService,
