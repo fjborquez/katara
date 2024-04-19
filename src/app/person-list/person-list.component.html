@@ -32,6 +32,7 @@
     <th mat-header-cell *matHeaderCellDef> Houses </th>
     <td mat-cell *matCellDef="let person">
       <a [routerLink]="[person.id, 'houses', 'add']" *ngIf="person.houses.length == 0">Add</a>
+      <a [routerLink]="[person.id, 'houses', 'update']" *ngIf="person.houses.length > 0">Edit</a>
     </td>
   </ng-container>
 

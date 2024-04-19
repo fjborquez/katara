@@ -1,0 +1,21 @@
+<a [routerLink]="'/persons'">Back</a>
+<form [formGroup]="personHouseForm" (ngSubmit)="onSubmit()">
+  <div *ngFor="let housePerson of housesByPerson">
+    <div>
+      <label for="{{'house_id-'+housePerson.id}}">
+        House
+      </label>
+      <mat-select formControlName="{{'house_id-'+housePerson.id}}" id="{{'house_id-'+housePerson.id}}">
+        <mat-option *ngFor="let house of houses" [value]="house.id">
+          {{house.description}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div>
+      <mat-checkbox formControlName="{{'is_default-'+housePerson.id}}" id="{{'is_default-'+housePerson.id}}" value="true" (click)="isDefaultOnClick($event)">Is default?</mat-checkbox>
+    </div>
+  </div>
+  <div>
+    <button class="button" type="submit">Update</button>
+  </div>
+</form>

@@ -24,6 +24,7 @@ import { PersonUpdateComponent } from './person-update/person-update.component';
 import { HouseCreateComponent } from './house-create/house-create.component';
 import { PersonHouseCreateComponent } from './person-house-create/person-house-create.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { PersonHouseUpdateComponent } from './person-house-update/person-house-update.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     PersonListComponent,
     PersonUpdateComponent,
     HouseCreateComponent,
-    PersonHouseCreateComponent
+    PersonHouseCreateComponent,
+    PersonHouseUpdateComponent
   ],
   imports: [
     BrowserModule,

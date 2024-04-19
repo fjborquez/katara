@@ -12,4 +12,8 @@ export class PersonHouseService {
   add(idPerson: Number, params = {}) {
     return this.http.post(environment.aangBaseUrl + 'person/' + idPerson + "/house", params)
   }
+
+  getHousesByPerson(idPerson: Number) {
+    return this.http.get(environment.aangBaseUrl + 'person/' + idPerson + "/house");
+  }
 }

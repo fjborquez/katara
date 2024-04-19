@@ -1,3 +1,4 @@
+import { PersonHouseUpdateComponent } from './person-house-update/person-house-update.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'persons/:id/user/add', component: UsersComponent},
   {path: 'persons/:id/user/update', component: UserUpdateComponent},
   {path: 'persons/:id/houses/add', component: PersonHouseCreateComponent},
+  {path: 'persons/:id/houses/update', component: PersonHouseUpdateComponent},
   {path: 'houses/add', component: HouseCreateComponent},
 ];
 
