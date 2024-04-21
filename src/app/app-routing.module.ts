@@ -11,6 +11,8 @@ import { UserUpdateComponent } from './user-update/user-update.component';
 import { UsersComponent } from './users/users.component';
 import { HouseCreateComponent } from './house-create/house-create.component';
 import { PersonHouseCreateComponent } from './person-house-create/person-house-create.component';
+import { HouseListComponent } from './house-list/house-list.component';
+import { HouseUpdateComponent } from './house-update/house-update.component';
 
 const routes: Routes = [
   {path: 'persons', component: PersonListComponent},
@@ -22,7 +24,9 @@ const routes: Routes = [
   {path: 'persons/:id/user/update', component: UserUpdateComponent},
   {path: 'persons/:id/houses/add', component: PersonHouseCreateComponent},
   {path: 'persons/:id/houses/update', component: PersonHouseUpdateComponent},
+  {path: 'houses', component: HouseListComponent},
   {path: 'houses/add', component: HouseCreateComponent},
+  {path: 'houses/:id/update', component: HouseUpdateComponent}
 ];
 
 @NgModule({

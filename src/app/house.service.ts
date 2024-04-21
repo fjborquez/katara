@@ -16,4 +16,12 @@ export class HouseService {
   list() {
     return this.http.get(environment.aangBaseUrl + 'house')
   }
+
+  update(id: Number, params = {}) {
+    return this.http.put(environment.aangBaseUrl + 'house/' + id, params)
+  }
+
+  get(id: Number) {
+    return this.http.get(environment.aangBaseUrl + 'house/' + id)
+  }
 }
