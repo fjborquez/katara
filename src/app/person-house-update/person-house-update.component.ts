@@ -30,24 +30,53 @@ export class PersonHouseUpdateComponent {
     this.houseService.list().subscribe((houses: any) => this.houses = houses);
     this.personHouseService.getHousesByPerson(personId).subscribe((housesByPerson: any) => {
       this.housesByPerson = housesByPerson;
-      this.housesByPerson.forEach((house: any) => {
-        this.personHouseForm.addControl('house_id-'+house.id, new FormControl(house.id));
-        this.personHouseForm.addControl('is_default-'+house.id, new FormControl(house.pivot.is_default == 1));
+      this.housesByPerson.forEach((house: any, i: Number) => {
+        this.personHouseForm.addControl('house[' + i + '][id]', new FormControl(house.id));
+        this.personHouseForm.addControl('house[' + i + '][is_default]', new FormControl(house.pivot.is_default == 1));
       });
     });
   }
 
   isDefaultOnClick(e: any): void {
-    this.housesByPerson.forEach((house: any) => {
-      if (e.target.id.includes(house.id)) {
-        this.personHouseForm.controls['is_default-'+house.id].setValue(true);
+    this.housesByPerson.forEach((house: any, i: Number) => {
+      if (e.target.id.includes(i)) {
+        this.personHouseForm.controls['house[' + i + '][is_default]'].setValue(true);
       } else {
-        this.personHouseForm.controls['is_default-'+house.id].setValue(false);
+        this.personHouseForm.controls['house[' + i + '][is_default]'].setValue(false);
       }
     });
   }
 
+  add(): void {
+    this.housesByPerson.push({});
+    this.personHouseForm.addControl('house[' + (this.housesByPerson.length - 1) + '][id]', new FormControl());
+    this.personHouseForm.addControl('house[' + (this.housesByPerson.length - 1) + '][is_default]', new FormControl(false));
+  }
+
+  remove(i: Number): void {
+    this.housesByPerson.splice(i, 1);
+  }
+
   onSubmit(): void {
+    const params: any = {
+      houses: {}
+    };
+    let personId: number = Number(this.route.snapshot.paramMap.get('id'));
+
+    for (let i = 0; i < Object.keys(this.personHouseForm.value).length / 2; i++) {
+      params['houses'][this.personHouseForm.value['house[' + i + '][id]']] = {
+        'is_default': this.personHouseForm.value['house[' + i + '][is_default]']
+      };
+    }
+
+    this.personHouseService.updateHousesByPerson(personId, params).subscribe((response) => {
+      this.router.navigate(['/persons']).then(() => {
+        this.snackBar.open("Person and houses updated", "Close");
+      },
+      (error) => {
+        this.snackBar.open(error.error.message, "Close");
+      });
+    });
   }
 
 }
