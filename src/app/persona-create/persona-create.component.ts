@@ -14,6 +14,8 @@ export class PersonaCreateComponent {
     name: '',
     lastname: '',
     date_of_birth: '',
+    email: '',
+    password: '',
   });
 
   constructor(
@@ -24,9 +26,9 @@ export class PersonaCreateComponent {
   ) { }
 
   onSubmit(): void {
-    this.personsService.add(this.personForm.value).subscribe(() => {
+    this.personsService.add(this.personForm.value).subscribe((response: any) => {
       this.router.navigate(['/persons']).then(() => {
-        this.snackBar.open("Person added", "Close");
+        this.snackBar.open(response.message, "Close");
       });
     },
     (error) => {

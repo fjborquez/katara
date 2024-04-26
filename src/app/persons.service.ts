@@ -10,7 +10,7 @@ export class PersonsService {
   constructor(private http: HttpClient) { }
 
   add(params = {}) {
-    return this.http.post(environment.aangBaseUrl + 'person', params)
+    return this.http.post(environment.backendUrl + 'user-registration', params)
   }
 
   list() {
