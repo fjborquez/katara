@@ -14,7 +14,7 @@ export class PersonsService {
   }
 
   list() {
-    return this.http.get(environment.aangBaseUrl + 'person')
+    return this.http.get(environment.backendUrl + 'user-list')
   }
 
   get(id: Number) {
