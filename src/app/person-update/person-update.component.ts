@@ -15,6 +15,8 @@ export class PersonUpdateComponent {
     name: '',
     lastname: '',
     date_of_birth: '',
+    email: '',
+    password: ''
   });
 
   constructor(

@@ -22,7 +22,7 @@ export class PersonsService {
   }
 
   update(id: Number, params = {}) {
-    return this.http.put(environment.aangBaseUrl + 'person/' + id, params)
+    return this.http.put(environment.backendUrl + 'user-update/' + id, params)
   }
 
 }
