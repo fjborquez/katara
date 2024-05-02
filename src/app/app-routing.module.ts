@@ -1,27 +1,23 @@
-import { PersonHouseUpdateComponent } from './person-house-update/person-house-update.component';
+import { PersonHouseUpdateComponent } from './sections/person-house-update/person-house-update.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NgModule } from '@angular/core';
-import { PersonListComponent } from './person-list/person-list.component';
-import { PersonUpdateComponent } from './person-update/person-update.component';
-import { PersonaCreateComponent } from './persona-create/persona-create.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UserProfileUpdateComponent } from './user-profile-update/user-profile-update.component';
-import { UserUpdateComponent } from './user-update/user-update.component';
-import { UsersComponent } from './users/users.component';
-import { HouseCreateComponent } from './house-create/house-create.component';
-import { PersonHouseCreateComponent } from './person-house-create/person-house-create.component';
-import { HouseListComponent } from './house-list/house-list.component';
-import { HouseUpdateComponent } from './house-update/house-update.component';
+import { UserListComponent } from './sections/user-list/user-list.component';
+import { PersonUpdateComponent } from './sections/person-update/person-update.component';
+import { PersonaCreateComponent } from './sections/persona-create/persona-create.component';
+import { UserProfileComponent } from './sections/user-profile/user-profile.component';
+import { UserProfileUpdateComponent } from './sections/user-profile-update/user-profile-update.component';
+import { HouseCreateComponent } from './sections/house-create/house-create.component';
+import { PersonHouseCreateComponent } from './sections/person-house-create/person-house-create.component';
+import { HouseListComponent } from './sections/house-list/house-list.component';
+import { HouseUpdateComponent } from './sections/house-update/house-update.component';
 
 const routes: Routes = [
-  {path: 'persons', component: PersonListComponent},
-  {path: 'persons/add', component: PersonaCreateComponent},
-  {path: 'persons/:id/update', component: PersonUpdateComponent},
+  {path: 'users', component: UserListComponent},
+  {path: 'users/add', component: PersonaCreateComponent},
+  {path: 'users/:id/update', component: PersonUpdateComponent},
   {path: 'persons/:id/nutritional-profile/add', component: UserProfileComponent},
   {path: 'persons/:id/nutritional-profile/update', component: UserProfileUpdateComponent},
-  {path: 'persons/:id/user/add', component: UsersComponent},
-  {path: 'persons/:id/user/update', component: UserUpdateComponent},
   {path: 'persons/:id/houses/add', component: PersonHouseCreateComponent},
   {path: 'persons/:id/houses/update', component: PersonHouseUpdateComponent},
   {path: 'houses', component: HouseListComponent},

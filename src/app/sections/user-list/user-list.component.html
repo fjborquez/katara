@@ -1,0 +1,63 @@
+<a [routerLink]="['add']">Add</a>
+<table mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <th mat-header-cell *matHeaderCellDef> Lastname </th>
+    <td mat-cell *matCellDef="let user"> {{user.lastname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date_of_birth">
+    <th mat-header-cell *matHeaderCellDef> Date of birth </th>
+    <td mat-cell *matCellDef="let user"> {{user.date_of_birth}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nutritional_profile">
+    <th mat-header-cell *matHeaderCellDef> Nutritional profile </th>
+    <td mat-cell *matCellDef="let user">
+      <a [routerLink]="[user.id, 'nutritional-profile', 'add']" *ngIf="user.nutritional_profile.length == 0">Create</a>
+      <a [routerLink]="[user.id, 'nutritional-profile', 'update']" *ngIf="user.nutritional_profile.length > 0">Edit</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="houses">
+    <th mat-header-cell *matHeaderCellDef> Houses </th>
+    <td mat-cell *matCellDef="let user">
+      <a [routerLink]="[user.id, 'houses', 'add']" *ngIf="user.houses.length == 0">Add</a>
+      <a [routerLink]="[user.id, 'houses', 'update']" *ngIf="user.houses.length > 0">Edit</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let user"> {{user.user?.email}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let user">
+      <div *ngIf="user.user">
+        <a (click)="disable(user.user.id)" *ngIf="user.user.is_active">Disable</a>
+        <a (click)="enable(user.user.id)" *ngIf="!user.user.is_active">Enable</a>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef> Options </th>
+    <td mat-cell *matCellDef="let user">
+      <a [routerLink]="[user.id, 'update']">Edit</a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table>
