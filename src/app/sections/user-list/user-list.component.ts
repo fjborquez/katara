@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class UserListComponent {
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['id', 'name', 'lastname', 'date_of_birth', 'email', 'user', 'nutritional_profile', 'houses', 'options'];
+  columnsToDisplay = ['id', 'name', 'lastname', 'date_of_birth', 'email', 'options', 'nutritional_profile'];
 
   constructor(
     private personService: PersonsService,
