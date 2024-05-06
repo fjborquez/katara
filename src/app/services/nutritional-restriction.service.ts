@@ -10,7 +10,7 @@ export class NutritionalRestrictionService {
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get(environment.aangBaseUrl + 'nutritional-restriction')
+    return this.http.get(environment.backendUrl + 'nutritional-restriction')
   }
 
 }

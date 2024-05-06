@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonaCreateComponent } from './persona-create.component';
+import { PersonaCreateComponent } from './user-create.component';
 
 describe('PersonaCreateComponent', () => {
   let component: PersonaCreateComponent;

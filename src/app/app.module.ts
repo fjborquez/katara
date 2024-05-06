@@ -14,7 +14,7 @@ import { UserProfileUpdateComponent } from './sections/user-profile-update/user-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { PersonaCreateComponent } from './sections/persona-create/persona-create.component';
+import { UserCreateComponent } from './sections/user-create/user-create.component';
 import { MatSelectModule } from '@angular/material/select';
 import { UserListComponent } from './sections/user-list/user-list.component';
 import { PersonUpdateComponent } from './sections/person-update/person-update.component';
@@ -31,7 +31,7 @@ import { HouseListComponent } from './sections/house-list/house-list.component';
     UserProfileComponent,
     ConfirmUserDeleteComponent,
     UserProfileUpdateComponent,
-    PersonaCreateComponent,
+    UserCreateComponent,
     UserListComponent,
     PersonUpdateComponent,
     HouseCreateComponent,
