@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserProfileService } from '../../services/user-profile.service';
+import { NutritionalProfileService } from '../../services/nutritional-profile.service';
 import { NutritionalRestrictionService } from '../../services/nutritional-restriction.service';
 import { tap } from 'rxjs/operators';
 
@@ -18,10 +18,8 @@ export class NutritionalProfileViewComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userProfileService: UserProfileService,
+    private nutritionalProfileService: NutritionalProfileService,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private router: Router,
     private nutritionalRestrictionService: NutritionalRestrictionService
   ) {}
 
@@ -38,7 +36,7 @@ export class NutritionalProfileViewComponent {
         });
       }),
       tap(() => {
-        this.userProfileService.get(userId).subscribe((userProfile: any) => {
+        this.nutritionalProfileService.get(userId).subscribe((userProfile: any) => {
           const nutritionalProfile:any = [];
           for (const key in userProfile) {
             const newKey = "nutritionalProfile[" + userProfile[key].id + "]";

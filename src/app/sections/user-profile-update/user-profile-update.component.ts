@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserProfileService } from '../../services/user-profile.service';
+import { NutritionalProfileService } from '../../services/nutritional-profile.service';
 import { NutritionalRestrictionService } from '../../services/nutritional-restriction.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class UserProfileUpdateComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userProfileService: UserProfileService,
+    private nutritionalProfileService: NutritionalProfileService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -36,7 +36,7 @@ export class UserProfileUpdateComponent {
       });
     });
 
-    this.userProfileService.get(userId).subscribe((data: any) => {
+    this.nutritionalProfileService.get(userId).subscribe((data: any) => {
       const nutritionalProfile:any = [];
       for (const key in data) {
         const newKey = "nutritionalProfile[" + data[key].id + "]";
@@ -54,7 +54,7 @@ export class UserProfileUpdateComponent {
       return Number(value[0].replace(/\D/g, ''));
     });
 
-    this.userProfileService.update(userId, {nutritionalProfile}).subscribe(response => {
+    this.nutritionalProfileService.update(userId, {nutritionalProfile}).subscribe(response => {
       this.snackBar.open("Nutritional profile updated", "Close");
       this.router.navigate(['/persons']);
     });

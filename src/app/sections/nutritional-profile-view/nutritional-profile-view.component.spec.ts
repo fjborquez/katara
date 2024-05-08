@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './nutritional-profile-view.component';
-import { UserProfileService } from '../../services/user-profile.service';
+import { UserProfileService } from '../../services/nutritional-profile.service';
 
 describe('UserProfileComponent', () => {
   let component: UserProfileComponent;

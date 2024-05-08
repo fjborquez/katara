@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserProfileService {
+export class NutritionalProfileService {
 
   constructor(private http: HttpClient) { }
 
@@ -13,8 +13,8 @@ export class UserProfileService {
     return this.http.post(environment.aangBaseUrl + 'person/' + userId + '/nutritional-profile', params)
   }
 
-  get(personId: Number) {
-    return this.http.get(environment.aangBaseUrl + 'person/' + personId + '/nutritional-profile')
+  get(userId: Number) {
+    return this.http.get(environment.backendUrl + 'user/' + userId + '/nutritional-profile')
   }
 
   update(userId: Number, params = {}) {
