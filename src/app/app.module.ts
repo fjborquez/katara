@@ -9,7 +9,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserProfileComponent } from './sections/user-profile/user-profile.component';
+import { NutritionalProfileViewComponent } from './sections/nutritional-profile-view/nutritional-profile-view.component';
 import { UserProfileUpdateComponent } from './sections/user-profile-update/user-profile-update.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
@@ -28,7 +28,7 @@ import { HouseListComponent } from './sections/house-list/house-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfileComponent,
+    NutritionalProfileViewComponent,
     ConfirmUserDeleteComponent,
     UserProfileUpdateComponent,
     UserCreateComponent,

@@ -23,8 +23,7 @@
   <ng-container matColumnDef="nutritional_profile">
     <th mat-header-cell *matHeaderCellDef> Nutritional profile </th>
     <td mat-cell *matCellDef="let user">
-      <a [routerLink]="[user.id, 'nutritional-profile', 'add']" *ngIf="user.person.nutritional_profile.length == 0">Create</a>
-      <a [routerLink]="[user.id, 'nutritional-profile', 'update']" *ngIf="user.person.nutritional_profile.length > 0">Edit</a>
+      <a [routerLink]="[user.id, 'nutritional-profile']">View</a>
     </td>
   </ng-container>
 

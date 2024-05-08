@@ -1,12 +1,9 @@
 <a [routerLink]="'/users'">Back</a>
-<form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="userProfileForm">
   <div *ngFor="let nutritionalRestriction of nutritionalRestrictions">
     <label for="{{nutritionalRestriction.description}}">
       {{nutritionalRestriction.description}}
     </label>
     <input id="{{nutritionalRestriction.description}}" type="checkbox" formControlName="nutritionalProfile[{{nutritionalRestriction.id}}]">
-  </div>
-  <div>
-    <button class="button" type="submit">Register</button>
   </div>
 </form>

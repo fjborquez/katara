@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { UserListComponent } from './sections/user-list/user-list.component';
 import { PersonUpdateComponent } from './sections/person-update/person-update.component';
 import { UserCreateComponent } from './sections/user-create/user-create.component';
-import { UserProfileComponent } from './sections/user-profile/user-profile.component';
+import { NutritionalProfileViewComponent } from './sections/nutritional-profile-view/nutritional-profile-view.component';
 import { UserProfileUpdateComponent } from './sections/user-profile-update/user-profile-update.component';
 import { HouseCreateComponent } from './sections/house-create/house-create.component';
 import { PersonHouseCreateComponent } from './sections/person-house-create/person-house-create.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'users', component: UserListComponent},
   {path: 'users/add', component: UserCreateComponent},
   {path: 'users/:id/update', component: PersonUpdateComponent},
-  {path: 'persons/:id/nutritional-profile/add', component: UserProfileComponent},
+  {path: 'users/:id/nutritional-profile', component: NutritionalProfileViewComponent},
   {path: 'persons/:id/nutritional-profile/update', component: UserProfileUpdateComponent},
   {path: 'persons/:id/houses/add', component: PersonHouseCreateComponent},
   {path: 'persons/:id/houses/update', component: PersonHouseUpdateComponent},

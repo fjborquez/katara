@@ -4,7 +4,7 @@ import { of, throwError } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserProfileComponent } from './user-profile.component';
+import { UserProfileComponent } from './nutritional-profile-view.component';
 import { UserProfileService } from '../../services/user-profile.service';
 
 describe('UserProfileComponent', () => {
