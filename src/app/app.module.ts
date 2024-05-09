@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserCreateComponent } from './sections/user-create/user-create.component';
 import { MatSelectModule } from '@angular/material/select';
 import { UserListComponent } from './sections/user-list/user-list.component';
-import { PersonUpdateComponent } from './sections/person-update/person-update.component';
+import { UserUpdateComponent } from './sections/user-update/user-update.component';
 import { HouseCreateComponent } from './sections/house-create/house-create.component';
 import { PersonHouseCreateComponent } from './sections/person-house-create/person-house-create.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -33,7 +33,7 @@ import { HouseListComponent } from './sections/house-list/house-list.component';
     UserProfileUpdateComponent,
     UserCreateComponent,
     UserListComponent,
-    PersonUpdateComponent,
+    UserUpdateComponent,
     HouseCreateComponent,
     PersonHouseCreateComponent,
     PersonHouseUpdateComponent,
