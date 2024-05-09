@@ -70,8 +70,24 @@ export class UserUpdateComponent {
   }
 
   onSubmit(): void {
-    let personId: number = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.update(personId, this.userForm.value).subscribe(() => {
+    let userId: number = Number(this.route.snapshot.paramMap.get('id'));
+
+    const nutritionalProfile = Object.entries(this.userForm.value).filter((value) => {
+      return value[1] === true;
+    }).map((value) => {
+      return Number(value[0].replace(/\D/g, ''));
+    });
+
+    const params = {
+      name: this.userForm.get('name')?.value,
+      lastname: this.userForm.get('lastname')?.value,
+      date_of_birth: this.userForm.get('date_of_birth')?.value,
+      email: this.userForm.get('email')?.value,
+      password: this.userForm.get('password')?.value,
+      nutritionalProfile: nutritionalProfile
+    }
+
+    this.userService.update(userId, params).subscribe(() => {
       this.router.navigate(['/users']).then(() => {
         this.snackBar.open("Person updated", "Close");
       });
