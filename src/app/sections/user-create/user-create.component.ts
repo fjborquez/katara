@@ -1,6 +1,6 @@
-import { PersonsService } from '../../services/persons.service';
+import { UserService } from '../../services/user.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
@@ -16,7 +16,7 @@ export class UserCreateComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private personsService: PersonsService,
+    private userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar,
     private nutritionalRestrictionService: NutritionalRestrictionService
@@ -54,7 +54,7 @@ export class UserCreateComponent {
       nutritionalProfile: nutritionalProfile
     }
 
-    this.personsService.add(params).subscribe((response: any) => {
+    this.userService.add(params).subscribe((response: any) => {
       this.router.navigate(['/users']).then(() => {
         this.snackBar.open(response.message, "Close");
       });

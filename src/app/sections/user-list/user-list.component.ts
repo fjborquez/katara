@@ -3,7 +3,7 @@ import { ConfirmUserDeleteComponent } from '../../components/confirm-user-delete
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { PersonsService } from '../../services/persons.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class UserListComponent {
   columnsToDisplay = ['id', 'name', 'lastname', 'date_of_birth', 'email', 'options', 'nutritional_profile'];
 
   constructor(
-    private personService: PersonsService,
+    private userService: UserService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
     public router: Router,
@@ -41,7 +41,7 @@ export class UserListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.personService.enable(userId).subscribe((_: any) => {
+        this.userService.enable(userId).subscribe((_: any) => {
           this.snackBar.open('User enabled', 'Close');
           this.getPersonList();
         },
@@ -65,7 +65,7 @@ export class UserListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.personService.disable(userId).subscribe((_: any) => {
+        this.userService.disable(userId).subscribe((_: any) => {
           this.snackBar.open('User disabled', 'Close');
           this.getPersonList();
         },
@@ -77,7 +77,7 @@ export class UserListComponent {
   }
 
   getPersonList() {
-    return this.personService.list().subscribe((response: any) => {
+    return this.userService.list().subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response);
     });
   }

@@ -9,7 +9,28 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  get(userId: Number) {
-    return this.http.get(environment.aangBaseUrl + 'user' + '/' + userId);
+  add(params = {}) {
+    return this.http.post(environment.backendUrl + 'user', params)
   }
+
+  list() {
+    return this.http.get(environment.backendUrl + 'user')
+  }
+
+  get(id: Number) {
+    return this.http.get(environment.backendUrl + 'user/' + id)
+  }
+
+  update(id: Number, params = {}) {
+    return this.http.put(environment.backendUrl + 'user/' + id, params)
+  }
+
+  enable(userId: Number) {
+    return this.http.put(environment.backendUrl + 'user' + '/' + userId + '/enable', {});
+  }
+
+  disable(userId: Number) {
+    return this.http.put(environment.backendUrl + 'user' + '/' + userId + '/disable', {});
+  }
+
 }

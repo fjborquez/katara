@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PersonsService } from '../../services/persons.service';
+import { UserService } from '../../services/user.service';
 import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
 import { tap } from 'rxjs';
 import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
@@ -14,12 +14,12 @@ import { NutritionalProfileService } from 'src/app/services/nutritional-profile.
   styleUrls: ['./user-update.component.sass']
 })
 export class UserUpdateComponent {
-  personForm = this.formBuilder.group({});
+  userForm = this.formBuilder.group({});
   nutritionalRestrictions: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private personsService: PersonsService,
+    private userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
@@ -30,14 +30,22 @@ export class UserUpdateComponent {
   ngOnInit(): void {
     let userId: number = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.personForm.addControl('name', this.formBuilder.control(''));
-    this.personForm.addControl('lastname', this.formBuilder.control(''));
-    this.personForm.addControl('date_of_birth', this.formBuilder.control(''));
-    this.personForm.addControl('email', this.formBuilder.control(''));
-    this.personForm.addControl('password', this.formBuilder.control(''));
+    this.userForm.addControl('name', this.formBuilder.control(''));
+    this.userForm.addControl('lastname', this.formBuilder.control(''));
+    this.userForm.addControl('date_of_birth', this.formBuilder.control(''));
+    this.userForm.addControl('email', this.formBuilder.control(''));
+    this.userForm.addControl('password', this.formBuilder.control(''));
 
-    this.personsService.get(userId).subscribe((person) => {
-      this.personForm.patchValue(person);
+    this.userService.get(userId).subscribe((user: any) => {
+      const userData = {
+        name: user.person.name,
+        lastname: user.person.lastname,
+        date_of_birth: user.person.date_of_birth,
+        email: user.email,
+        password: user.password
+      };
+
+      this.userForm.patchValue(userData);
     });
 
     this.nutritionalRestrictionService.list().pipe(
@@ -45,7 +53,7 @@ export class UserUpdateComponent {
         this.nutritionalRestrictions = nutritionalRestrictions;
 
         this.nutritionalRestrictions.forEach((nutritionalRestriction: any) => {
-          this.personForm.addControl('nutritionalProfile[' + nutritionalRestriction.id + ']', this.formBuilder.control(false));
+          this.userForm.addControl('nutritionalProfile[' + nutritionalRestriction.id + ']', this.formBuilder.control(false));
         });
       }),
       tap(() => {
@@ -55,7 +63,7 @@ export class UserUpdateComponent {
             const newKey = "nutritionalProfile[" + userProfile[key].id + "]";
             nutritionalProfile[newKey] = true;
           }
-          this.personForm.patchValue(nutritionalProfile);
+          this.userForm.patchValue(nutritionalProfile);
         })
       }
     )).subscribe();
@@ -63,8 +71,8 @@ export class UserUpdateComponent {
 
   onSubmit(): void {
     let personId: number = Number(this.route.snapshot.paramMap.get('id'));
-    this.personsService.update(personId, this.personForm.value).subscribe(() => {
-      this.router.navigate(['/persons']).then(() => {
+    this.userService.update(personId, this.userForm.value).subscribe(() => {
+      this.router.navigate(['/users']).then(() => {
         this.snackBar.open("Person updated", "Close");
       });
     },
