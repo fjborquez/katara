@@ -5,19 +5,14 @@
     <td mat-cell *matCellDef="let user"> {{user.id}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let user"> {{user.person.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="lastname">
-    <th mat-header-cell *matHeaderCellDef> Lastname </th>
-    <td mat-cell *matCellDef="let user"> {{user.person.lastname}} </td>
+  <ng-container matColumnDef="fullname">
+    <th mat-header-cell *matHeaderCellDef> Fullname </th>
+    <td mat-cell *matCellDef="let user"> {{user.person.name}} {{user.person.lastname}} </td>
   </ng-container>
 
   <ng-container matColumnDef="date_of_birth">
     <th mat-header-cell *matHeaderCellDef> Date of birth </th>
-    <td mat-cell *matCellDef="let user"> {{user.person.date_of_birth}} </td>
+    <td mat-cell *matCellDef="let user"> {{user.person.date_of_birth | date: "dd/MM/YYYY"}} </td>
   </ng-container>
 
   <ng-container matColumnDef="nutritional_profile">
