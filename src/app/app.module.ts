@@ -18,12 +18,9 @@ import { UserCreateComponent } from './sections/user-create/user-create.componen
 import { MatSelectModule } from '@angular/material/select';
 import { UserListComponent } from './sections/user-list/user-list.component';
 import { UserUpdateComponent } from './sections/user-update/user-update.component';
-import { HouseCreateComponent } from './sections/house-create/house-create.component';
-import { PersonHouseCreateComponent } from './sections/person-house-create/person-house-create.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { PersonHouseUpdateComponent } from './sections/person-house-update/person-house-update.component';
-import { HouseUpdateComponent } from './sections/house-update/house-update.component';
-import { HouseListComponent } from './sections/house-list/house-list.component';
+import { UserHouseViewComponent } from './sections/user-house-view/user-house-view.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -34,11 +31,7 @@ import { HouseListComponent } from './sections/house-list/house-list.component';
     UserCreateComponent,
     UserListComponent,
     UserUpdateComponent,
-    HouseCreateComponent,
-    PersonHouseCreateComponent,
-    PersonHouseUpdateComponent,
-    HouseUpdateComponent,
-    HouseListComponent
+    UserHouseViewComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +46,8 @@ import { HouseListComponent } from './sections/house-list/house-list.component';
     MatMenuModule,
     MatButtonModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

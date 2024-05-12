@@ -34,7 +34,7 @@
       <a (click)="disable(user.id)" *ngIf="user.is_active">Disable</a>
       <a (click)="enable(user.id)" *ngIf="!user.is_active">Enable</a> |
       <a [routerLink]="[user.id, 'houses', 'add']" *ngIf="user.person.houses.length == 0">Add house</a>
-      <a [routerLink]="[user.id, 'houses', 'update']" *ngIf="user.person.houses.length > 0">View houses</a>
+      <a [routerLink]="[user.id, 'houses']" *ngIf="user.person.houses.length > 0">View houses</a>
     </td>
   </ng-container>
 
