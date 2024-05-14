@@ -9,8 +9,8 @@ export class UserHousesService {
 
   constructor(private http: HttpClient) { }
 
-  add(idPerson: Number, params = {}) {
-    return this.http.post(environment.aangBaseUrl + 'person/' + idPerson + "/house", params)
+  add(idUser: Number, params = {}) {
+    return this.http.post(environment.backendUrl + 'user/' + idUser + "/houses", params)
   }
 
   getHousesByUser(idUser: Number) {

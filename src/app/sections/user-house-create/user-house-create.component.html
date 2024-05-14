@@ -1,0 +1,25 @@
+<a [routerLink]="'/users'">Back</a>
+<form [formGroup]="userHouseForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="description">
+      Description
+    </label>
+    <input id="description" type="text" formControlName="description">
+  </div>
+  <div>
+    <label for="city_id">
+      City
+    </label>
+    <mat-select id="city_id" name="city_id" formControlName="city_id">
+      <mat-option *ngFor="let city of cities" [value]="city.id">{{ city.description }}</mat-option>
+    </mat-select>
+  </div>
+  <div>
+    <label for="is_default"> House by default
+      <input type="checkbox" id="is_default" name="is_default" formControlName="is_default" >
+    </label>
+  </div>
+  <div>
+    <button class="button" type="submit">Register</button>
+  </div>
+</form>
