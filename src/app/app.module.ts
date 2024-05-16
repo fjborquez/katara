@@ -22,6 +22,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { UserHouseViewComponent } from './sections/user-house-view/user-house-view.component';
 import { MatIconModule } from '@angular/material/icon';
 import { UserHouseCreateComponent } from './sections/user-house-create/user-house-create.component';
+import { UserHouseUpdateComponent } from './sections/user-house-update/user-house-update.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserHouseCreateComponent } from './sections/user-house-create/user-hous
     UserListComponent,
     UserUpdateComponent,
     UserHouseViewComponent,
-    UserHouseCreateComponent
+    UserHouseCreateComponent,
+    UserHouseUpdateComponent
   ],
   imports: [
     BrowserModule,
