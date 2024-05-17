@@ -17,7 +17,7 @@ export class UserHousesService {
     return this.http.get(environment.backendUrl + 'user/' + idUser + "/houses");
   }
 
-  updateHousesByPerson(idPerson: Number, params = {}) {
-    return this.http.put(environment.aangBaseUrl + 'person/' + idPerson + "/house", params);
+  updateHousesByUser(idUser: Number, params = {}) {
+    return this.http.put(environment.backendUrl + 'user/' + idUser + "/houses", params);
   }
 }

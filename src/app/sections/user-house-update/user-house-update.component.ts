@@ -43,7 +43,10 @@ export class UserHouseUpdateComponent {
 
   onSubmit(): void {
     const userId: Number = Number(this.activatedRoute.snapshot.params['id']);
-    this.userHousesService.add(userId, this.userHouseForm.value).subscribe((response: any) => {
+    let params: any = this.userHouseForm.value;
+    params.house_id = Number(this.activatedRoute.snapshot.params['idHouse']);
+
+    this.userHousesService.updateHousesByUser(userId, params).subscribe((response: any) => {
       this.router.navigate(['/users', userId, 'houses']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
