@@ -10,7 +10,7 @@ export class CityService {
 
   list() {
     return of([
-      {id: 1, description: 'Santiago'}, {id: 2, description: 'Viña del Mar'}, {id: 3, description: 'Concepción'}
+      {id: 1, description: 'Santiago'}, {id: 2, description: 'Valparaiso'}, {id: 3, description: 'Concepción'}
     ])
   }
 }
