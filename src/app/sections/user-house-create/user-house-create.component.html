@@ -1,4 +1,4 @@
-<a [routerLink]="'/users'">Back</a>
+<a [routerLink]="['/users', userId, 'houses']">Back</a>
 <form [formGroup]="userHouseForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="description">

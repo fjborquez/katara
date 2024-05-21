@@ -16,6 +16,7 @@ export class UserHouseCreateComponent {
     city_id: '',
     is_default: 0
   });
+  userId: number = 0;
   cities: any = [];
 
   constructor(
@@ -29,12 +30,12 @@ export class UserHouseCreateComponent {
 
   ngOnInit(): void {
     this.cityService.list().subscribe((data: any) => this.cities = data);
+    this.userId = this.activatedRoute.snapshot.params['id'];
   }
 
   onSubmit(): void {
-    const userId: Number = Number(this.activatedRoute.snapshot.params['id']);
-    this.userHousesService.add(userId, this.userHouseForm.value).subscribe((response: any) => {
-      this.router.navigate(['/users', userId, 'houses']).then(() => {
+    this.userHousesService.add(this.userId, this.userHouseForm.value).subscribe((response: any) => {
+      this.router.navigate(['/users', this.userId, 'houses']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },

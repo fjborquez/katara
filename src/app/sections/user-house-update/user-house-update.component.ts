@@ -13,6 +13,7 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
 export class UserHouseUpdateComponent {
   userHouseForm = this.formBuilder.group({});
   cities: any = [];
+  userId: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +25,7 @@ export class UserHouseUpdateComponent {
   ) { }
 
   ngOnInit(): void {
+    this.userId = this.activatedRoute.snapshot.params['id'];
     this.userHouseForm.addControl('description', new FormControl(''));
     this.userHouseForm.addControl('city_id', new FormControl(''));
     this.userHouseForm.addControl('is_default', new FormControl(false));
@@ -42,12 +44,11 @@ export class UserHouseUpdateComponent {
   }
 
   onSubmit(): void {
-    const userId: Number = Number(this.activatedRoute.snapshot.params['id']);
     let params: any = this.userHouseForm.value;
     params.house_id = Number(this.activatedRoute.snapshot.params['idHouse']);
 
-    this.userHousesService.updateHousesByUser(userId, params).subscribe((response: any) => {
-      this.router.navigate(['/users', userId, 'houses']).then(() => {
+    this.userHousesService.updateHousesByUser(this.userId, params).subscribe((response: any) => {
+      this.router.navigate(['/users', this.userId, 'houses']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },
