@@ -20,4 +20,12 @@ export class UserHousesService {
   updateHousesByUser(idUser: Number, params = {}) {
     return this.http.put(environment.backendUrl + 'user/' + idUser + "/houses", params);
   }
+
+  enable(idUser: number, idHouse: number) {
+    return this.http.put(environment.backendUrl + 'user/' + idUser + "/houses/" + idHouse + "/enable", {});
+  }
+
+  disable(idUser: number, idHouse: number) {
+    return this.http.put(environment.backendUrl + 'user/' + idUser + "/houses/" + idHouse + "/disable", {});
+  }
 }
