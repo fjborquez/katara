@@ -59,7 +59,7 @@ export class HouseResidentsCreateComponent {
     }
 
     this.residentService.add(this.userId, this.houseId, params).subscribe((response: any) => {
-      this.router.navigate(['/users/', this.userId, '/houses']).then(() => {
+      this.router.navigate(['/users/', this.userId, 'houses']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },
