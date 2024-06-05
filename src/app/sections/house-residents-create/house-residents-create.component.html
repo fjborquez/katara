@@ -1,0 +1,34 @@
+<a [routerLink]="['/users', userId, 'houses']">Back</a>
+<form [formGroup]="houseResidentForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <div>
+    <label for="name">
+      Lastname
+    </label>
+    <input id="lastname" type="text" formControlName="lastname">
+  </div>
+  <div>
+    <label for="date_of_birth">
+      Date of birth
+    </label>
+    <input id="date_of_birth" type="date" formControlName="date_of_birth">
+  </div>
+  <div>
+    <div>Nutritional Profile</div>
+    <div *ngFor="let nutritionalRestriction of nutritionalRestrictions">
+      <label for="{{nutritionalRestriction.description}}">
+        {{nutritionalRestriction.description}}
+      </label>
+      <input id="{{nutritionalRestriction.description}}" type="checkbox" formControlName="nutritionalProfile[{{nutritionalRestriction.id}}]">
+    </div>
+  </div>
+  <div>
+    <button class="button" type="submit">Create</button>
+  </div>
+</form>
+

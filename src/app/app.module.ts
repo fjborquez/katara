@@ -23,6 +23,7 @@ import { UserHouseViewComponent } from './sections/user-house-view/user-house-vi
 import { MatIconModule } from '@angular/material/icon';
 import { UserHouseCreateComponent } from './sections/user-house-create/user-house-create.component';
 import { UserHouseUpdateComponent } from './sections/user-house-update/user-house-update.component';
+import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserHouseUpdateComponent } from './sections/user-house-update/user-hous
     UserUpdateComponent,
     UserHouseViewComponent,
     UserHouseCreateComponent,
-    UserHouseUpdateComponent
+    UserHouseUpdateComponent,
+    HouseResidentsCreateComponent,
   ],
   imports: [
     BrowserModule,
