@@ -12,4 +12,8 @@ export class ResidentService {
   add(userId: number, houseId: number, params = {}) {
     return this.http.post(environment.backendUrl + 'user/' + userId + '/houses/' + houseId + '/residents', params)
   }
+
+  list(userId: number, houseId: number) {
+    return this.http.get(environment.backendUrl + 'user/' + userId + '/houses/' + houseId + '/residents')
+  }
 }

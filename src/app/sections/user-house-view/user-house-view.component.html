@@ -31,7 +31,10 @@
   <ng-container matColumnDef="residents">
     <th mat-header-cell *matHeaderCellDef>Residents</th>
     <td mat-cell *matCellDef="let house">
-      <a [routerLink]="[house.id, 'residents', 'add']">
+      <a [routerLink]="[house.id, 'residents', 'add']" *ngIf="!house.persons.length">
+        <mat-icon class="mat-18">people</mat-icon>
+      </a>
+      <a [routerLink]="[house.id, 'residents']" *ngIf="house.persons.length">
         <mat-icon class="mat-18">people</mat-icon>
       </a>
     </td>

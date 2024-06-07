@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserHouseCreateComponent } from './sections/user-house-create/user-house-create.component';
 import { UserHouseUpdateComponent } from './sections/user-house-update/user-house-update.component';
 import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
+import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HouseResidentsCreateComponent } from './sections/house-residents-create
     UserHouseCreateComponent,
     UserHouseUpdateComponent,
     HouseResidentsCreateComponent,
+    HouseResidentsViewComponent,
   ],
   imports: [
     BrowserModule,

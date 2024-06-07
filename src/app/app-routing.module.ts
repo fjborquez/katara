@@ -10,6 +10,7 @@ import { UserHouseViewComponent } from './sections/user-house-view/user-house-vi
 import { UserHouseCreateComponent } from './sections/user-house-create/user-house-create.component';
 import { UserHouseUpdateComponent } from './sections/user-house-update/user-house-update.component';
 import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
+import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'users/:id/houses', component: UserHouseViewComponent},
   {path: 'users/:id/houses/add', component: UserHouseCreateComponent},
   {path: 'users/:id/houses/:idHouse/update', component: UserHouseUpdateComponent},
+  {path: 'users/:id/houses/:idHouse/residents', component: HouseResidentsViewComponent},
   {path: 'users/:id/houses/:idHouse/residents/add', component: HouseResidentsCreateComponent},
   {path: 'persons/:id/nutritional-profile/update', component: UserProfileUpdateComponent},
 ];
