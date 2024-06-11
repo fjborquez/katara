@@ -25,6 +25,7 @@ import { UserHouseCreateComponent } from './sections/user-house-create/user-hous
 import { UserHouseUpdateComponent } from './sections/user-house-update/user-house-update.component';
 import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
 import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
+import { HouseResidentsUpdateComponent } from './sections/house-residents-update/house-residents-update.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HouseResidentsViewComponent } from './sections/house-residents-view/hou
     UserHouseUpdateComponent,
     HouseResidentsCreateComponent,
     HouseResidentsViewComponent,
+    HouseResidentsUpdateComponent,
   ],
   imports: [
     BrowserModule,

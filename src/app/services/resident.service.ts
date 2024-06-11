@@ -16,4 +16,12 @@ export class ResidentService {
   list(userId: number, houseId: number) {
     return this.http.get(environment.backendUrl + 'user/' + userId + '/houses/' + houseId + '/residents')
   }
+
+  get(userId: number, houseId: number, residentId: number) {
+    return this.http.get(environment.backendUrl + 'user/' + userId + '/houses/' + houseId + '/residents/' + residentId)
+  }
+
+  update(userId: number, houseId: number, residentId: number, params = {}) {
+    return this.http.put(environment.backendUrl + 'user/' + userId + '/houses/' + houseId + '/residents/' + residentId, params);
+  }
 }
