@@ -1,0 +1,7 @@
+<div>Nutritional Profile</div>
+<div *ngFor="let restriction of restrictions" [formGroup]="form">
+  <label for="{{restriction.description}}">
+    {{restriction.description}}
+  </label>
+  <input id="{{restriction.description}}" type="checkbox" formControlName="nutritionalProfile['{{restriction.id}}']">
+</div>

@@ -1,9 +1,4 @@
 <a [routerLink]="'/users'">Back</a>
-<form [formGroup]="userProfileForm">
-  <div *ngFor="let nutritionalRestriction of nutritionalRestrictions">
-    <label for="{{nutritionalRestriction.description}}">
-      {{nutritionalRestriction.description}}
-    </label>
-    <input id="{{nutritionalRestriction.description}}" type="checkbox" formControlName="nutritionalProfile[{{nutritionalRestriction.id}}]">
-  </div>
+<form [formGroup]="nutritionalProfileForm">
+  <app-nutritional-profile [defaultValues]="nutritionalProfile"></app-nutritional-profile>
 </form>

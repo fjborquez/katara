@@ -10,7 +10,6 @@ import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NutritionalProfileViewComponent } from './sections/nutritional-profile-view/nutritional-profile-view.component';
-import { UserProfileUpdateComponent } from './sections/user-profile-update/user-profile-update.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,13 +25,13 @@ import { UserHouseUpdateComponent } from './sections/user-house-update/user-hous
 import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
 import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
 import { HouseResidentsUpdateComponent } from './sections/house-residents-update/house-residents-update.component';
+import { NutritionalProfileComponent } from './components/nutritional-profile/nutritional-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NutritionalProfileViewComponent,
     ConfirmUserDeleteComponent,
-    UserProfileUpdateComponent,
     UserCreateComponent,
     UserListComponent,
     UserUpdateComponent,
@@ -42,6 +41,7 @@ import { HouseResidentsUpdateComponent } from './sections/house-residents-update
     HouseResidentsCreateComponent,
     HouseResidentsViewComponent,
     HouseResidentsUpdateComponent,
+    NutritionalProfileComponent,
   ],
   imports: [
     BrowserModule,

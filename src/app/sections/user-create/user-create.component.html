@@ -31,13 +31,7 @@
     <input id="password" type="password" formControlName="password">
   </div>
   <div>
-    <div>Nutritional Profile</div>
-    <div *ngFor="let nutritionalRestriction of nutritionalRestrictions">
-      <label for="{{nutritionalRestriction.description}}">
-        {{nutritionalRestriction.description}}
-      </label>
-      <input id="{{nutritionalRestriction.description}}" type="checkbox" formControlName="nutritionalProfile[{{nutritionalRestriction.id}}]">
-    </div>
+    <app-nutritional-profile></app-nutritional-profile>
   </div>
   <div>
     <button class="button" type="submit">Create</button>

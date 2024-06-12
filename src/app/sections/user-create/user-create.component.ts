@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
+import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 
 @Component({
   selector: 'app-user-create',
@@ -12,14 +12,12 @@ import { NutritionalRestrictionService } from 'src/app/services/nutritional-rest
 })
 export class UserCreateComponent {
   personForm = this.formBuilder.group({});
-  nutritionalRestrictions: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private nutritionalRestrictionService: NutritionalRestrictionService
   ) { }
 
   ngOnInit(): void {
@@ -28,23 +26,10 @@ export class UserCreateComponent {
     this.personForm.addControl('date_of_birth', this.formBuilder.control(''));
     this.personForm.addControl('email', this.formBuilder.control(''));
     this.personForm.addControl('password', this.formBuilder.control(''));
-
-    this.nutritionalRestrictionService.list().subscribe(nutritionalRestrictions => {
-      this.nutritionalRestrictions = nutritionalRestrictions;
-
-      this.nutritionalRestrictions.forEach((nutritionalRestriction: any) => {
-        this.personForm.addControl('nutritionalProfile[' + nutritionalRestriction.id + ']', this.formBuilder.control(false));
-      });
-    });
   }
 
   onSubmit(): void {
-    const nutritionalProfile = Object.entries(this.personForm.value).filter((value) => {
-      return value[1] === true;
-    }).map((value) => {
-      return Number(value[0].replace(/\D/g, ''));
-    });
-
+    const nutritionalProfile = nutritionalProfileToArray(this.personForm.value);
     const params = {
       name: this.personForm.get('name')?.value,
       lastname: this.personForm.get('lastname')?.value,

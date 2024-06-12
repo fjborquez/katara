@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
+import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
+import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 import { ResidentService } from 'src/app/services/resident.service';
 
 @Component({
@@ -21,7 +22,6 @@ export class HouseResidentsCreateComponent {
     private router: Router,
     private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
-    private nutritionalRestrictionService: NutritionalRestrictionService,
     private residentService: ResidentService
   ) {}
 
@@ -32,24 +32,11 @@ export class HouseResidentsCreateComponent {
     this.houseResidentForm.addControl('name', new FormControl(''));
     this.houseResidentForm.addControl('lastname', new FormControl(''));
     this.houseResidentForm.addControl('date_of_birth', new FormControl(new Date()));
-
-    this.nutritionalRestrictionService.list().subscribe((nutritionalRestrictions: any) => {
-      this.nutritionalRestrictions = nutritionalRestrictions;
-
-      this.nutritionalRestrictions.forEach((nutritionalRestriction: any) => {
-        this.houseResidentForm.addControl('nutritionalProfile[' + nutritionalRestriction.id + ']', this.formBuilder.control(false));
-      });
-    });
   }
 
   public onSubmit(): void {
-    const nutritionalProfile = Object.entries(this.houseResidentForm.value).filter((value) => {
-      return value[1] === true;
-    }).map((value) => {
-      return Number(value[0].replace(/\D/g, ''));
-    });
-
-    const date = (this.houseResidentForm.get('date_of_birth')?.value || '').split('-').reverse().join('/');
+    const nutritionalProfile = nutritionalProfileToArray(this.houseResidentForm.value);
+    const date = dateToChileanFormat(this.houseResidentForm.get('date_of_birth')?.value || '');
 
     const params = {
       name: this.houseResidentForm.get('name')?.value,
