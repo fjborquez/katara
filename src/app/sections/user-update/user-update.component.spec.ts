@@ -1,18 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonUpdateComponent } from './person-update.component';
+import { UserUpdateComponent } from './user-update.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
-describe('PersonUpdateComponent', () => {
-  let component: PersonUpdateComponent;
-  let fixture: ComponentFixture<PersonUpdateComponent>;
+describe('UserUpdateComponent', () => {
+  let component: UserUpdateComponent;
+  let fixture: ComponentFixture<UserUpdateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PersonUpdateComponent ]
+      declarations: [ UserUpdateComponent ],
+      imports: [
+        HttpClientModule,
+        MatSnackBarModule,
+        RouterModule.forRoot([]),
+        ReactiveFormsModule
+      ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PersonUpdateComponent);
+    fixture = TestBed.createComponent(UserUpdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
