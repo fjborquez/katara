@@ -12,7 +12,7 @@ export class NutritionalProfileService {
   constructor(private http: HttpClient) { }
 
   // TODO: Corregir llamada a aang
-  add(userId: Number, params = {}) {
+  add(userId: number, params = {}) {
     return this.http.post(environment.aangBaseUrl + 'person/' + userId + '/nutritional-profile', params)
   }
 
@@ -21,7 +21,7 @@ export class NutritionalProfileService {
   }
 
   // TODO: Corregir llamada a aang
-  update(userId: Number, params = {}) {
+  update(userId: number, params = {}) {
     return this.http.put(environment.aangBaseUrl + 'person/' + userId + '/nutritional-profile', params);
   }
 

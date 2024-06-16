@@ -17,19 +17,19 @@ export class UserService {
     return this.http.get(environment.backendUrl + 'user')
   }
 
-  get(id: Number) {
+  get(id: number) {
     return this.http.get(environment.backendUrl + 'user/' + id)
   }
 
-  update(id: Number, params = {}) {
+  update(id: number, params = {}) {
     return this.http.put(environment.backendUrl + 'user/' + id, params)
   }
 
-  enable(userId: Number) {
+  enable(userId: number) {
     return this.http.put(environment.backendUrl + 'user' + '/' + userId + '/enable', {});
   }
 
-  disable(userId: Number) {
+  disable(userId: number) {
     return this.http.put(environment.backendUrl + 'user' + '/' + userId + '/disable', {});
   }
 

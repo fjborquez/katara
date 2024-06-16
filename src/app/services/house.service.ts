@@ -17,11 +17,11 @@ export class HouseService {
     return this.http.get(environment.aangBaseUrl + 'house')
   }
 
-  update(id: Number, params = {}) {
+  update(id: number, params = {}) {
     return this.http.put(environment.aangBaseUrl + 'house/' + id, params)
   }
 
-  get(id: Number) {
+  get(id: number) {
     return this.http.get(environment.aangBaseUrl + 'house/' + id)
   }
 }

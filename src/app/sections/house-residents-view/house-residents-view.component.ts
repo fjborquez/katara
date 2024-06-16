@@ -11,8 +11,8 @@ import { ResidentService } from 'src/app/services/resident.service';
 export class HouseResidentsViewComponent {
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['fullname', 'date_of_birth', 'options', 'nutritional_profile'];
-  idUser: number = 0;
-  idHouse: number = 0;
+  idUser = 0;
+  idHouse = 0;
 
   constructor(
     private residentService: ResidentService,

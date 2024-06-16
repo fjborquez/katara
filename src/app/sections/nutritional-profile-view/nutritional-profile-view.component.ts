@@ -12,7 +12,7 @@ import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.m
 })
 export class NutritionalProfileViewComponent {
   nutritionalProfileForm: FormGroup = this.formBuilder.group({});
-  userId: number = 0;
+  userId = 0;
   nutritionalProfile: NutritionalRestriction[] = [];
 
   constructor(
