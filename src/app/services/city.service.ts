@@ -6,8 +6,6 @@ import { of } from 'rxjs';
 })
 export class CityService {
 
-  constructor() { }
-
   list() {
     return of([
       {id: 1, description: 'Santiago'},
