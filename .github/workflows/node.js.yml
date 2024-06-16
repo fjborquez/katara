@@ -27,3 +27,8 @@ jobs:
     - run: npm ci
     - run: npm run test:prod
     - run: npm run lint
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: ESLint fixes
+        skip_fetch: true
