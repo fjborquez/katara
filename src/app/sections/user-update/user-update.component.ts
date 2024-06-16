@@ -28,7 +28,7 @@ export class UserUpdateComponent {
   ) { }
 
   ngOnInit(): void {
-    let userId: number = Number(this.route.snapshot.paramMap.get('id'));
+    const userId = Number(this.route.snapshot.paramMap.get('id'));
 
     this.userForm.addControl('name', this.formBuilder.control(''));
     this.userForm.addControl('lastname', this.formBuilder.control(''));
@@ -70,7 +70,7 @@ export class UserUpdateComponent {
   }
 
   onSubmit(): void {
-    let userId: number = Number(this.route.snapshot.paramMap.get('id'));
+    const userId = Number(this.route.snapshot.paramMap.get('id'));
 
     const nutritionalProfile = Object.entries(this.userForm.value).filter((value) => {
       return value[1] === true;

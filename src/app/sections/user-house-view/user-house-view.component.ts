@@ -14,7 +14,7 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
 export class UserHouseViewComponent {
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['house', 'city', 'is_default', 'options', 'residents'];
-  idUser: number = 0;
+  idUser = 0;
 
   constructor(
     private userHousesService: UserHousesService,
@@ -29,7 +29,7 @@ export class UserHouseViewComponent {
     this.getHousesList(this.idUser);
   }
 
-  getHousesList(idUser: Number) {
+  getHousesList(idUser: number) {
     return this.userHousesService.getHousesByUser(idUser).subscribe((response: any) => {
       this.dataSource.data = response;
     });

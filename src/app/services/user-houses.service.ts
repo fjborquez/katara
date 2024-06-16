@@ -9,15 +9,15 @@ export class UserHousesService {
 
   constructor(private http: HttpClient) { }
 
-  add(idUser: Number, params = {}) {
+  add(idUser: number, params = {}) {
     return this.http.post(environment.backendUrl + 'user/' + idUser + "/houses", params)
   }
 
-  getHousesByUser(idUser: Number) {
+  getHousesByUser(idUser: number) {
     return this.http.get(environment.backendUrl + 'user/' + idUser + "/houses");
   }
 
-  updateHousesByUser(idUser: Number, params = {}) {
+  updateHousesByUser(idUser: number, params = {}) {
     return this.http.put(environment.backendUrl + 'user/' + idUser + "/houses", params);
   }
 

@@ -28,7 +28,7 @@ export class UserListComponent {
     this.getPersonList();
   }
 
-  enable(userId: Number) {
+  enable(userId: number) {
     const message = 'Are you sure of enable this user?';
     const dialogData = {
       'title': 'Enable User',
@@ -52,7 +52,7 @@ export class UserListComponent {
     });
   }
 
-  disable(userId: Number) {
+  disable(userId: number) {
     const message = 'Are you sure of disable this user?';
     const dialogData = {
       'title': 'Disable User',
