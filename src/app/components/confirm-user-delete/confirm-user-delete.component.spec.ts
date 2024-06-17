@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmUserDeleteComponent } from './confirm-user-delete.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 
 describe('ConfirmUserDeleteComponent', () => {
   let component: ConfirmUserDeleteComponent;
@@ -8,7 +11,20 @@ describe('ConfirmUserDeleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmUserDeleteComponent ]
+      imports: [
+        HttpClientModule,
+        MatDialogModule,
+        RouterModule.forRoot([])
+      ],
+      declarations: [ ConfirmUserDeleteComponent ],
+      providers: [
+        {
+          provide: MatDialogRef, useValue: {}
+        },
+        {
+          provide: MAT_DIALOG_DATA, useValue: []
+        }
+      ]
     })
     .compileComponents();
 

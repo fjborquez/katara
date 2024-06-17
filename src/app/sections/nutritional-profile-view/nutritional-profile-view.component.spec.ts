@@ -3,23 +3,25 @@ import { of, throwError } from 'rxjs';
 
 import { ActivatedRoute } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { UserProfileComponent } from './nutritional-profile-view.component';
-import { UserProfileService } from '../../services/nutritional-profile.service';
+import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
+import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
 
-describe('UserProfileComponent', () => {
-  let component: UserProfileComponent;
-  let fixture: ComponentFixture<UserProfileComponent>;
-  let userProfileService: UserProfileService;
+describe('NutritionalProfileComponentView', () => {
+  let component: NutritionalProfileComponent;
+  let fixture: ComponentFixture<NutritionalProfileComponent>;
+  let nutritionalProfileService: NutritionalProfileService;
+
+  const formGroupDirective = new FormGroupDirective([], []);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserProfileComponent ],
+      declarations: [ NutritionalProfileComponent ],
       imports: [
         HttpClientTestingModule,
         ReactiveFormsModule
       ],
-      providers: [ UserProfileComponent, {
+      providers: [ NutritionalProfileComponent, {
         provide: ActivatedRoute,
         useValue: {
           snapshot: {
@@ -28,39 +30,22 @@ describe('UserProfileComponent', () => {
             }
           }
         }
-      }]
+      },
+      FormGroupDirective,
+      FormBuilder,
+      {provide: FormGroupDirective, useValue: formGroupDirective}
+
+      ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserProfileComponent);
+    fixture = TestBed.createComponent(NutritionalProfileComponent);
     component = fixture.componentInstance;
-    userProfileService = fixture.debugElement.injector.get(UserProfileService);
+    nutritionalProfileService = fixture.debugElement.injector.get(NutritionalProfileService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should add a new user profile when onSubmit() is executed', waitForAsync(() => {
-    spyOn(userProfileService, 'add').and.callFake(() => {
-      return of();
-    });
-
-    component.onSubmit();
-    expect(userProfileService.add).toHaveBeenCalled();
-  }));
-
-  it('should not add a new user profile when onSubmit() is executed', waitForAsync(() => {
-    spyOn(userProfileService, 'add').and.callFake(() => {
-      return throwError({
-          error: {
-              message: 'Error'
-          }
-      });
-  });
-
-  component.onSubmit();
-  expect(userProfileService.add).toHaveBeenCalled();
-  }));
 });

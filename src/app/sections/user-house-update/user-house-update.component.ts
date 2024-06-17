@@ -13,7 +13,7 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
 export class UserHouseUpdateComponent {
   userHouseForm = this.formBuilder.group({});
   cities: any = [];
-  userId: number = 0;
+  userId = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,7 +30,7 @@ export class UserHouseUpdateComponent {
     this.userHouseForm.addControl('city_id', new FormControl(''));
     this.userHouseForm.addControl('is_default', new FormControl(false));
 
-    const userId: Number = Number(this.activatedRoute.snapshot.params['id']);
+    const userId = Number(this.activatedRoute.snapshot.params['id']);
     this.cityService.list().subscribe((data: any) => this.cities = data);
     this.userHousesService.getHousesByUser(userId).subscribe((data: any) => {
       const house = data.find((item: any) => Number(item.id) === Number(this.activatedRoute.snapshot.params['idHouse']));
@@ -44,7 +44,7 @@ export class UserHouseUpdateComponent {
   }
 
   onSubmit(): void {
-    let params: any = this.userHouseForm.value;
+    const params: any = this.userHouseForm.value;
     params.house_id = Number(this.activatedRoute.snapshot.params['idHouse']);
 
     this.userHousesService.updateHousesByUser(this.userId, params).subscribe((response: any) => {

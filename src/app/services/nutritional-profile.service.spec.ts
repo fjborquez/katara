@@ -1,12 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
 import { NutritionalProfileService } from './nutritional-profile.service';
+import { HttpClientModule } from '@angular/common/http';
 
-describe('UserProfileService', () => {
+describe('NutritionalProfileService', () => {
   let service: NutritionalProfileService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule
+      ]
+    });
     service = TestBed.inject(NutritionalProfileService);
   });
 

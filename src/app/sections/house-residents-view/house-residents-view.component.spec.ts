@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HouseResidentsViewComponent } from './house-residents-view.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
 
 describe('HouseResidentsViewComponent', () => {
   let component: HouseResidentsViewComponent;
@@ -8,7 +11,12 @@ describe('HouseResidentsViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HouseResidentsViewComponent ]
+      declarations: [ HouseResidentsViewComponent ],
+      imports: [
+        HttpClientModule,
+        RouterModule.forRoot([]),
+        MatTableModule
+      ],
     })
     .compileComponents();
 

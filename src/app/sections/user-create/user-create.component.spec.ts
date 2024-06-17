@@ -1,18 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonaCreateComponent } from './user-create.component';
+import { UserCreateComponent } from './user-create.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AppModule } from 'src/app/app.module';
 
-describe('PersonaCreateComponent', () => {
-  let component: PersonaCreateComponent;
-  let fixture: ComponentFixture<PersonaCreateComponent>;
+describe('UserCreateComponent', () => {
+  let component: UserCreateComponent;
+  let fixture: ComponentFixture<UserCreateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PersonaCreateComponent ]
+      declarations: [ UserCreateComponent ],
+      imports: [
+        HttpClientModule,
+        MatSnackBarModule,
+        AppModule
+      ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PersonaCreateComponent);
+    fixture = TestBed.createComponent(UserCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

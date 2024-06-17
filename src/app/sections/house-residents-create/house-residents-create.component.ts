@@ -12,8 +12,8 @@ import { ResidentService } from 'src/app/services/resident.service';
   styleUrls: ['./house-residents-create.component.sass']
 })
 export class HouseResidentsCreateComponent {
-  userId: number = 0;
-  houseId: number = 0;
+  userId = 0;
+  houseId = 0;
   houseResidentForm = this.formBuilder.group({});
   nutritionalRestrictions: any = [];
 
