@@ -1,8 +1,13 @@
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { City } from '../../models/city.model';
 import { CityService } from './../../services/city.service';
 import { Component } from '@angular/core';
+import { CreateResponse } from 'src/app/models/create-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
+import { ListResponse } from 'src/app/models/list-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
@@ -16,8 +21,8 @@ export class UserHouseCreateComponent {
     city_id: '',
     is_default: 0
   });
-  userId = 0;
-  cities: any = [];
+  userId: number = 0;
+  cities: City[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,18 +34,18 @@ export class UserHouseCreateComponent {
   ) { }
 
   ngOnInit(): void {
-    this.cityService.list().subscribe((data: any) => this.cities = data);
+    this.cityService.list().subscribe((response: ListResponse<City>) => this.cities = response.message);
     this.userId = this.activatedRoute.snapshot.params['id'];
   }
 
   onSubmit(): void {
-    this.userHousesService.add(this.userId, this.userHouseForm.value).subscribe((response: any) => {
+    this.userHousesService.add(this.userId, this.userHouseForm.value).subscribe((response: CreateResponse) => {
       this.router.navigate(['/users', this.userId, 'houses']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },
-    (error) => {
-      this.snackBar.open(error.error.message, "Close");
+    (error: ErrorResponse) => {
+      this.snackBar.open(error.message, "Close");
     });
   }
 }

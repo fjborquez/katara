@@ -1,8 +1,15 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormControl } from '@angular/forms';
+
+import { City } from 'src/app/models/city.model';
 import { CityService } from 'src/app/services/city.service';
+import { Component } from '@angular/core';
+import { EditResponse } from 'src/app/models/edit-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
+import { GetResponse } from 'src/app/models/get-response.model';
+import { House } from 'src/app/models/house.model';
+import { ListResponse } from 'src/app/models/list-response.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
@@ -12,8 +19,9 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
 })
 export class UserHouseUpdateComponent {
   userHouseForm = this.formBuilder.group({});
-  cities: any = [];
-  userId = 0;
+  cities: City[] = [];
+  userId: number = 0;
+  houseId: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,16 +38,20 @@ export class UserHouseUpdateComponent {
     this.userHouseForm.addControl('city_id', new FormControl(''));
     this.userHouseForm.addControl('is_default', new FormControl(false));
 
-    const userId = Number(this.activatedRoute.snapshot.params['id']);
-    this.cityService.list().subscribe((data: any) => this.cities = data);
-    this.userHousesService.getHousesByUser(userId).subscribe((data: any) => {
-      const house = data.find((item: any) => Number(item.id) === Number(this.activatedRoute.snapshot.params['idHouse']));
-      const params = {
-        description: house.description,
-        city_id: house.city_id,
-        is_default: house.pivot.is_default
-      };
-      this.userHouseForm.patchValue(params);
+    this.userId = Number(this.activatedRoute.snapshot.params['id']);
+    this.houseId = Number(this.activatedRoute.snapshot.params['idHouse']);
+    this.cityService.list().subscribe((response: ListResponse<City>) => this.cities = response.message);
+    this.userHousesService.getHousesByUser(this.userId).subscribe((response: ListResponse<House>) => {
+      const house = response.message.find((item: any) => Number(item.id) === this.houseId);
+
+      if (house) {
+        const params = {
+          description: house.description,
+          city_id: house.city_id,
+          is_default: house.pivot.is_default
+        };
+        this.userHouseForm.patchValue(params);
+      }
     });
   }
 
@@ -47,13 +59,13 @@ export class UserHouseUpdateComponent {
     const params: any = this.userHouseForm.value;
     params.house_id = Number(this.activatedRoute.snapshot.params['idHouse']);
 
-    this.userHousesService.updateHousesByUser(this.userId, params).subscribe((response: any) => {
+    this.userHousesService.updateHousesByUser<EditResponse>(this.userId, params).subscribe((response: EditResponse) => {
       this.router.navigate(['/users', this.userId, 'houses']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },
-    (error) => {
-      this.snackBar.open(error.error.message, "Close");
+    (error: ErrorResponse) => {
+      this.snackBar.open(error.message, "Close");
     });
   }
 

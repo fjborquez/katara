@@ -1,9 +1,13 @@
-import { ConfirmUserDeleteComponent } from './../../components/confirm-user-delete/confirm-user-delete.component';
+import { ActivatedRoute } from '@angular/router';
+import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Component } from '@angular/core';
+import { EditResponse } from 'src/app/models/edit-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
+import { House } from 'src/app/models/house.model';
+import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
@@ -30,58 +34,54 @@ export class UserHouseViewComponent {
   }
 
   getHousesList(idUser: number) {
-    return this.userHousesService.getHousesByUser(idUser).subscribe((response: any) => {
-      this.dataSource.data = response;
+    return this.userHousesService.getHousesByUser(idUser).subscribe((response: ListResponse<House>) => {
+      this.dataSource.data = response.message;
     });
   }
 
   enable(idHouse: number) {
-    const userId = this.activatedRoute.snapshot.params['id'];
-
     const message = 'Are you sure of enable this house?';
     const dialogData = {
       'title': 'Enable House',
       'message': message,
     };
-    const dialogRef = this.dialog.open(ConfirmUserDeleteComponent, {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
       maxWidth: "400px",
       data: dialogData
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userHousesService.enable(userId, idHouse).subscribe((_: any) => {
-          this.snackBar.open('House enabled', 'Close');
-          this.getHousesList(userId);
+        this.userHousesService.enable(this.idUser, idHouse).subscribe((response: EditResponse) => {
+          this.snackBar.open(response.message, 'Close');
+          this.getHousesList(this.idUser);
         },
-        (error) => {
-          this.snackBar.open(error.error.message, 'Close');
+        (error: ErrorResponse) => {
+          this.snackBar.open(error.message, 'Close');
         });
       }
     });
   }
 
   disable(idHouse: number) {
-    const userId = this.activatedRoute.snapshot.params['id'];
-
     const message = 'Are you sure of disable this house?';
     const dialogData = {
       'title': 'Disable House',
       'message': message,
     };
-    const dialogRef = this.dialog.open(ConfirmUserDeleteComponent, {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
       maxWidth: "400px",
       data: dialogData
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userHousesService.disable(userId, idHouse).subscribe((_: any) => {
-          this.snackBar.open('House disabled', 'Close');
-          this.getHousesList(userId);
+        this.userHousesService.disable(this.idUser, idHouse).subscribe((response: EditResponse) => {
+          this.snackBar.open(response.message, 'Close');
+          this.getHousesList(this.idUser);
         },
-        (error) => {
-          this.snackBar.open(error.error.message, 'Close');
+        (error: ErrorResponse) => {
+          this.snackBar.open(error.message, 'Close');
         });
       }
     });

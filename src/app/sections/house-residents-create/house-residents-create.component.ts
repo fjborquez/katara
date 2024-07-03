@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormControl } from '@angular/forms';
+
+import { Component } from '@angular/core';
+import { CreateResponse } from 'src/app/models/create-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ResidentService } from 'src/app/services/resident.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
-import { ResidentService } from 'src/app/services/resident.service';
 
 @Component({
   selector: 'app-house-residents-create',
@@ -42,16 +45,16 @@ export class HouseResidentsCreateComponent {
       name: this.houseResidentForm.get('name')?.value,
       lastname: this.houseResidentForm.get('lastname')?.value,
       date_of_birth: date,
-      nutritional_profile: nutritionalProfile
+      nutritionalProfile: nutritionalProfile
     }
 
-    this.residentService.add(this.userId, this.houseId, params).subscribe((response: any) => {
+    this.residentService.add<CreateResponse>(this.userId, this.houseId, params).subscribe((response: CreateResponse) => {
       this.router.navigate(['/users/', this.userId, 'houses', this.houseId, 'residents']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },
-    (error) => {
-      this.snackBar.open(error.error.message, "Close");
+    (error: ErrorResponse) => {
+      this.snackBar.open(error.message, "Close");
     });
 
   }

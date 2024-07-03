@@ -1,12 +1,19 @@
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Component } from '@angular/core';
+import { EditResponse } from 'src/app/models/edit-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
+import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from '../../services/user.service';
-import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
-import { tap } from 'rxjs';
 import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
+import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
+import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
+import { Person } from 'src/app/models/person.model';
+import { User } from 'src/app/models/user.model';
+import { UserService } from '../../services/user.service';
+import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-user-update',
@@ -16,6 +23,8 @@ import { NutritionalProfileService } from 'src/app/services/nutritional-profile.
 export class UserUpdateComponent {
   userForm = this.formBuilder.group({});
   nutritionalRestrictions: any;
+  userId: number = 0;
+  nutritionalProfile: NutritionalRestriction[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,12 +32,10 @@ export class UserUpdateComponent {
     private router: Router,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private nutritionalRestrictionService: NutritionalRestrictionService,
-    private nutritionalProfileService: NutritionalProfileService
   ) { }
 
   ngOnInit(): void {
-    const userId = Number(this.route.snapshot.paramMap.get('id'));
+    this.userId = Number(this.route.snapshot.paramMap.get('id'));
 
     this.userForm.addControl('name', this.formBuilder.control(''));
     this.userForm.addControl('lastname', this.formBuilder.control(''));
@@ -36,48 +43,25 @@ export class UserUpdateComponent {
     this.userForm.addControl('email', this.formBuilder.control(''));
     this.userForm.addControl('password', this.formBuilder.control(''));
 
-    this.userService.get(userId).subscribe((user: any) => {
+    this.userService.get(this.userId).subscribe((response: GetResponse<User & Person>) => {
+      const user = response.message;
+      const person = user.person;
+
       const userData = {
-        name: user.person.name,
-        lastname: user.person.lastname,
-        date_of_birth: user.person.date_of_birth,
+        name: person.name,
+        lastname: person.lastname,
+        date_of_birth: person.date_of_birth,
         email: user.email,
         password: user.password
       };
 
+      this.nutritionalProfile = person.nutritional_profile || [];
       this.userForm.patchValue(userData);
     });
-
-    this.nutritionalRestrictionService.list().pipe(
-      tap((nutritionalRestrictions:any) => {
-        this.nutritionalRestrictions = nutritionalRestrictions;
-
-        this.nutritionalRestrictions.forEach((nutritionalRestriction: any) => {
-          this.userForm.addControl('nutritionalProfile[' + nutritionalRestriction.id + ']', this.formBuilder.control(false));
-        });
-      }),
-      tap(() => {
-        this.nutritionalProfileService.get(userId).subscribe((userProfile: any) => {
-          const nutritionalProfile:any = [];
-          for (const key in userProfile) {
-            const newKey = "nutritionalProfile[" + userProfile[key].id + "]";
-            nutritionalProfile[newKey] = true;
-          }
-          this.userForm.patchValue(nutritionalProfile);
-        })
-      }
-    )).subscribe();
   }
 
   onSubmit(): void {
-    const userId = Number(this.route.snapshot.paramMap.get('id'));
-
-    const nutritionalProfile = Object.entries(this.userForm.value).filter((value) => {
-      return value[1] === true;
-    }).map((value) => {
-      return Number(value[0].replace(/\D/g, ''));
-    });
-
+    const nutritionalProfile = nutritionalProfileToArray(this.userForm.value);
     const params = {
       name: this.userForm.get('name')?.value,
       lastname: this.userForm.get('lastname')?.value,
@@ -87,13 +71,13 @@ export class UserUpdateComponent {
       nutritionalProfile: nutritionalProfile
     }
 
-    this.userService.update(userId, params).subscribe(() => {
+    this.userService.update<EditResponse>(this.userId, params).subscribe((response: EditResponse) => {
       this.router.navigate(['/users']).then(() => {
-        this.snackBar.open("Person updated", "Close");
+        this.snackBar.open(response.message, "Close");
       });
     },
-    (error) => {
-      this.snackBar.open(error.error.message, "Close");
+    (error: ErrorResponse) => {
+      this.snackBar.open(error.message, "Close");
     });
   }
 }

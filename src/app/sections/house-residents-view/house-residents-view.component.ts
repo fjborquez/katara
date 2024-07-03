@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ListResponse } from 'src/app/models/list-response.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
 
 @Component({
@@ -26,8 +28,8 @@ export class HouseResidentsViewComponent {
   }
 
   getResidentList() {
-    return this.residentService.list(this.idHouse, this.idUser).subscribe((response: any) => {
-      this.dataSource.data = response;
+    return this.residentService.list(this.idHouse, this.idUser).subscribe((response: ListResponse<Resident>) => {
+      this.dataSource.data = response.message;
     });
   }
 }
