@@ -1,5 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
+
+import { ListResponse } from 'src/app/models/list-response.model';
 import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
 import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
 
@@ -22,8 +24,8 @@ export class NutritionalProfileComponent {
   ngOnInit() {
     this.form = this.rootFormGroup.control;
 
-    this.nutritionalRestrictionService.list().subscribe((response: NutritionalRestriction[]) => {
-      this.restrictions = response;
+    this.nutritionalRestrictionService.list().subscribe((response: ListResponse<NutritionalRestriction>) => {
+      this.restrictions = response.message;
 
       this.restrictions.forEach((nutritionalRestriction: NutritionalRestriction) => {
         if (this.defaultValues.find(restriction => restriction.id === nutritionalRestriction.id)) {

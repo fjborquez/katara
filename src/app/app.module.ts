@@ -1,37 +1,37 @@
+import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ConfirmUserDeleteComponent } from './components/confirm-user-delete/confirm-user-delete.component';
+import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
+import { HouseResidentsUpdateComponent } from './sections/house-residents-update/house-residents-update.component';
+import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from "@angular/material/dialog";
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NutritionalProfileViewComponent } from './sections/nutritional-profile-view/nutritional-profile-view.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
+import { NgModule } from '@angular/core';
+import { NutritionalProfileComponent } from './components/nutritional-profile/nutritional-profile.component';
+import { NutritionalProfileViewComponent } from './sections/nutritional-profile-view/nutritional-profile-view.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UserCreateComponent } from './sections/user-create/user-create.component';
-import { MatSelectModule } from '@angular/material/select';
-import { UserListComponent } from './sections/user-list/user-list.component';
-import { UserUpdateComponent } from './sections/user-update/user-update.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { UserHouseViewComponent } from './sections/user-house-view/user-house-view.component';
-import { MatIconModule } from '@angular/material/icon';
 import { UserHouseCreateComponent } from './sections/user-house-create/user-house-create.component';
 import { UserHouseUpdateComponent } from './sections/user-house-update/user-house-update.component';
-import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
-import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
-import { HouseResidentsUpdateComponent } from './sections/house-residents-update/house-residents-update.component';
-import { NutritionalProfileComponent } from './components/nutritional-profile/nutritional-profile.component';
+import { UserHouseViewComponent } from './sections/user-house-view/user-house-view.component';
+import { UserListComponent } from './sections/user-list/user-list.component';
+import { UserUpdateComponent } from './sections/user-update/user-update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NutritionalProfileViewComponent,
-    ConfirmUserDeleteComponent,
+    AlertDialogComponent,
     UserCreateComponent,
     UserListComponent,
     UserUpdateComponent,

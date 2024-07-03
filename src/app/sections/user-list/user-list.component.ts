@@ -1,10 +1,15 @@
+import { AlertDialogComponent } from '../../components/alert-dialog/alert-dialog.component';
 import { Component } from '@angular/core';
-import { ConfirmUserDeleteComponent } from '../../components/confirm-user-delete/confirm-user-delete.component';
+import { EditResponse } from 'src/app/models/edit-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
+import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -12,7 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-list.component.sass']
 })
 export class UserListComponent {
-  dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource<User>();
   columnsToDisplay = ['id', 'fullname', 'date_of_birth', 'email', 'options', 'nutritional_profile'];
 
   constructor(
@@ -34,19 +39,19 @@ export class UserListComponent {
       'title': 'Enable User',
       'message': message,
     };
-    const dialogRef = this.dialog.open(ConfirmUserDeleteComponent, {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
       maxWidth: "400px",
       data: dialogData
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userService.enable(userId).subscribe((_: any) => {
-          this.snackBar.open('User enabled', 'Close');
+        this.userService.enable<EditResponse>(userId).subscribe((response: EditResponse) => {
+          this.snackBar.open(response.message, 'Close');
           this.getPersonList();
         },
-        (error) => {
-          this.snackBar.open(error.error.message, 'Close');
+        (error: ErrorResponse) => {
+          this.snackBar.open(error.message, 'Close');
         });
       }
     });
@@ -58,27 +63,27 @@ export class UserListComponent {
       'title': 'Disable User',
       'message': message,
     };
-    const dialogRef = this.dialog.open(ConfirmUserDeleteComponent, {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
       maxWidth: "400px",
       data: dialogData
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.userService.disable(userId).subscribe((_: any) => {
-          this.snackBar.open('User disabled', 'Close');
+        this.userService.disable<EditResponse>(userId).subscribe((response: EditResponse) => {
+          this.snackBar.open(response.message, 'Close');
           this.getPersonList();
         },
-        (error) => {
-          this.snackBar.open(error.error.message, 'Close');
+        (error: ErrorResponse) => {
+          this.snackBar.open(error.message, 'Close');
         });
       }
     });
   }
 
-  getPersonList() {
-    return this.userService.list().subscribe((response: any) => {
-      this.dataSource = new MatTableDataSource(response);
+  getPersonList(): Subscription {
+    return this.userService.list().subscribe((response: ListResponse<User>) => {
+      this.dataSource = new MatTableDataSource<User>(response.message);
     });
   }
 }

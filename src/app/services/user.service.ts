@@ -1,5 +1,12 @@
+import { CreateResponse } from '../models/create-response.model';
+import { EditResponse } from '../models/edit-response.model';
+import { GetResponse } from '../models/get-response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ListResponse } from '../models/list-response.model';
+import { Observable } from 'rxjs';
+import { Person } from '../models/person.model';
+import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,28 +16,28 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  add(params = {}) {
-    return this.http.post(environment.backendUrl + 'user', params)
+  add<CreateResponse>(params = {}): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(environment.backendUrl + 'user', params);
   }
 
-  list() {
-    return this.http.get(environment.backendUrl + 'user')
+  list(): Observable<ListResponse<User>> {
+    return this.http.get<ListResponse<User>>(environment.backendUrl + 'user');
   }
 
-  get(id: number) {
-    return this.http.get(environment.backendUrl + 'user/' + id)
+  get(id: number): Observable<GetResponse<User & Person>> {
+    return this.http.get<GetResponse<User & Person>>(environment.backendUrl + 'user/' + id)
   }
 
-  update(id: number, params = {}) {
-    return this.http.put(environment.backendUrl + 'user/' + id, params)
+  update<EditResponse>(id: number, params = {}): Observable<EditResponse> {
+    return this.http.put<EditResponse>(environment.backendUrl + 'user/' + id, params)
   }
 
-  enable(userId: number) {
-    return this.http.put(environment.backendUrl + 'user' + '/' + userId + '/enable', {});
+  enable<EditResponse>(userId: number): Observable<EditResponse> {
+    return this.http.put<EditResponse>(environment.backendUrl + 'user' + '/' + userId + '/enable', {});
   }
 
-  disable(userId: number) {
-    return this.http.put(environment.backendUrl + 'user' + '/' + userId + '/disable', {});
+  disable<EditResponse>(userId: number): Observable<EditResponse> {
+    return this.http.put<EditResponse>(environment.backendUrl + 'user' + '/' + userId + '/disable', {});
   }
 
 }

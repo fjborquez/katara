@@ -1,8 +1,11 @@
-import { UserService } from '../../services/user.service';
 import { Component } from '@angular/core';
+import { CreateResponse } from 'src/app/models/create-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 
 @Component({
@@ -33,19 +36,19 @@ export class UserCreateComponent {
     const params = {
       name: this.personForm.get('name')?.value,
       lastname: this.personForm.get('lastname')?.value,
-      date_of_birth: this.personForm.get('date_of_birth')?.value,
+      date_of_birth: dateToChileanFormat(this.personForm.get('date_of_birth')?.value || ''),
       email: this.personForm.get('email')?.value,
       password: this.personForm.get('password')?.value,
       nutritionalProfile: nutritionalProfile
-    }
+    };
 
-    this.userService.add(params).subscribe((response: any) => {
+    this.userService.add<CreateResponse>(params).subscribe((response: CreateResponse) => {
       this.router.navigate(['/users']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },
-    (error) => {
-      this.snackBar.open(error.error.message, "Close");
+    (error: ErrorResponse) => {
+      this.snackBar.open(error.message, "Close");
     });
   }
 }

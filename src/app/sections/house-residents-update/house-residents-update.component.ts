@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
-import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
+import { FormBuilder, FormControl } from '@angular/forms';
+
+import { Component } from '@angular/core';
+import { EditResponse } from 'src/app/models/edit-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
+import { GetResponse } from 'src/app/models/get-response.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
 import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
+import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
+import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 
 @Component({
   selector: 'app-house-residents-update',
@@ -14,9 +18,9 @@ import { ResidentService } from 'src/app/services/resident.service';
   styleUrls: ['./house-residents-update.component.sass']
 })
 export class HouseResidentsUpdateComponent {
-  userId = 0;
-  houseId = 0;
-  residentId = 0;
+  userId: number = 0;
+  houseId: number = 0;
+  residentId: number = 0;
   houseResidentForm = this.formBuilder.group({
     name: new FormControl(''),
     lastname: new FormControl(''),
@@ -37,7 +41,8 @@ export class HouseResidentsUpdateComponent {
     this.houseId = this.activatedRoute.snapshot.params['idHouse'];
     this.residentId = this.activatedRoute.snapshot.params['idResident'];
 
-    this.residentService.get(this.userId, this.houseId, this.residentId).subscribe((resident: Resident) => {
+    this.residentService.get(this.userId, this.houseId, this.residentId).subscribe((response: GetResponse<Resident>) => {
+      const resident: Resident = response.message;
       this.houseResidentForm.get('name')?.patchValue(resident.name);
       this.houseResidentForm.get('lastname')?.patchValue(resident.lastname);
       this.houseResidentForm.get('date_of_birth')?.patchValue(resident.date_of_birth);
@@ -54,16 +59,16 @@ export class HouseResidentsUpdateComponent {
       name: this.houseResidentForm.get('name')?.value,
       lastname: this.houseResidentForm.get('lastname')?.value,
       date_of_birth: date,
-      nutritional_profile: nutritionalProfile
-    }
+      nutritionalProfile: nutritionalProfile
+    };
 
-    this.residentService.update(this.userId, this.houseId, this.residentId, params).subscribe((response: any) => {
+    this.residentService.update<EditResponse>(this.userId, this.houseId, this.residentId, params).subscribe((response: EditResponse) => {
       this.router.navigate(['/users/', this.userId, 'houses', this.houseId, 'residents']).then(() => {
         this.snackBar.open(response.message, "Close");
       });
     },
-    (error) => {
-      this.snackBar.open(error.error.message, "Close");
+    (error: ErrorResponse) => {
+      this.snackBar.open(error.message, "Close");
     });
 
   }

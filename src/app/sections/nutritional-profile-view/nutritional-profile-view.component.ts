@@ -1,7 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
-
-import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ListResponse } from 'src/app/models/list-response.model';
 import { NutritionalProfileService } from '../../services/nutritional-profile.service';
 import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
 
@@ -23,6 +24,6 @@ export class NutritionalProfileViewComponent {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
-    this.nutritionalProfileService.get(this.userId).subscribe((profile: NutritionalRestriction[]) => this.nutritionalProfile = profile);
+    this.nutritionalProfileService.get(this.userId).subscribe((response: ListResponse<NutritionalRestriction>) => this.nutritionalProfile = response.message);
   }
 }
