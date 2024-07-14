@@ -1,0 +1,12 @@
+{
+  "message": {
+    "person": {
+      "name": "Test",
+      "lastname": "Test",
+      "date_of_birth": "1990-01-01",
+      "nutritional_profile": []
+    },
+    "email": "test@outlook.com",
+    "password": "password"
+  }
+}

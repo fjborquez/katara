@@ -1,0 +1,9 @@
+{
+  "name": "Edited",
+  "lastname": "Edited",
+  "date_of_birth": "2000-12-31",
+  "email": "edited@edited.com",
+  "password": "edited",
+  "vegetarian": true,
+  "celiac": true
+}

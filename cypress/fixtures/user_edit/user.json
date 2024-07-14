@@ -1,0 +1,23 @@
+{
+  "message": {
+    "person": {
+      "name": "Test",
+      "lastname": "Test",
+      "date_of_birth": "1990-01-01",
+      "nutritional_profile": [
+        {
+          "id": 1,
+          "description": "vegetarian",
+          "created_at": null,
+          "updated_at": null,
+          "pivot": {
+            "person_id": 2,
+            "nutritional_restriction_id": 1
+          }
+        }
+      ]
+    },
+    "email": "test@outlook.com",
+    "password": "password"
+  }
+}

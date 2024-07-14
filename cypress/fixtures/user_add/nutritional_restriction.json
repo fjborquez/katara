@@ -1,0 +1,136 @@
+{
+  "message": [
+    {
+      "created_at": null,
+      "description": "vegetarian",
+      "id": 1,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "vegan",
+      "id": 2,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "celiac",
+      "id": 3,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "keto",
+      "id": 4,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "diabetic",
+      "id": 5,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "lactose intolerant",
+      "id": 6,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "gluten intolerant",
+      "id": 7,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "hypertense",
+      "id": 8,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "dairy-free",
+      "id": 9,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "wheat-free",
+      "id": 10,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "nut-free",
+      "id": 11,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "soy-free",
+      "id": 12,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "egg-free",
+      "id": 13,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "shellfish-free",
+      "id": 14,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "fish-free",
+      "id": 15,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "pork-free",
+      "id": 16,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "red meat-free",
+      "id": 17,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "caffeine-free",
+      "id": 18,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "alcohol-free",
+      "id": 19,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "spicy food-free",
+      "id": 20,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "peanut allergy",
+      "id": 21,
+      "updated_at": null
+    },
+    {
+      "created_at": null,
+      "description": "pescetarian",
+      "id": 22,
+      "updated_at": null
+    }
+  ]
+}

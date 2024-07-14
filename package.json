@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint --fix",
     "build:prod": "ng build --prod",
-    "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage --karma-config=karma.conf.js"
+    "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage --karma-config=karma.conf.js",
+    "cy:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,7 @@
     "@types/jasmine": "~4.3.0",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
+    "cypress": "^13.13.0",
     "eslint": "^8.33.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
