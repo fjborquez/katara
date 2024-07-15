@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
 
 describe('UserUpdateComponent', () => {
   let component: UserUpdateComponent;
@@ -12,7 +13,10 @@ describe('UserUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserUpdateComponent ],
+      declarations: [
+        UserUpdateComponent,
+        NutritionalProfileComponent
+      ],
       imports: [
         HttpClientModule,
         MatSnackBarModule,
