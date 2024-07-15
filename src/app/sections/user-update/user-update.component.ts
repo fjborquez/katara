@@ -6,14 +6,11 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
 import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
 import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
-import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-user-update',
@@ -23,7 +20,7 @@ import { tap } from 'rxjs';
 export class UserUpdateComponent {
   userForm = this.formBuilder.group({});
   nutritionalRestrictions: any;
-  userId: number = 0;
+  userId = 0;
   nutritionalProfile: NutritionalRestriction[] = [];
 
   constructor(

@@ -1,0 +1,7 @@
+{
+  "name": "Test 1",
+  "lastname": "Test 1",
+  "date_of_birth": "01-01-1990",
+  "vegetarian": true,
+  "vegan": true
+}

@@ -20,8 +20,8 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
 export class UserHouseUpdateComponent {
   userHouseForm = this.formBuilder.group({});
   cities: City[] = [];
-  userId: number = 0;
-  houseId: number = 0;
+  userId = 0;
+  houseId = 0;
 
   constructor(
     private formBuilder: FormBuilder,

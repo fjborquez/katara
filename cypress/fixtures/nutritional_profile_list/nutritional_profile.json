@@ -1,0 +1,24 @@
+{
+  "message": [
+    {
+      "id": 1,
+      "description": "vegetarian",
+      "created_at": null,
+      "updated_at": null,
+      "pivot": {
+        "person_id": 1,
+        "nutritional_restriction_id": 1
+      }
+    },
+    {
+      "id": 3,
+      "description": "celiac",
+      "created_at": null,
+      "updated_at": null,
+      "pivot": {
+        "person_id": 1,
+        "nutritional_restriction_id": 3
+      }
+    }
+  ]
+}

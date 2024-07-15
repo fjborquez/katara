@@ -21,7 +21,7 @@ export class UserHouseCreateComponent {
     city_id: '',
     is_default: 0
   });
-  userId: number = 0;
+  userId = 0;
   cities: City[] = [];
 
   constructor(

@@ -18,9 +18,9 @@ import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileT
   styleUrls: ['./house-residents-update.component.sass']
 })
 export class HouseResidentsUpdateComponent {
-  userId: number = 0;
-  houseId: number = 0;
-  residentId: number = 0;
+  userId = 0;
+  houseId = 0;
+  residentId = 0;
   houseResidentForm = this.formBuilder.group({
     name: new FormControl(''),
     lastname: new FormControl(''),
