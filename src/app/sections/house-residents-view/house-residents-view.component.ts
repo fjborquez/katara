@@ -28,7 +28,7 @@ export class HouseResidentsViewComponent {
   }
 
   getResidentList() {
-    return this.residentService.list(this.idHouse, this.idUser).subscribe((response: ListResponse<Resident>) => {
+    return this.residentService.list(this.idUser, this.idHouse).subscribe((response: ListResponse<Resident>) => {
       this.dataSource.data = response.message;
     });
   }
