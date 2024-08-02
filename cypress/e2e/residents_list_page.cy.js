@@ -28,10 +28,10 @@ describe('The resident list page', () => {
         });
       });
 
-      it('Then the options column should have 2 items', () => {
-        cy.get('.mat-mdc-row > .cdk-column-options').then((column) => {
+      it('Then the options column should have 3 items', () => {
+        cy.get('.mdc-data-table__content > :nth-child(1) > .cdk-column-options').then((column) => {
           let text = column.text().split('|')
-          expect(text.length).to.be.eq(2);
+          expect(text.length).to.be.eq(3);
         });
       });
     });
@@ -43,5 +43,22 @@ describe('The resident list page', () => {
         expect(location.pathname.toString()).equal('/users/1/houses/31/residents/add');
       });
     });
+  });
+  context('Given I want to delete an existing resident', () => {
+    it('Then it should delete him successfully', () => {
+      cy.get(':nth-child(2) > .cdk-column-options > :nth-child(2)').click();
+      cy.contains('span', 'Yes').click()
+      cy.location().should((location) => {
+        expect(location.pathname.toString()).equal('/users/1/houses/31/residents');
+      });
+    });
+
+    it('Then it should not delete him', () => {
+      cy.get(':nth-child(2) > .cdk-column-options > :nth-child(2)').click();
+      cy.contains('span', 'No').click()
+      cy.location().should((location) => {
+        expect(location.pathname.toString()).equal('/users/1/houses/31/residents');
+      });
+    })
   });
 });
