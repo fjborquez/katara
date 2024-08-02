@@ -4,6 +4,8 @@ import { HouseResidentsViewComponent } from './house-residents-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('HouseResidentsViewComponent', () => {
   let component: HouseResidentsViewComponent;
@@ -15,7 +17,9 @@ describe('HouseResidentsViewComponent', () => {
       imports: [
         HttpClientModule,
         RouterModule.forRoot([]),
-        MatTableModule
+        MatTableModule,
+        MatSnackBarModule,
+        MatDialogModule,
       ],
     })
     .compileComponents();
