@@ -5,6 +5,7 @@ import { ListResponse } from '../models/list-response.model';
 import { Observable } from 'rxjs';
 import { Resident } from '../models/resident.model';
 import { environment } from 'src/environments/environment';
+import { EditResponse } from '../models/edit-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class ResidentService {
 
   update<EditResponse>(userId: number, houseId: number, residentId: number, params = {}): Observable<EditResponse> {
     return this.http.put<EditResponse>(`${environment.backendUrl}user/${userId}/houses/${houseId}/residents/${residentId}`, params);
+  }
+
+  delete(userId: number, houseId: number, residentId: number): Observable<EditResponse> {
+    return this.http.delete<EditResponse>(`${environment.backendUrl}user/${userId}/houses/${houseId}/residents/${residentId}`);
   }
 }
