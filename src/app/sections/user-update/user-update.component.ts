@@ -73,8 +73,8 @@ export class UserUpdateComponent {
         this.snackBar.open(response.message, "Close");
       });
     },
-    (error: ErrorResponse) => {
-      this.snackBar.open(error.message, "Close");
+    (response: ErrorResponse) => {
+      this.snackBar.open(response.error.message, "Close");
     });
   }
 }

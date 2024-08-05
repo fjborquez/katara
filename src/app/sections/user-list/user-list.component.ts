@@ -50,8 +50,8 @@ export class UserListComponent {
           this.snackBar.open(response.message, 'Close');
           this.getPersonList();
         },
-        (error: ErrorResponse) => {
-          this.snackBar.open(error.message, 'Close');
+        (response: ErrorResponse) => {
+          this.snackBar.open(response.error.message, "Close");
         });
       }
     });
@@ -74,8 +74,8 @@ export class UserListComponent {
           this.snackBar.open(response.message, 'Close');
           this.getPersonList();
         },
-        (error: ErrorResponse) => {
-          this.snackBar.open(error.message, 'Close');
+        (errorResponse: ErrorResponse) => {
+          this.snackBar.open(errorResponse.error.message, "Close");
         });
       }
     });

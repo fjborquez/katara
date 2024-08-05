@@ -56,8 +56,8 @@ export class UserHouseViewComponent {
           this.snackBar.open(response.message, 'Close');
           this.getHousesList(this.idUser);
         },
-        (error: ErrorResponse) => {
-          this.snackBar.open(error.message, 'Close');
+        (response: ErrorResponse) => {
+          this.snackBar.open(response.error.message, "Close");
         });
       }
     });
@@ -80,8 +80,8 @@ export class UserHouseViewComponent {
           this.snackBar.open(response.message, 'Close');
           this.getHousesList(this.idUser);
         },
-        (error: ErrorResponse) => {
-          this.snackBar.open(error.message, 'Close');
+        (errorResponse: ErrorResponse) => {
+          this.snackBar.open(errorResponse.error.message, "Close");
         });
       }
     });
