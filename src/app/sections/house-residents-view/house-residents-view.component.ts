@@ -57,8 +57,8 @@ export class HouseResidentsViewComponent {
           this.snackBar.open(response.message, 'Close');
           this.getResidentList();
         },
-        (error: ErrorResponse) => {
-          this.snackBar.open(error.message, 'Close');
+        (response: ErrorResponse) => {
+          this.snackBar.open(response.error.message, "Close");
         });
       }
     });
