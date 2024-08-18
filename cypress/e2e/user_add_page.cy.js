@@ -4,12 +4,19 @@ describe('The add user page', () => {
   beforeEach(() => {
     cy.intercept({
       method: 'GET',
-      url: backendUrl + '/nutritional-restriction'
+      url: backendUrl + '/consumption-level'
     }, {
-      fixture: 'user_add/nutritional_restriction.json'
-    }).as('nutritionalRestrictions');
+      fixture: 'user_add/consumption_levels.json'
+    }).as('consumptionLevels');
+    cy.intercept({
+      method: 'GET',
+      url: backendUrl + '/product-category'
+    }, {
+      fixture: 'user_add/product-categories.json'
+    }).as('productCategories');
     cy.visit('/users/add');
-    cy.wait('@nutritionalRestrictions').its('response.statusCode').should('equal', 200);
+    cy.wait('@consumptionLevels').its('response.statusCode').should('equal', 200);
+    cy.wait('@productCategories').its('response.statusCode').should('equal', 200);
   });
 
   context('Given I add a new user successfully', () => {
@@ -28,8 +35,11 @@ describe('The add user page', () => {
         cy.get('#date_of_birth').type(input.date_of_birth, {force: true});
         cy.get('#email').type(input.email);
         cy.get('#password').type(input.password);
-        cy.get('#vegetarian').check();
-        cy.get('#celiac').check();
+        cy.get('#mat-select-value-1').click();
+        cy.get('mat-option').contains('Dairy').click();
+        cy.get('#mat-select-value-3').click();
+        cy.get('mat-option').contains('High').click();
+        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
 
         cy.get('form').submit();
         cy.wait('@addUser').its('response.statusCode').should('equal', 201);
@@ -72,8 +82,6 @@ describe('The add user page', () => {
         cy.get('#date_of_birth').type(input.date_of_birth);
         cy.get('#email').type(input.email);
         cy.get('#password').type(input.password);
-        cy.get('#vegetarian').check();
-        cy.get('#celiac').check();
 
         cy.get('form').submit();
         cy.wait('@addUser').location().should((location) => {
@@ -99,8 +107,6 @@ describe('The add user page', () => {
         cy.get('#date_of_birth').type(input.date_of_birth);
         cy.get('#email').type(input.email);
         cy.get('#password').type(input.password);
-        cy.get('#vegetarian').check();
-        cy.get('#celiac').check();
 
         cy.get('form').submit();
         cy.wait('@addUser').its('response.statusCode').should('equal', 422);

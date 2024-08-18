@@ -3,7 +3,5 @@
   "lastname": "Test",
   "date_of_birth": "1990-01-01",
   "email": "test@test.com",
-  "password": "password",
-  "vegetarian": true,
-  "celiac": true
+  "password": "password"
 }
