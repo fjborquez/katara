@@ -1,9 +1,15 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConsumptionLevelService } from './../../services/consumption-level.service';
+import { ProductCategoryService } from './../../services/product-category.service';
+import { Component, Input } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
 
 import { ListResponse } from 'src/app/models/list-response.model';
 import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
-import { NutritionalRestrictionService } from 'src/app/services/nutritional-restriction.service';
+import { ProductCategory } from 'src/app/models/product-category.model';
 
 @Component({
   selector: 'app-nutritional-profile',
@@ -12,34 +18,53 @@ import { NutritionalRestrictionService } from 'src/app/services/nutritional-rest
 })
 export class NutritionalProfileComponent {
   @Input() defaultValues: NutritionalRestriction[] = [];
-  restrictions: NutritionalRestriction[] = [];
+  productCategories: ProductCategory[] = [];
+  consumptionLevels: ConsumptionLevel[] = [];
   form: FormGroup = this.formBuilder.group({});
+  displayedColumns: string[] = [];
+  dataSource = new MatTableDataSource();
 
   constructor(
-    private nutritionalRestrictionService: NutritionalRestrictionService,
     private rootFormGroup: FormGroupDirective,
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private productCategoryService: ProductCategoryService,
+    private ConsumptionLevelService: ConsumptionLevelService,
   ) { }
 
   ngOnInit() {
     this.form = this.rootFormGroup.control;
+    this.form.addControl('consumptionLevel', new FormControl({}));
+    this.form.addControl('productCategory', new FormControl({}))
+    this.displayedColumns = ['category', 'consumptionLevel'];
 
-    this.nutritionalRestrictionService.list().subscribe((response: ListResponse<NutritionalRestriction>) => {
-      this.restrictions = response.message;
+    this.productCategoryService.list().subscribe((response: ListResponse<ProductCategory>) => {
+      this.productCategories = response.message;
+    }, (response: ErrorResponse) => {
+      this.snackBar.open(response.error.message, "Close");
+    });
 
-      this.restrictions.forEach((nutritionalRestriction: NutritionalRestriction) => {
-        if (this.defaultValues.find(restriction => restriction.id === nutritionalRestriction.id)) {
-          this.form.addControl(`nutritionalProfile['${nutritionalRestriction.id}']`, this.formBuilder.control(true));
-        } else {
-          this.form.addControl(`nutritionalProfile['${nutritionalRestriction.id}']`, this.formBuilder.control(false));
-        }
-      });
+    this.ConsumptionLevelService.list().subscribe((response: ListResponse<ConsumptionLevel>) => {
+      this.consumptionLevels = response.message;
+    }, (response: ErrorResponse) => {
+      this.snackBar.open(response.error.message, "Close");
     });
   }
 
-  ngDoCheck() {
-    this.defaultValues.forEach((defaultValue: NutritionalRestriction) => {
-      this.form.get(`nutritionalProfile['${defaultValue.id}']`)?.patchValue(true);
-    });
+  addProductCategoryClick($event:Event): void {
+    $event.preventDefault();
+    const data = this.dataSource.data;
+    const consumptionLevel: ConsumptionLevel = this.form.get('consumptionLevel')?.value;
+    const productCategory: ProductCategory = this.form.get('productCategory')?.value;
+    data.push({category: productCategory.name, consumption: consumptionLevel.name});
+    const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray;
+    nutritionalProfile.push(this.formBuilder.group({
+      'product_category_id': new FormControl(productCategory.id),
+      'product_category_name': new FormControl(productCategory.name),
+      'consumption_level_id': new FormControl(consumptionLevel.id),
+    }));
+
+    this.dataSource.data = data;
   }
+
 }
