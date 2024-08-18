@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
-import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 
 @Component({
   selector: 'app-user-create',
@@ -29,18 +28,20 @@ export class UserCreateComponent {
     this.personForm.addControl('date_of_birth', this.formBuilder.control(''));
     this.personForm.addControl('email', this.formBuilder.control(''));
     this.personForm.addControl('password', this.formBuilder.control(''));
+    this.personForm.addControl('nutritionalProfile', this.formBuilder.array([]));
   }
 
   onSubmit(): void {
-    const nutritionalProfile = nutritionalProfileToArray(this.personForm.value);
     const params = {
       name: this.personForm.get('name')?.value,
       lastname: this.personForm.get('lastname')?.value,
       date_of_birth: dateToChileanFormat(this.personForm.get('date_of_birth')?.value || ''),
       email: this.personForm.get('email')?.value,
       password: this.personForm.get('password')?.value,
-      nutritionalProfile: nutritionalProfile
+      nutritionalProfile: this.personForm.get('nutritionalProfile')?.value
     };
+
+    console.log(params);
 
     this.userService.add<CreateResponse>(params).subscribe((response: CreateResponse) => {
       this.router.navigate(['/users']).then(() => {
