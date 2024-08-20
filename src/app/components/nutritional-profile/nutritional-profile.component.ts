@@ -1,3 +1,4 @@
+import { NutritionalProfileDetail } from './../../models/nutritional-profile-detail.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConsumptionLevelService } from './../../services/consumption-level.service';
 import { ProductCategoryService } from './../../services/product-category.service';
@@ -8,7 +9,6 @@ import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 
 import { ListResponse } from 'src/app/models/list-response.model';
-import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
 import { ProductCategory } from 'src/app/models/product-category.model';
 
 @Component({
@@ -17,7 +17,9 @@ import { ProductCategory } from 'src/app/models/product-category.model';
   styleUrls: ['./nutritional-profile.component.sass']
 })
 export class NutritionalProfileComponent {
-  @Input() defaultValues: NutritionalRestriction[] = [];
+  @Input() defaultValues: NutritionalProfileDetail[] = [];
+  @Input() viewMode = false;
+  prevDefaultValues: NutritionalProfileDetail[] = [];
   productCategories: ProductCategory[] = [];
   consumptionLevels: ConsumptionLevel[] = [];
   form: FormGroup = this.formBuilder.group({});
@@ -29,7 +31,7 @@ export class NutritionalProfileComponent {
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private productCategoryService: ProductCategoryService,
-    private ConsumptionLevelService: ConsumptionLevelService,
+    private consumptionLevelService: ConsumptionLevelService,
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class NutritionalProfileComponent {
     this.form.addControl('consumptionLevel', new FormControl({}));
     this.form.addControl('productCategory', new FormControl({}))
     this.displayedColumns = ['category', 'consumptionLevel'];
+    this.prevDefaultValues = this.defaultValues;
 
     this.productCategoryService.list().subscribe((response: ListResponse<ProductCategory>) => {
       this.productCategories = response.message;
@@ -44,11 +47,19 @@ export class NutritionalProfileComponent {
       this.snackBar.open(response.error.message, "Close");
     });
 
-    this.ConsumptionLevelService.list().subscribe((response: ListResponse<ConsumptionLevel>) => {
+    this.consumptionLevelService.list().subscribe((response: ListResponse<ConsumptionLevel>) => {
       this.consumptionLevels = response.message;
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
     });
+
+    if (this.defaultValues.length > 0) {
+      this.defaultValues.forEach((element) => {
+        const data = this.dataSource.data;
+        data.push({category: element.product_category_name, consumption: element.consumption_level_id});
+        this.dataSource.data = data;
+      });
+    }
   }
 
   addProductCategoryClick($event:Event): void {
@@ -65,6 +76,18 @@ export class NutritionalProfileComponent {
     }));
 
     this.dataSource.data = data;
+  }
+
+  ngDoCheck() {
+    if (this.prevDefaultValues.length != this.defaultValues.length) {
+      const toReplace: any[] = [];
+
+      this.defaultValues.forEach((element) => {
+        toReplace.push({category: element.product_category_name, consumption: element.consumption_level_id});
+      });
+
+      this.dataSource.data = toReplace;
+    }
   }
 
 }
