@@ -6,11 +6,11 @@ import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
 import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
+import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 
 @Component({
   selector: 'app-house-residents-update',
@@ -26,7 +26,7 @@ export class HouseResidentsUpdateComponent {
     lastname: new FormControl(''),
     date_of_birth: new FormControl('')
   });
-  nutritionalProfile: NutritionalRestriction[] = [];
+  nutritionalProfile: NutritionalProfileDetail[] = [];
 
   public constructor(
     private formBuilder: FormBuilder,

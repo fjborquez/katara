@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListResponse } from '../models/list-response.model';
-import { NutritionalRestriction } from '../models/nutritional-restriction.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { NutritionalProfileDetail } from '../models/nutritional-profile-detail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class NutritionalProfileService {
     return this.http.post(environment.aangBaseUrl + 'person/' + userId + '/nutritional-profile', params)
   }
 
-  get(userId: number): Observable<ListResponse<NutritionalRestriction>> {
-    return this.http.get<ListResponse<NutritionalRestriction>>(`${environment.backendUrl}user/${userId}/nutritional-profile`);
+  get(userId: number): Observable<ListResponse<NutritionalProfileDetail>> {
+    return this.http.get<ListResponse<NutritionalProfileDetail>>(`${environment.backendUrl}user/${userId}/nutritional-profile`);
   }
 
   // TODO: Corregir llamada a aang

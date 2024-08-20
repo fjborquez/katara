@@ -6,11 +6,11 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
 import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NutritionalRestriction } from 'src/app/models/nutritional-restriction.model';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
+import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 
 @Component({
   selector: 'app-user-update',
@@ -21,7 +21,7 @@ export class UserUpdateComponent {
   userForm = this.formBuilder.group({});
   nutritionalRestrictions: any;
   userId = 0;
-  nutritionalProfile: NutritionalRestriction[] = [];
+  nutritionalProfile: NutritionalProfileDetail[] = [];
 
   constructor(
     private formBuilder: FormBuilder,

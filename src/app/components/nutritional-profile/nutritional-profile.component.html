@@ -3,29 +3,35 @@
   <ng-container matColumnDef="category">
     <th mat-header-cell *matHeaderCellDef> Category </th>
     <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-    <td mat-footer-cell *matFooterCellDef>
-      <mat-select id="product_category" name="product_category" formControlName="productCategory">
-        <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory">{{ productCategory.name }}</mat-option>
-      </mat-select>
-    </td>
+    <ng-container *ngIf="!viewMode">
+      <td mat-footer-cell *matFooterCellDef>
+        <mat-select id="product_category" name="product_category" formControlName="productCategory">
+          <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory">{{ productCategory.name }}</mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
   </ng-container>
   <ng-container matColumnDef="consumptionLevel">
     <th mat-header-cell *matHeaderCellDef> Consumption Level </th>
     <td mat-cell *matCellDef="let element"> {{element.consumption}} </td>
-    <td mat-footer-cell *matFooterCellDef>
-      <div style="display: inline-flex; width: 100%;">
-        <div style="width: 50%;">
-          <mat-select id="consumption_level" name="consumption_level" formControlName="consumptionLevel">
-            <mat-option *ngFor="let consumptionLevel of consumptionLevels" [value]="consumptionLevel">{{ consumptionLevel.name }}</mat-option>
-          </mat-select>
+    <ng-container *ngIf="!viewMode">
+      <td mat-footer-cell *matFooterCellDef>
+        <div style="display: inline-flex; width: 100%;">
+          <div style="width: 50%;">
+            <mat-select id="consumption_level" name="consumption_level" formControlName="consumptionLevel">
+              <mat-option *ngFor="let consumptionLevel of consumptionLevels" [value]="consumptionLevel">{{ consumptionLevel.name }}</mat-option>
+            </mat-select>
+          </div>
+          <div style="width: 35%;">
+            <button mat-button (click)="addProductCategoryClick($event)">Add product category</button>
+          </div>
         </div>
-        <div style="width: 35%;">
-          <button mat-button (click)="addProductCategoryClick($event)">Add product category</button>
-        </div>
-      </div>
-    </td>
+      </td>
+    </ng-container>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  <ng-container *ngIf="!viewMode">
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </ng-container>
 </table>
