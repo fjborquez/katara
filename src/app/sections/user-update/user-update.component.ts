@@ -1,3 +1,4 @@
+import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Component } from '@angular/core';
@@ -50,7 +51,7 @@ export class UserUpdateComponent {
         lastname: person.lastname,
         date_of_birth: person.date_of_birth,
         email: user.email,
-        password: user.password
+        password: user.password,
       };
 
       this.nutritionalProfile = person.nutritional_profile || [];
@@ -59,11 +60,11 @@ export class UserUpdateComponent {
   }
 
   onSubmit(): void {
-    const nutritionalProfile = nutritionalProfileToArray(this.userForm.value);
+    const nutritionalProfile = this.userForm.get('nutritionalProfile')?.value;
     const params = {
       name: this.userForm.get('name')?.value,
       lastname: this.userForm.get('lastname')?.value,
-      date_of_birth: this.userForm.get('date_of_birth')?.value,
+      date_of_birth: dateToChileanFormat(this.userForm.get('date_of_birth')?.value || ''),
       email: this.userForm.get('email')?.value,
       password: this.userForm.get('password')?.value,
       nutritionalProfile: nutritionalProfile

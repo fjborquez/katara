@@ -58,6 +58,12 @@ export class NutritionalProfileComponent {
         const data = this.dataSource.data;
         data.push({category: element.product_category_name, consumption: element.consumption_level_id});
         this.dataSource.data = data;
+        const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray;
+        nutritionalProfile.push(this.formBuilder.group({
+          'product_category_id': new FormControl(element.product_category_id),
+          'product_category_name': new FormControl(element.product_category_name),
+          'consumption_level_id': new FormControl(element.consumption_level_id),
+        }));
       });
     }
   }
@@ -83,8 +89,15 @@ export class NutritionalProfileComponent {
   ngDoCheck() {
     if (this.prevDefaultValues.length != this.defaultValues.length) {
       const toReplace: any[] = [];
+      const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray || new FormArray([]);
+      nutritionalProfile.clear();
 
       this.defaultValues.forEach((element: NutritionalProfileDetail) => {
+        nutritionalProfile.push(this.formBuilder.group({
+          'product_category_id': new FormControl(element.product_category_id),
+          'product_category_name': new FormControl(element.product_category_name),
+          'consumption_level_id': new FormControl(element.consumption_level_id),
+        }));
         toReplace.push({category: element.product_category_name, consumption: element.consumption_level.name});
       });
 
