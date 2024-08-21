@@ -17,7 +17,7 @@ import { ProductCategory } from 'src/app/models/product-category.model';
   styleUrls: ['./nutritional-profile.component.sass']
 })
 export class NutritionalProfileComponent {
-  @Input() defaultValues: NutritionalProfileDetail[] = [];
+  @Input() defaultValues: NutritionalProfileDetail[] | any = [];
   @Input() viewMode = false;
   prevDefaultValues: NutritionalProfileDetail[] = [];
   productCategories: ProductCategory[] = [];
@@ -54,7 +54,7 @@ export class NutritionalProfileComponent {
     });
 
     if (this.defaultValues.length > 0) {
-      this.defaultValues.forEach((element) => {
+      this.defaultValues.forEach((element: any) => {
         const data = this.dataSource.data;
         data.push({category: element.product_category_name, consumption: element.consumption_level_id});
         this.dataSource.data = data;
@@ -76,14 +76,16 @@ export class NutritionalProfileComponent {
     }));
 
     this.dataSource.data = data;
+    this.defaultValues.push({product_category_name: productCategory.name, product_category_id:
+      productCategory.id, consumption_level_id: consumptionLevel.id, consumption_level: consumptionLevel});
   }
 
   ngDoCheck() {
     if (this.prevDefaultValues.length != this.defaultValues.length) {
       const toReplace: any[] = [];
 
-      this.defaultValues.forEach((element) => {
-        toReplace.push({category: element.product_category_name, consumption: element.consumption_level_id});
+      this.defaultValues.forEach((element: NutritionalProfileDetail) => {
+        toReplace.push({category: element.product_category_name, consumption: element.consumption_level.name});
       });
 
       this.dataSource.data = toReplace;

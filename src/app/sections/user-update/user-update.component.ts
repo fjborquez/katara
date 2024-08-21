@@ -39,6 +39,7 @@ export class UserUpdateComponent {
     this.userForm.addControl('date_of_birth', this.formBuilder.control(''));
     this.userForm.addControl('email', this.formBuilder.control(''));
     this.userForm.addControl('password', this.formBuilder.control(''));
+    this.userForm.addControl('nutritionalProfile', this.formBuilder.array([]));
 
     this.userService.get(this.userId).subscribe((response: GetResponse<User & Person>) => {
       const user = response.message;
