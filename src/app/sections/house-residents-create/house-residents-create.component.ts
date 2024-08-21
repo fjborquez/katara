@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
 import { Component } from '@angular/core';
 import { CreateResponse } from 'src/app/models/create-response.model';
@@ -35,17 +35,17 @@ export class HouseResidentsCreateComponent {
     this.houseResidentForm.addControl('name', new FormControl(''));
     this.houseResidentForm.addControl('lastname', new FormControl(''));
     this.houseResidentForm.addControl('date_of_birth', new FormControl(new Date()));
+    this.houseResidentForm.addControl('nutritionalProfile', new FormArray([]));
   }
 
   public onSubmit(): void {
-    const nutritionalProfile = nutritionalProfileToArray(this.houseResidentForm.value);
     const date = dateToChileanFormat(this.houseResidentForm.get('date_of_birth')?.value || '');
 
     const params = {
       name: this.houseResidentForm.get('name')?.value,
       lastname: this.houseResidentForm.get('lastname')?.value,
       date_of_birth: date,
-      nutritionalProfile: nutritionalProfile
+      nutritionalProfile: this.houseResidentForm.get('nutritionalProfile')?.value
     }
 
     this.residentService.add<CreateResponse>(this.userId, this.houseId, params).subscribe((response: CreateResponse) => {
