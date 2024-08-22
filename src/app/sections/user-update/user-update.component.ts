@@ -10,7 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
-import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 
 @Component({

@@ -2,7 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NutritionalProfileComponent } from './nutritional-profile.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormGroupDirective } from '@angular/forms';
+import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('NutritionalProfileComponent', () => {
   let component: NutritionalProfileComponent;
@@ -14,6 +16,9 @@ describe('NutritionalProfileComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        MatSnackBarModule,
+        ReactiveFormsModule,
+        MatSelectModule
       ],
       providers: [
         FormGroupDirective,

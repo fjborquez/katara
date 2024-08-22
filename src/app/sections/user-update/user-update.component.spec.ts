@@ -6,6 +6,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('UserUpdateComponent', () => {
   let component: UserUpdateComponent;
@@ -21,7 +23,9 @@ describe('UserUpdateComponent', () => {
         HttpClientModule,
         MatSnackBarModule,
         RouterModule.forRoot([]),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTableModule,
+        MatSelectModule
       ]
     })
     .compileComponents();

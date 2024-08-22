@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('NutritionalProfileComponentView', () => {
   let component: NutritionalProfileComponent;
@@ -19,7 +20,8 @@ describe('NutritionalProfileComponentView', () => {
       declarations: [ NutritionalProfileComponent ],
       imports: [
         HttpClientTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatSnackBarModule
       ],
       providers: [ NutritionalProfileComponent, {
         provide: ActivatedRoute,
