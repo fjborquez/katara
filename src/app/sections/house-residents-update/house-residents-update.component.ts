@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
 import { Component } from '@angular/core';
 import { EditResponse } from 'src/app/models/edit-response.model';
@@ -24,7 +24,8 @@ export class HouseResidentsUpdateComponent {
   houseResidentForm = this.formBuilder.group({
     name: new FormControl(''),
     lastname: new FormControl(''),
-    date_of_birth: new FormControl('')
+    date_of_birth: new FormControl(''),
+    nutritionalProfile: new FormArray([])
   });
   nutritionalProfile: NutritionalProfileDetail[] = [];
 
@@ -52,14 +53,13 @@ export class HouseResidentsUpdateComponent {
   }
 
   onSubmit(): void {
-    const nutritionalProfile = nutritionalProfileToArray(this.houseResidentForm.value);
     const date = dateToChileanFormat(this.houseResidentForm.get('date_of_birth')?.value || '');
 
     const params = {
       name: this.houseResidentForm.get('name')?.value,
       lastname: this.houseResidentForm.get('lastname')?.value,
       date_of_birth: date,
-      nutritionalProfile: nutritionalProfile
+      nutritionalProfile: this.houseResidentForm.get('nutritionalProfile')?.value
     };
 
     this.residentService.update<EditResponse>(this.userId, this.houseId, this.residentId, params).subscribe((response: EditResponse) => {

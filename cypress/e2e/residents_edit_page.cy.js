@@ -4,11 +4,18 @@ describe('The edit resident page', () => {
   beforeEach(() => {
     cy.intercept({
       method: 'GET',
-      url: backendUrl + '/nutritional-restriction'
+      url: backendUrl + '/product-category'
     }, {
-      fixture: 'residents_edit/nutritional_restriction.json',
+      fixture: 'residents_add/product_categories.json',
       statusCode: 200
-    }).as('restrictions');
+    }).as('productCategories');
+    cy.intercept({
+      method: 'GET',
+      url: backendUrl + '/consumption-level'
+    }, {
+      fixture: 'residents_add/consumption_levels.json',
+      statusCode: 200
+    }).as('consumptionLevels');
 
     cy.intercept({
       method: 'GET',
@@ -19,7 +26,7 @@ describe('The edit resident page', () => {
     }).as('residentData');
 
     cy.visit('/users/1/houses/44/residents/1/update');
-    cy.wait(['@restrictions', '@residentData']);
+    cy.wait(['@productCategories', '@consumptionLevels', '@residentData']);
   });
 
   context('Given I update a resident', () => {
@@ -38,11 +45,16 @@ describe('The edit resident page', () => {
         cy.get('#name').clear().type(input.name);
         cy.get('#lastname').clear().type(input.lastname);
         cy.get('#date_of_birth').clear().type(input.date_of_birth);
-        cy.get('#vegetarian').check();
-        cy.get('#celiac').check();
+        cy.get('.mat-mdc-row > .cdk-column-category').should('be.visible');
+        cy.get('.mat-mdc-row > .cdk-column-consumptionLevel').should('be.visible');
+        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-option-6').click();
+        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-option-13').click();
+        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
         cy.get('form').submit();
         cy.wait('@residentUpdate');
-        cy.get('#cdk-overlay-0').should('be.visible');
+        cy.get('#cdk-overlay-2').should('be.visible');
       });
     });
 
@@ -62,8 +74,6 @@ describe('The edit resident page', () => {
         cy.get('#name').clear().type(input.name);
         cy.get('#lastname').clear().type(input.lastname);
         cy.get('#date_of_birth').clear().type(input.date_of_birth);
-        cy.get('#vegetarian').check();
-        cy.get('#celiac').check();
         cy.get('form').submit();
         cy.wait('@residentUpdate').location().should((location) => {
           expect(location.pathname.toString()).equal('/users/1/houses/44/residents');

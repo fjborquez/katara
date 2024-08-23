@@ -1,3 +1,4 @@
+import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Component } from '@angular/core';
@@ -9,7 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
-import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 
 @Component({
@@ -39,6 +39,7 @@ export class UserUpdateComponent {
     this.userForm.addControl('date_of_birth', this.formBuilder.control(''));
     this.userForm.addControl('email', this.formBuilder.control(''));
     this.userForm.addControl('password', this.formBuilder.control(''));
+    this.userForm.addControl('nutritionalProfile', this.formBuilder.array([]));
 
     this.userService.get(this.userId).subscribe((response: GetResponse<User & Person>) => {
       const user = response.message;
@@ -49,7 +50,7 @@ export class UserUpdateComponent {
         lastname: person.lastname,
         date_of_birth: person.date_of_birth,
         email: user.email,
-        password: user.password
+        password: user.password,
       };
 
       this.nutritionalProfile = person.nutritional_profile || [];
@@ -58,11 +59,11 @@ export class UserUpdateComponent {
   }
 
   onSubmit(): void {
-    const nutritionalProfile = nutritionalProfileToArray(this.userForm.value);
+    const nutritionalProfile = this.userForm.get('nutritionalProfile')?.value;
     const params = {
       name: this.userForm.get('name')?.value,
       lastname: this.userForm.get('lastname')?.value,
-      date_of_birth: this.userForm.get('date_of_birth')?.value,
+      date_of_birth: dateToChileanFormat(this.userForm.get('date_of_birth')?.value || ''),
       email: this.userForm.get('email')?.value,
       password: this.userForm.get('password')?.value,
       nutritionalProfile: nutritionalProfile

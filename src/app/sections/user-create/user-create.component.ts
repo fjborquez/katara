@@ -41,8 +41,6 @@ export class UserCreateComponent {
       nutritionalProfile: this.personForm.get('nutritionalProfile')?.value
     };
 
-    console.log(params);
-
     this.userService.add<CreateResponse>(params).subscribe((response: CreateResponse) => {
       this.router.navigate(['/users']).then(() => {
         this.snackBar.open(response.message, "Close");

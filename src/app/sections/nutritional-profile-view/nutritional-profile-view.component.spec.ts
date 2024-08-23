@@ -1,32 +1,37 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { of, throwError } from 'rxjs';
+import { NutritionalProfileComponent } from './../../components/nutritional-profile/nutritional-profile.component';
+import { NutritionalProfileViewComponent } from './nutritional-profile-view.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
-import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NutritionalProfileService } from '../../services/nutritional-profile.service';
+import { MatTableModule } from '@angular/material/table';
 
 describe('NutritionalProfileComponentView', () => {
-  let component: NutritionalProfileComponent;
-  let fixture: ComponentFixture<NutritionalProfileComponent>;
+  let component: NutritionalProfileViewComponent;
+  let fixture: ComponentFixture<NutritionalProfileViewComponent>;
   let nutritionalProfileService: NutritionalProfileService;
 
   const formGroupDirective = new FormGroupDirective([], []);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NutritionalProfileComponent ],
+      declarations: [ NutritionalProfileViewComponent, NutritionalProfileComponent ],
       imports: [
         HttpClientTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        RouterModule,
+        MatTableModule
       ],
-      providers: [ NutritionalProfileComponent, {
+      providers: [ NutritionalProfileViewComponent, {
         provide: ActivatedRoute,
         useValue: {
           snapshot: {
-            paramMap: {
-              get: () => 1
+            params: {
+              'id': '1'
             }
           }
         }
@@ -39,7 +44,7 @@ describe('NutritionalProfileComponentView', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NutritionalProfileComponent);
+    fixture = TestBed.createComponent(NutritionalProfileViewComponent);
     component = fixture.componentInstance;
     nutritionalProfileService = fixture.debugElement.injector.get(NutritionalProfileService);
     fixture.detectChanges();

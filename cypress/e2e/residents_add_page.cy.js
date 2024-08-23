@@ -4,14 +4,22 @@ describe('The add resident page', () => {
   beforeEach(() => {
     cy.intercept({
       method: 'GET',
-      url: backendUrl + '/nutritional-restriction'
+      url: backendUrl + '/product-category'
     }, {
-      fixture: 'residents_add/nutritional_restriction.json',
+      fixture: 'residents_add/product_categories.json',
       statusCode: 200
-    }).as('restrictions');
+    }).as('productCategories');
+    cy.intercept({
+      method: 'GET',
+      url: backendUrl + '/consumption-level'
+    }, {
+      fixture: 'residents_add/consumption_levels.json',
+      statusCode: 200
+    }).as('consumptionLevels');
     cy.visit('/users/1/houses/31/residents/add');
-    cy.wait('@restrictions');
+    cy.wait(['@productCategories', '@consumptionLevels']);
   });
+
   context('Given I add a new resident successfully', () => {
     it('Then the nutritional profile is not empty', () => {
       cy.intercept({
@@ -26,8 +34,13 @@ describe('The add resident page', () => {
         cy.get('#name').type(input.name);
         cy.get('#lastname').type(input.lastname);
         cy.get('#date_of_birth').type(input.date_of_birth);
-        cy.get('#vegetarian').check();
-        cy.get('#vegan').check();
+        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-option-6').click();
+        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-option-12').click();
+        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('.mat-mdc-row > .cdk-column-category').should('be.visible');
+        cy.get('.mat-mdc-row > .cdk-column-consumptionLevel').should('be.visible');
         cy.get('form').submit();
         cy.wait('@addResident');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
