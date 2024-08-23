@@ -12,20 +12,27 @@ describe('The nutritional profile page', () => {
 
     cy.intercept({
       method: 'GET',
-      url: backendUrl + '/nutritional-restriction'
+      url: backendUrl + '/product-category'
     }, {
-      fixture: 'nutritional_profile_list/nutritional_restriction.json',
-      statusCode: 200
-    }).as('restrictions');
+      fixture: 'nutritional_profile_list/product_categories.json'
+    }).as('productCategories');
+
+    cy.intercept({
+      method: 'GET',
+      url: backendUrl + '/consumption-level'
+    }, {
+      fixture: 'nutritional_profile_list/consumption_levels.json'
+    }).as('consumptionLevels');
 
     cy.visit('/users/1/nutritional-profile');
-    cy.wait(['@profile', '@restrictions']);
+    cy.wait(['@profile', '@productCategories', '@consumptionLevels']);
   });
 
   context('Given the user has a nutritional profile', () => {
     it('Then show the nutritional profile successfully', () => {
-      cy.get('#vegetarian').should('be.checked');
-      cy.get('#celiac').should('be.checked');
+      cy.get('.mat-mdc-row > .cdk-column-category').should('be.visible');
+      cy.get('.mat-mdc-row > .cdk-column-consumptionLevel').should('be.visible');
+
     });
   });
 
