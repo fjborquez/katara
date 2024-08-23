@@ -35,9 +35,9 @@ describe('The add resident page', () => {
         cy.get('#lastname').type(input.lastname);
         cy.get('#date_of_birth').type(input.date_of_birth);
         cy.get('#mat-select-value-1').click();
-        cy.get('#mat-option-0').click();
+        cy.get('#mat-option-6').click();
         cy.get('#mat-select-value-3').click();
-        cy.get('#mat-option-15').click();
+        cy.get('#mat-option-12').click();
         cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
         cy.get('.mat-mdc-row > .cdk-column-category').should('be.visible');
         cy.get('.mat-mdc-row > .cdk-column-consumptionLevel').should('be.visible');
