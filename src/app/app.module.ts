@@ -26,6 +26,7 @@ import { UserHouseUpdateComponent } from './sections/user-house-update/user-hous
 import { UserHouseViewComponent } from './sections/user-house-view/user-house-view.component';
 import { UserListComponent } from './sections/user-list/user-list.component';
 import { UserUpdateComponent } from './sections/user-update/user-update.component';
+import { HouseInventoryViewComponent } from './sections/house-inventory-view/house-inventory-view.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UserUpdateComponent } from './sections/user-update/user-update.componen
     HouseResidentsViewComponent,
     HouseResidentsUpdateComponent,
     NutritionalProfileComponent,
+    HouseInventoryViewComponent,
   ],
   imports: [
     BrowserModule,
