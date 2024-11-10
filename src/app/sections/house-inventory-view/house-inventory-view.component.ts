@@ -14,7 +14,7 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 })
 export class HouseInventoryViewComponent {
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['quantity', 'unit', 'brand', 'product', 'purchase_date', 'expiration_date'];
+  columnsToDisplay = ['quantity', 'brand', 'product', 'purchase_date', 'expiration_date'];
   userId = 0;
   houseId = 0;
 

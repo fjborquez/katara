@@ -15,17 +15,8 @@ describe('The inventory list page', () => {
 
   context('Given I access to the inventory section', () => {
     context('When the users list has loaded registries', () => {
-      it('Then the quantity column must be an number', () => {
+      it('Then the quantity column must be units with uom', () => {
         cy.get('.cdk-column-quantity').each((column, index) => {
-          if (index > 0) {
-            const value = Number(column.text().trim());
-            expect(value).not.to.be.NaN;
-          }
-        });
-      });
-
-      it('Then the unit column must be a string', () => {
-        cy.get('.cdk-column-unit').each((column, index) => {
           if (index > 0) {
             const value = column.text().trim();
             expect(value).not.to.be.text;
