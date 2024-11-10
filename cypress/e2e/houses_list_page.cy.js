@@ -46,17 +46,21 @@ describe('The houses list page', () => {
           if (index > 0) {
             const value = column.text().trim();
             const options = value.split('|');
-            expect([1,2]).to.contains(options.length);
+            expect([1,2,3]).to.contains(options.length);
           }
         });
       });
 
       it('Then the house must be disabled', () => {
-        cy.get(':nth-child(2) > .cdk-column-options > :nth-child(2)').should('be.text', 'Disable');
+        cy.get(':nth-child(2) > .cdk-column-options > :nth-child(3)').should('be.text', 'Disable');
       });
 
       it('Then the house must be enabled', () => {
-        cy.get(':nth-child(1) > .cdk-column-options > :nth-child(2)').should('be.text', 'Enable');
+        cy.get(':nth-child(1) > .cdk-column-options > :nth-child(3)').should('be.text', 'Enable');
+      });
+
+      it('Then the house must have inventory', () => {
+        cy.get(':nth-child(1) > .cdk-column-options > :nth-child(1)').should('be.text', 'Inventory');
       });
 
       it('Then the resident column must be an icon', () => {
