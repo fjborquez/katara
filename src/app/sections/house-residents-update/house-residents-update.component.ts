@@ -9,7 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
-import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 
 @Component({

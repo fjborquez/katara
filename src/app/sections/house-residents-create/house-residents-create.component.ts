@@ -7,7 +7,6 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ResidentService } from 'src/app/services/resident.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
-import { nutritionalProfileToArray } from 'src/app/functions/nutritionalProfileToArray';
 
 @Component({
   selector: 'app-house-residents-create',
