@@ -10,6 +10,8 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 
 import { ListResponse } from 'src/app/models/list-response.model';
 import { ProductCategory } from 'src/app/models/product-category.model';
+import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nutritional-profile',
@@ -25,13 +27,16 @@ export class NutritionalProfileComponent {
   form: FormGroup = this.formBuilder.group({});
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource();
+  userId: number = 0;
 
   constructor(
     private rootFormGroup: FormGroupDirective,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute,
     private productCategoryService: ProductCategoryService,
     private consumptionLevelService: ConsumptionLevelService,
+    private nutritionalProfileService: NutritionalProfileService
   ) { }
 
   ngOnInit() {
@@ -39,6 +44,12 @@ export class NutritionalProfileComponent {
     this.form.addControl('consumptionLevel', new FormControl({}));
     this.form.addControl('productCategory', new FormControl({}))
     this.displayedColumns = ['category', 'consumptionLevel'];
+    this.userId = Number(this.activatedRoute.snapshot.params['id']);
+
+    if (!this.viewMode) {
+      this.displayedColumns.push('options');
+    }
+
     this.prevDefaultValues = this.defaultValues;
 
     this.productCategoryService.list().subscribe((response: ListResponse<ProductCategory>) => {
@@ -56,7 +67,11 @@ export class NutritionalProfileComponent {
     if (this.defaultValues.length > 0) {
       this.defaultValues.forEach((element: any) => {
         const data = this.dataSource.data;
-        data.push({category: element.product_category_name, consumption: element.consumption_level_id});
+        data.push({
+          category_id: element.product_category_id,
+          category: element.product_category_name,
+          consumption: element.consumption_level_id
+        });
         this.dataSource.data = data;
         const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray;
         nutritionalProfile.push(this.formBuilder.group({
@@ -73,7 +88,11 @@ export class NutritionalProfileComponent {
     const data = this.dataSource.data;
     const consumptionLevel: ConsumptionLevel = this.form.get('consumptionLevel')?.value;
     const productCategory: ProductCategory = this.form.get('productCategory')?.value;
-    data.push({category: productCategory.name, consumption: consumptionLevel.name});
+    data.push({
+      category_id: productCategory.id,
+      category: productCategory.name,
+      consumption: consumptionLevel.name
+    });
     const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray;
     nutritionalProfile.push(this.formBuilder.group({
       'product_category_id': new FormControl(productCategory.id),
@@ -98,11 +117,27 @@ export class NutritionalProfileComponent {
           'product_category_name': new FormControl(element.product_category_name),
           'consumption_level_id': new FormControl(element.consumption_level_id),
         }));
-        toReplace.push({category: element.product_category_name, consumption: element.consumption_level.name});
+        toReplace.push({
+          category_id: element.product_category_id,
+          category: element.product_category_name,
+          consumption: element.consumption_level.name
+        });
       });
 
       this.dataSource.data = toReplace;
     }
+  }
+
+  delete(nutritionalProfileDetail: any) {
+    this.nutritionalProfileService.delete(this.userId, nutritionalProfileDetail.category_id).subscribe().add(() => {
+      const data = this.dataSource.data;
+      const index = data.indexOf(nutritionalProfileDetail);
+      data.splice(index, 1);
+      this.dataSource.data = data;
+      const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray;
+      nutritionalProfile.removeAt(index);
+      this.defaultValues.splice(index, 1);
+    });
   }
 
 }

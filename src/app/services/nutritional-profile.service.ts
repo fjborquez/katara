@@ -26,5 +26,9 @@ export class NutritionalProfileService {
     return this.http.put(environment.aangBaseUrl + 'person/' + userId + '/nutritional-profile', params);
   }
 
+  delete(userId: number, productCategoryId: number) {
+    return this.http.delete(`${environment.backendUrl}user/${userId}/nutritional-profile/${productCategoryId}`);
+  }
+
 
 }

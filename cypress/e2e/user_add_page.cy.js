@@ -14,6 +14,13 @@ describe('The add user page', () => {
     }, {
       fixture: 'user_add/product-categories.json'
     }).as('productCategories');
+    cy.intercept({
+      method: 'DELETE',
+      url: backendUrl + '/user/*/nutritional-profile/**'
+    }, {
+      statusCode: 200,
+      fixture: 'residents_edit/success.json'
+    }).as('nutritionalProfileDelete');
     cy.visit('/users/add');
     cy.wait('@consumptionLevels').its('response.statusCode').should('equal', 200);
     cy.wait('@productCategories').its('response.statusCode').should('equal', 200);
@@ -64,6 +71,22 @@ describe('The add user page', () => {
 
         cy.get('form').submit();
         cy.wait('@addUser').its('response.statusCode').should('equal', 201);
+      });
+    });
+
+    it('Then delete a nutritional profile detail', () => {
+      cy.fixture('user_add/user_input.json').then((input) => {
+        cy.get('#name').type(input.name);
+        cy.get('#lastname').type(input.lastname);
+        cy.get('#date_of_birth').type(input.date_of_birth);
+        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-option-6').click();
+        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-option-12').click();
+        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('.cdk-column-options > a').click();
+        cy.wait('@nutritionalProfileDelete');
+        cy.get('.mat-mdc-row').should('not.exist');
       });
     });
 
