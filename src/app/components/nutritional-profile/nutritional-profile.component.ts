@@ -2,7 +2,7 @@ import { NutritionalProfileDetail } from './../../models/nutritional-profile-det
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConsumptionLevelService } from './../../services/consumption-level.service';
 import { ProductCategoryService } from './../../services/product-category.service';
-import { Component, Input } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
@@ -18,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './nutritional-profile.component.html',
   styleUrls: ['./nutritional-profile.component.sass']
 })
-export class NutritionalProfileComponent {
+export class NutritionalProfileComponent implements OnInit, DoCheck {
   @Input() defaultValues: NutritionalProfileDetail[] | any = [];
   @Input() viewMode = false;
   prevDefaultValues: NutritionalProfileDetail[] = [];
@@ -27,7 +27,7 @@ export class NutritionalProfileComponent {
   form: FormGroup = this.formBuilder.group({});
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource();
-  userId: number = 0;
+  userId = 0;
 
   constructor(
     private rootFormGroup: FormGroupDirective,
@@ -43,7 +43,7 @@ export class NutritionalProfileComponent {
     this.form = this.rootFormGroup.control;
     this.form.addControl('consumptionLevel', new FormControl({}));
     this.form.addControl('productCategory', new FormControl({}))
-    this.displayedColumns = ['category', 'consumptionLevel'];
+    this.displayedColumns = ['categoryId', 'category', 'consumptionLevel'];
     this.userId = Number(this.activatedRoute.snapshot.params['id']);
 
     if (!this.viewMode) {
