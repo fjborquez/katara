@@ -16,6 +16,13 @@ describe('The add resident page', () => {
       fixture: 'residents_add/consumption_levels.json',
       statusCode: 200
     }).as('consumptionLevels');
+    cy.intercept({
+      method: 'DELETE',
+      url: backendUrl + '/user/*/nutritional-profile/**'
+    }, {
+      statusCode: 200,
+      fixture: 'residents_edit/success.json'
+    }).as('nutritionalProfileDelete');
     cy.visit('/users/1/houses/31/residents/add');
     cy.wait(['@productCategories', '@consumptionLevels']);
   });
@@ -63,6 +70,22 @@ describe('The add resident page', () => {
         cy.get('form').submit();
         cy.wait('@addResident');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
+      });
+    });
+
+    it('Then delete a nutritional profile detail', () => {
+      cy.fixture('residents_add/resident_input.json').then((input) => {
+        cy.get('#name').type(input.name);
+        cy.get('#lastname').type(input.lastname);
+        cy.get('#date_of_birth').type(input.date_of_birth);
+        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-option-6').click();
+        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-option-12').click();
+        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('.cdk-column-options > a').click();
+        cy.wait('@nutritionalProfileDelete');
+        cy.get('.mat-mdc-row').should('not.exist');
       });
     });
 
