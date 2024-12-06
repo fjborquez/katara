@@ -26,9 +26,7 @@
         <mat-icon class="mat-18" *ngIf="status.pivot.is_active && status.id === 2" title="{{status.description}}" style="color: yellow;">warning</mat-icon>
         <mat-icon class="mat-18" *ngIf="status.pivot.is_active && status.id === 1" title="{{status.description}}" style="color: green;">check_box</mat-icon>
         <mat-icon class="mat-18" *ngIf="status.pivot.is_active && status.id === 3" title="{{status.description}}" style="color: red;">flag</mat-icon>
-      </span>
-      <span *ngIf="inventory.product_status === null">
-        <mat-icon class="mat-18" style="color: black;">help</mat-icon>
+        <mat-icon class="mat-18" *ngIf="status.pivot.is_active && status.id === 6" title="{{status.description}}" style="color: black;">help</mat-icon>
       </span>
     </td>
 
