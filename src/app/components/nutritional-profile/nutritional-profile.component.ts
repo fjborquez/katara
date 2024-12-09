@@ -43,7 +43,7 @@ export class NutritionalProfileComponent implements OnInit, DoCheck {
     this.form = this.rootFormGroup.control;
     this.form.addControl('consumptionLevel', new FormControl({}));
     this.form.addControl('productCategory', new FormControl({}))
-    this.displayedColumns = ['categoryId', 'category', 'consumptionLevel'];
+    this.displayedColumns = ['index', 'category', 'consumptionLevel'];
     this.userId = Number(this.activatedRoute.snapshot.params['id']);
 
     if (!this.viewMode) {
