@@ -6,6 +6,7 @@ import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/f
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 
 describe('NutritionalProfileComponent', () => {
   let component: NutritionalProfileComponent;
@@ -24,12 +25,13 @@ describe('NutritionalProfileComponent', () => {
         MatSnackBarModule,
         ReactiveFormsModule,
         MatSelectModule,
-        MatTableModule
+        MatTableModule,
       ],
       providers: [
         FormGroupDirective,
         FormBuilder,
-        {provide: FormGroupDirective, useValue: formGroupDirective}
+        {provide: FormGroupDirective, useValue: formGroupDirective},
+        {provide: ActivatedRoute, useValue: {snapshot: {params: {id: 1}}}}
       ],
       declarations: [ NutritionalProfileComponent ]
     })
