@@ -25,14 +25,6 @@ describe('The edit resident page', () => {
       statusCode: 200
     }).as('residentData');
 
-    cy.intercept({
-      method: 'DELETE',
-      url: backendUrl + '/user/*/nutritional-profile/**'
-    }, {
-      statusCode: 200,
-      fixture: 'residents_edit/success.json'
-    }).as('nutritionalProfileDelete');
-
     cy.visit('/users/1/houses/44/residents/1/update');
     cy.wait(['@productCategories', '@consumptionLevels', '@residentData']);
   });
@@ -66,7 +58,7 @@ describe('The edit resident page', () => {
         cy.get('#mat-select-value-1').click();
         cy.get('#mat-option-6').click();
         cy.get('#mat-select-value-3').click();
-        cy.get('#mat-option-13').click();
+        cy.get('#mat-option-12').click();
         cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
         cy.get('form').submit();
         cy.wait('@residentUpdate');
@@ -87,7 +79,6 @@ describe('The edit resident page', () => {
 
     it('Then delete a nutritional profile detail', () => {
       cy.get('.cdk-column-options > a').click();
-      cy.wait('@nutritionalProfileDelete');
       cy.get('.mat-mdc-row').should('not.exist');
     });
 

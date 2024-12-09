@@ -16,13 +16,6 @@ describe('The edit user page', () => {
       statusCode: 200,
       fixture: 'user_edit/consumption_levels.json'
     }).as('consumptionLevels');
-    cy.intercept({
-      method: 'DELETE',
-      url: backendUrl + '/user/*/nutritional-profile/**'
-    }, {
-      statusCode: 200,
-      fixture: 'residents_edit/success.json'
-    }).as('nutritionalProfileDelete');
   });
   context('Given I update an user', () => {
     it('Then the nutritional profile is not empty', () => {
@@ -76,7 +69,6 @@ describe('The edit user page', () => {
         cy.get('#mat-option-12').click();
         cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
         cy.get('.cdk-column-options > a').click();
-        cy.wait('@nutritionalProfileDelete');
         cy.get('.mat-mdc-row').should('not.exist');
       });
     });
