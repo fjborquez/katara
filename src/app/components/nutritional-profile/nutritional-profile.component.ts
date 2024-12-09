@@ -129,15 +129,13 @@ export class NutritionalProfileComponent implements OnInit, DoCheck {
   }
 
   delete(nutritionalProfileDetail: any) {
-    this.nutritionalProfileService.delete(this.userId, nutritionalProfileDetail.category_id).subscribe().add(() => {
-      const data = this.dataSource.data;
-      const index = data.indexOf(nutritionalProfileDetail);
-      data.splice(index, 1);
-      this.dataSource.data = data;
-      const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray;
-      nutritionalProfile.removeAt(index);
-      this.defaultValues.splice(index, 1);
-    });
+    const data = this.dataSource.data;
+    const index = data.indexOf(nutritionalProfileDetail);
+    data.splice(index, 1);
+    this.dataSource.data = data;
+    const nutritionalProfile = this.form.get('nutritionalProfile') as FormArray;
+    nutritionalProfile.removeAt(index);
+    this.defaultValues.splice(index, 1);
   }
 
 }
