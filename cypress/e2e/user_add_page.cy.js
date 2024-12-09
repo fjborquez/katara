@@ -14,13 +14,6 @@ describe('The add user page', () => {
     }, {
       fixture: 'user_add/product-categories.json'
     }).as('productCategories');
-    cy.intercept({
-      method: 'DELETE',
-      url: backendUrl + '/user/*/nutritional-profile/**'
-    }, {
-      statusCode: 200,
-      fixture: 'residents_edit/success.json'
-    }).as('nutritionalProfileDelete');
     cy.visit('/users/add');
     cy.wait('@consumptionLevels').its('response.statusCode').should('equal', 200);
     cy.wait('@productCategories').its('response.statusCode').should('equal', 200);
@@ -85,7 +78,6 @@ describe('The add user page', () => {
         cy.get('#mat-option-12').click();
         cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
         cy.get('.cdk-column-options > a').click();
-        cy.wait('@nutritionalProfileDelete');
         cy.get('.mat-mdc-row').should('not.exist');
       });
     });
