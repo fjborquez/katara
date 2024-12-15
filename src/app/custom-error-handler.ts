@@ -11,7 +11,7 @@ export class CustomErrorHandler implements ErrorHandler {
     if (isDevMode()) {
       console.error(error);
     } else {
-      this.logWriterService.add(error);
+      this.logWriterService.add(error).subscribe();
     }
   }
 }
