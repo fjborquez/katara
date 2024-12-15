@@ -9,7 +9,7 @@ export class CustomErrorHandler implements ErrorHandler {
 
   handleError(error: any): void {
     if (isDevMode()) {
-      console.log(error);
+      console.error(error);
     } else {
       this.logWriterService.add({
         message: JSON.stringify({

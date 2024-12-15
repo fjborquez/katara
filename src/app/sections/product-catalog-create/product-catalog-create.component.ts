@@ -15,6 +15,7 @@ import { ListResponse } from 'src/app/models/list-response.model';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductPresentation } from 'src/app/models/product-presentation.model';
 import { Location } from '@angular/common';
+import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
 
 @Component({
   selector: 'app-product-catalog-create',
@@ -48,7 +49,7 @@ export class ProductCatalogCreateComponent implements OnInit{
     this.productCategoryService.list().subscribe((response: ListResponse<ProductCategory>) => {
       this.categories = this.productCatalogForm.get('category')?.valueChanges.pipe(
         startWith(''),
-        map((value: string) => response.message.filter((category: ProductCategory) => category.name.toLowerCase().includes(value.toLowerCase()))),
+        map((value: string) => response.message.filter((category: ProductCategory) => existsForAutocomplete(category.name, value))),
       );
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
@@ -57,7 +58,7 @@ export class ProductCatalogCreateComponent implements OnInit{
     this.productBrandService.list().subscribe((response: ListResponse<ProductBrand>) => {
       this.brands = this.productCatalogForm.get('brand')?.valueChanges.pipe(
         startWith(''),
-        map((value: string) => response.message.filter((brand: ProductBrand) => brand.name.toLowerCase().includes(value.toLowerCase()))),
+        map((value: string) => response.message.filter((brand: ProductBrand) => existsForAutocomplete(brand.name, value))),
       );
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
@@ -66,7 +67,7 @@ export class ProductCatalogCreateComponent implements OnInit{
     this.productTypeService.list().subscribe((response: ListResponse<ProductType>) => {
       this.types = this.productCatalogForm.get('type')?.valueChanges.pipe(
         startWith(''),
-        map((value: string) => response.message.filter((type: ProductType) => type.description.toLowerCase().includes(value.toLowerCase()))),
+        map((value: string) => response.message.filter((type: ProductType) => existsForAutocomplete(type.description, value))),
       );
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
@@ -75,7 +76,7 @@ export class ProductCatalogCreateComponent implements OnInit{
     this.productPresentationService.list().subscribe((response: ListResponse<ProductPresentation>) => {
       this.presentations = this.productCatalogForm.get('presentation')?.valueChanges.pipe(
         startWith(''),
-        map((value: string) => response.message.filter((presentation: ProductPresentation) => presentation.description.toLowerCase().includes(value.toLowerCase()))),
+        map((value: string) => response.message.filter((presentation: ProductPresentation) => existsForAutocomplete(presentation.description, value))),
       );
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
@@ -117,3 +118,4 @@ export class ProductCatalogCreateComponent implements OnInit{
     });
   }
 }
+
