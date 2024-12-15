@@ -9,10 +9,13 @@ export class CustomErrorHandler implements ErrorHandler {
 
   handleError(error: any): void {
     if (isDevMode()) {
-      console.error(error);
+      console.log(error);
     } else {
       this.logWriterService.add({
-        message: JSON.stringify(error)
+        message: JSON.stringify({
+          message: error.message,
+          stack: error.stack
+        })
       }).subscribe();
     }
   }
