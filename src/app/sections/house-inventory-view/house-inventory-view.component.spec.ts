@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { MatSelectModule } from '@angular/material/select';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -20,7 +21,8 @@ describe('HouseInventoryViewComponent', () => {
         HttpClientTestingModule,
         MatSelectModule,
         MatSnackBarModule,
-        MatTableModule
+        MatTableModule,
+        RouterTestingModule
       ],
       providers: [ HouseInventoryViewComponent, {
         provide: ActivatedRoute,

@@ -1,0 +1,256 @@
+{
+  "message": [
+    {
+      "id": 1,
+      "name": "Ideal",
+      "description": "Bakery products, especially bread.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 2,
+      "name": "Cecinas Winter",
+      "description": "Butchery products, sausages, and meats.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 3,
+      "name": "Colun",
+      "description": "Cheeses and cold cuts products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 4,
+      "name": "Soprole",
+      "description": "Dairy products such as yogurts, milks, and desserts.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 5,
+      "name": "Hortifrut",
+      "description": "Fresh fruits and vegetables products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 6,
+      "name": "Selecta",
+      "description": "Flours for baking and cooking.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 7,
+      "name": "Bonaventura",
+      "description": "Premium olive oils, salts, and condiments.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 8,
+      "name": "Lucchetti",
+      "description": "Pasta and related products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 9,
+      "name": "Gourmet",
+      "description": "Sauces and dressings for culinary use.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 10,
+      "name": "Maggi",
+      "description": "Instant meals and soups.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 11,
+      "name": "Loncoleche",
+      "description": "Dairy products, including milk and cheese.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 12,
+      "name": "Watts",
+      "description": "Various food products, including juices and sauces.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 13,
+      "name": "Agrosuper",
+      "description": "Poultry, pork, and processed meat products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 14,
+      "name": "Frutos de Lonqu\u00e9n",
+      "description": "Fresh and dried fruit products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 15,
+      "name": "Molino La Estampa",
+      "description": "Various wheat flours.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 16,
+      "name": "Olibar",
+      "description": "Olive oils and gourmet products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 17,
+      "name": "PF Alimentos",
+      "description": "Processed foods, meats, and ready meals.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 18,
+      "name": "Pancho Villa",
+      "description": "Mexican food products, including sauces and tortillas.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 19,
+      "name": "Vi\u00f1edos Emiliana",
+      "description": "Organic wines and related products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 20,
+      "name": "Conservas Deyco",
+      "description": "Canned fruits and vegetables.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 21,
+      "name": "La Preferida",
+      "description": "Diverse dairy and meat products.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 22,
+      "name": "Biggi",
+      "description": "Pasta products and sauces.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 23,
+      "name": "Hellmann's",
+      "description": "Sauces and dressings including mayonnaise.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 24,
+      "name": "Carozzi",
+      "description": "Pasta, rice, and other packaged foods.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 25,
+      "name": "Santa Isabel",
+      "description": "Brand for supermarket products, diverse categories.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 26,
+      "name": "Don Humberto",
+      "description": "Cheese and cured meats.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 27,
+      "name": "Las Doscientas",
+      "description": "Vegetables, particularly canned and preserved.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 28,
+      "name": "Alza",
+      "description": "Quality cereals and grains.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 29,
+      "name": "Aconcagua Foods",
+      "description": "Preserved vegetables and packaged fruit juices.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 30,
+      "name": "D\u00e1nica",
+      "description": "Oils and margarines.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 31,
+      "name": "Cachant\u00fan",
+      "description": "Chilean mineral water brand, well-known for its purity and mineral content.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 32,
+      "name": "Andina",
+      "description": "A major Chilean company producing soft drinks and bottled water, including brands like Coca-Cola.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 33,
+      "name": "Vi\u00f1a Concha y Toro",
+      "description": "One of Chile's largest wineries, renowned for a wide variety of wines including ros\u00e9.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 34,
+      "name": "Vi\u00f1a Santa Rita",
+      "description": "Chilean winery famous for its premium wine selection.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 35,
+      "name": "Aguas Manantial",
+      "description": "Offers a range of bottled water options across Chile.",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 36,
+      "name": "Cervecer\u00eda Kunstmann",
+      "description": "Known for its craft beers, offers a variety of artisanal brews.",
+      "created_at": null,
+      "updated_at": null
+    }
+  ]
+}
