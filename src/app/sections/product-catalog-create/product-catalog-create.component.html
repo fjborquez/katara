@@ -1,0 +1,42 @@
+<a [routerLink]="'/users'">Back</a>
+<form [formGroup]="productCatalogForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="category">
+      Category
+    </label>
+    <input id="category" type="text" formControlName="category" matInput [matAutocomplete]="categoryId">
+    <mat-autocomplete #categoryId="matAutocomplete" [displayWith]="displayProductCategory">
+        <mat-option *ngFor="let category of categories | async" [value]="category">{{category.name}}</mat-option>
+    </mat-autocomplete>
+  </div>
+  <div>
+    <label for="brand">
+      Brand
+    </label>
+    <input id="brand" type="text" formControlName="brand" matInput [matAutocomplete]="brandId">
+    <mat-autocomplete #brandId="matAutocomplete" [displayWith]="displayProductBrand">
+      <mat-option *ngFor="let brand of brands | async" [value]="brand">{{brand.name}}</mat-option>
+    </mat-autocomplete>
+  </div>
+  <div>
+    <label for="type">
+      Type
+    </label>
+    <input id="type" type="text" formControlName="type" matInput [matAutocomplete]="typeId">
+    <mat-autocomplete #typeId="matAutocomplete" [displayWith]="displayProductType">
+      <mat-option *ngFor="let type of types | async" [value]="type">{{type.description}}</mat-option>
+    </mat-autocomplete>
+  </div>
+  <div>
+    <label for="presentation">
+      Presentation
+    </label>
+    <input id="presentation" type="text" formControlName="presentation" matInput [matAutocomplete]="presentationId">
+    <mat-autocomplete #presentationId="matAutocomplete" [displayWith]="displayProductPresentation">
+      <mat-option *ngFor="let presentation of presentations | async" [value]="presentation">{{presentation.description}}</mat-option>
+    </mat-autocomplete>
+  </div>
+  <div>
+    <button class="button" type="submit">Create</button>
+  </div>
+</form>

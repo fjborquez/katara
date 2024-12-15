@@ -1,0 +1,76 @@
+{
+  "message": [
+    {
+      "id": 1,
+      "name": "Bakery",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 2,
+      "name": "Butchery",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 3,
+      "name": "Cheeses and Cold Cuts",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 4,
+      "name": "Dairy",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 5,
+      "name": "Fruits and Vegetables",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 6,
+      "name": "Flours",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 7,
+      "name": "Oils, Salt, and Seasonings",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 8,
+      "name": "Pasta",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 9,
+      "name": "Sauces and Dressings",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 10,
+      "name": "Instant and Soups",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 11,
+      "name": "Beverages",
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 12,
+      "name": "Alcoholic Beverages",
+      "created_at": null,
+      "updated_at": null
+    }
+  ]
+}

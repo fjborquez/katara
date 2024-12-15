@@ -12,6 +12,7 @@ import { HouseResidentsCreateComponent } from './sections/house-residents-create
 import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
 import { HouseResidentsUpdateComponent } from './sections/house-residents-update/house-residents-update.component';
 import { HouseInventoryViewComponent } from './sections/house-inventory-view/house-inventory-view.component';
+import { ProductCatalogCreateComponent } from './sections/product-catalog-create/product-catalog-create.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'users/:id/houses/:idHouse/residents', component: HouseResidentsViewComponent},
   {path: 'users/:id/houses/:idHouse/residents/add', component: HouseResidentsCreateComponent},
   {path: 'users/:id/houses/:idHouse/residents/:idResident/update', component: HouseResidentsUpdateComponent},
-  {path: 'users/:id/houses/:idHouse/inventory', component: HouseInventoryViewComponent}
+  {path: 'users/:id/houses/:idHouse/inventory', component: HouseInventoryViewComponent},
+  {path: 'product-catalog/add', component: ProductCatalogCreateComponent}
 ];
 
 @NgModule({

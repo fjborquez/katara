@@ -1,3 +1,4 @@
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,8 @@ import { UserHouseViewComponent } from './sections/user-house-view/user-house-vi
 import { UserListComponent } from './sections/user-list/user-list.component';
 import { UserUpdateComponent } from './sections/user-update/user-update.component';
 import { HouseInventoryViewComponent } from './sections/house-inventory-view/house-inventory-view.component';
+import { ProductCatalogCreateComponent } from './sections/product-catalog-create/product-catalog-create.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { HouseInventoryViewComponent } from './sections/house-inventory-view/hou
     HouseResidentsUpdateComponent,
     NutritionalProfileComponent,
     HouseInventoryViewComponent,
+    ProductCatalogCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { HouseInventoryViewComponent } from './sections/house-inventory-view/hou
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
