@@ -1,3 +1,4 @@
+import { CustomErrorHandler } from './custom-error-handler';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { AppComponent } from './app.component';
@@ -17,7 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { NutritionalProfileComponent } from './components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileViewComponent } from './sections/nutritional-profile-view/nutritional-profile-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -67,7 +68,9 @@ import { MatInputModule } from '@angular/material/input';
     MatAutocompleteModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    { provide: ErrorHandler, useClass: CustomErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
