@@ -15,4 +15,8 @@ export class InventoryHousesService {
   getHousesByUser(userId: number, houseId: number): Observable<ListResponse<Inventory>> {
     return this.http.get<ListResponse<Inventory>>(`${environment.backendUrl}user/${userId}/houses/${houseId}/inventory`);
   }
+
+  add<CreateResponse>(userId: number, houseId: number, params = {}): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(`${environment.backendUrl}user/${userId}/houses/${houseId}/inventory`, params);
+  }
 }

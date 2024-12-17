@@ -13,6 +13,7 @@ import { HouseResidentsViewComponent } from './sections/house-residents-view/hou
 import { HouseResidentsUpdateComponent } from './sections/house-residents-update/house-residents-update.component';
 import { HouseInventoryViewComponent } from './sections/house-inventory-view/house-inventory-view.component';
 import { ProductCatalogCreateComponent } from './sections/product-catalog-create/product-catalog-create.component';
+import { HouseInventoryCreateComponent } from './sections/house-inventory-create/house-inventory-create.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'users/:id/houses/:idHouse/residents/add', component: HouseResidentsCreateComponent},
   {path: 'users/:id/houses/:idHouse/residents/:idResident/update', component: HouseResidentsUpdateComponent},
   {path: 'users/:id/houses/:idHouse/inventory', component: HouseInventoryViewComponent},
+  {path: 'users/:id/houses/:idHouse/inventory/add', component: HouseInventoryCreateComponent},
   {path: 'product-catalog/add', component: ProductCatalogCreateComponent}
 ];
 

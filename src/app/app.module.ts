@@ -31,6 +31,7 @@ import { UserUpdateComponent } from './sections/user-update/user-update.componen
 import { HouseInventoryViewComponent } from './sections/house-inventory-view/house-inventory-view.component';
 import { ProductCatalogCreateComponent } from './sections/product-catalog-create/product-catalog-create.component';
 import { MatInputModule } from '@angular/material/input';
+import { HouseInventoryCreateComponent } from './sections/house-inventory-create/house-inventory-create.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatInputModule } from '@angular/material/input';
     NutritionalProfileComponent,
     HouseInventoryViewComponent,
     ProductCatalogCreateComponent,
+    HouseInventoryCreateComponent,
   ],
   imports: [
     BrowserModule,
