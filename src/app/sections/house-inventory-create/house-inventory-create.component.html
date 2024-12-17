@@ -1,0 +1,44 @@
+<a [routerLink]="['/users', userId, 'houses', houseId, 'inventory']">Back</a>
+<form [formGroup]="inventoryItemForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="quantity">
+      Quantity
+    </label>
+    <input id="quantity" type="number" formControlName="quantity" matInput min="0.01" max="99999999.99" step="0.01">
+  </div>
+  <div>
+    <label for="unit_of_measurement">
+      Unit of Measurement
+    </label>
+    <mat-select id="unit_of_measurement" name="unit_of_measurement" formControlName="unit_of_measurement">
+      <mat-option *ngFor="let unitOfMeasurement of unitsOfMeasurement" [value]="unitOfMeasurement">{{ unitOfMeasurement.abbreviation }}</mat-option>
+    </mat-select>
+  </div>
+  <div style="width:800px;">
+    <label for="product">
+      Product
+    </label>
+    <input id="product" type="text" formControlName="product" matInput [matAutocomplete]="productId" style="width:500px;">
+    <mat-autocomplete #productId="matAutocomplete" [displayWith]="displayProductCatalog">
+        <mat-option *ngFor="let productCatalog of productsCatalog | async" [value]="productCatalog">
+          {{ displayProductCatalog(productCatalog) }}
+        </mat-option>
+    </mat-autocomplete>
+    <a [routerLink]="['/product-catalog', 'add']" *ngIf="!inventoryItemForm.get('product')?.value">Add new product</a>
+  </div>
+  <div>
+    <label for="purchase_date">
+      Purchase date
+    </label>
+    <input id="purchase_date" type="date" formControlName="purchase_date" matInput>
+  </div>
+  <div>
+    <label for="expiration_date">
+      Expiration date
+    </label>
+    <input id="expiration_date" type="date" formControlName="expiration_date" matInput>
+  </div>
+  <div>
+    <button class="button" type="submit">Create</button>
+  </div>
+</form>
