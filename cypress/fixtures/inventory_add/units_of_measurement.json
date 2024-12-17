@@ -1,0 +1,84 @@
+{
+  "message": [
+    {
+      "id": 1,
+      "description": "Milligrams",
+      "abbreviation": "mg",
+      "category_id": 1,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 2,
+      "description": "Grams",
+      "abbreviation": "g",
+      "category_id": 1,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 3,
+      "description": "Kilograms",
+      "abbreviation": "kg",
+      "category_id": 1,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 4,
+      "description": "Ounces",
+      "abbreviation": "oz",
+      "category_id": 1,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 5,
+      "description": "Liters",
+      "abbreviation": "L",
+      "category_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 6,
+      "description": "Milliliters",
+      "abbreviation": "mL",
+      "category_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 7,
+      "description": "Cup",
+      "abbreviation": "cup",
+      "category_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 8,
+      "description": "Tablespoon",
+      "abbreviation": "tbsp",
+      "category_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 9,
+      "description": "Teaspoon",
+      "abbreviation": "tsp",
+      "category_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 13,
+      "description": "Unit",
+      "abbreviation": "ud",
+      "category_id": 4,
+      "created_at": null,
+      "updated_at": null
+    }
+  ]
+}
