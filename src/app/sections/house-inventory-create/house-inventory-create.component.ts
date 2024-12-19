@@ -120,10 +120,19 @@ export class HouseInventoryCreateComponent implements OnInit{
     };
 
     this.inventoryHousesService.add<CreateResponse>(this.userId, this.houseId, params).subscribe((response: CreateResponse) => {
-      this.location.back();
+      this.resetForm();
       this.snackBar.open(response.message, "Close");
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
+    });
+  }
+
+  resetForm() {
+    this.inventoryItemForm.reset();
+    this.inventoryItemForm.patchValue({
+      'purchase_date': formatDate(new Date(), "yyyy-MM-dd", "en"),
+      'quantity': 0.0,
+      'product': '',
     });
   }
 }
