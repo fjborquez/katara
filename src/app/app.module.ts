@@ -32,6 +32,7 @@ import { HouseInventoryViewComponent } from './sections/house-inventory-view/hou
 import { ProductCatalogCreateComponent } from './sections/product-catalog-create/product-catalog-create.component';
 import { MatInputModule } from '@angular/material/input';
 import { HouseInventoryCreateComponent } from './sections/house-inventory-create/house-inventory-create.component';
+import { ProductCategoryCreateComponent } from './sections/product-category-create/product-category-create.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HouseInventoryCreateComponent } from './sections/house-inventory-create
     HouseInventoryViewComponent,
     ProductCatalogCreateComponent,
     HouseInventoryCreateComponent,
+    ProductCategoryCreateComponent,
   ],
   imports: [
     BrowserModule,

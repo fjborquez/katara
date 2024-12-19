@@ -8,6 +8,7 @@
     <mat-autocomplete #categoryId="matAutocomplete" [displayWith]="displayProductCategory">
         <mat-option *ngFor="let category of categories | async" [value]="category">{{category.name}}</mat-option>
     </mat-autocomplete>
+    <a [routerLink]="['/product-category', 'add']" *ngIf="!productCatalogForm.get('category')?.value">Add new category</a>
   </div>
   <div>
     <label for="brand">

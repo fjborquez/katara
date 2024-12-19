@@ -1,0 +1,12 @@
+<a (click)="goBack()">Back</a>
+<form [formGroup]="productCategoryForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name" matInput>
+  </div>
+  <div>
+    <button class="button" type="submit">Create</button>
+  </div>
+</form>
