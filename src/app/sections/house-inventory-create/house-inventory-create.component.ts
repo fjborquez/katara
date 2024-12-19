@@ -74,6 +74,24 @@ export class HouseInventoryCreateComponent implements OnInit{
     return productName;
   }
 
+  saveProductCatalogText(productCatalog: ProductCatalog): string {
+    let productCatalogText = '';
+
+    if (productCatalog.type.description) {
+      productCatalogText += productCatalog.type.description;
+      productCatalogText += ' ';
+    }
+
+    if (productCatalog.presentation?.description) {
+      productCatalogText += productCatalog.presentation.description;
+      productCatalogText += ' ';
+    }
+
+    productCatalogText = productCatalogText.trim();
+
+    return productCatalogText;
+  }
+
   onSubmit() {
     const quantity = this.inventoryItemForm.get('quantity')?.value;
     const expiration_date = this.inventoryItemForm.get('expiration_date')?.value;
@@ -89,7 +107,7 @@ export class HouseInventoryCreateComponent implements OnInit{
       quantity: quantity,
       expiration_date: expiration_date,
       catalog_id: product.id,
-      catalog_description: this.displayProductCatalog(product),
+      catalog_description: this.saveProductCatalogText(product),
       category_id: category.id,
       category_name: category.name,
       purchase_date: purchase_date,
