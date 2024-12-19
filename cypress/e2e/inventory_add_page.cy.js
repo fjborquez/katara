@@ -138,7 +138,7 @@ describe('The add inventory page', () => {
       cy.get('#mat-option-10').click();
       cy.get('form').submit();
       cy.wait('@addInventory');
-      cy.url().should("be.equals", "about:blank");
+      cy.get('#cdk-overlay-2').should('be.visible');
     });
   });
 });
