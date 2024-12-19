@@ -99,6 +99,10 @@ export class ProductCatalogCreateComponent implements OnInit{
     return productPresentation.description;
   }
 
+  goBack() {
+    this.location.back();
+  }
+
   onSubmit() {
     const productCategory: any = this.productCatalogForm.get('category')?.value;
     const productBrand: any = this.productCatalogForm.get('brand')?.value;

@@ -1,4 +1,4 @@
-<a [routerLink]="'/users'">Back</a>
+<a (click)="goBack()">Back</a>
 <form [formGroup]="productCatalogForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="category">
