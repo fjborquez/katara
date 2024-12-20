@@ -33,6 +33,7 @@ import { ProductCatalogCreateComponent } from './sections/product-catalog-create
 import { MatInputModule } from '@angular/material/input';
 import { HouseInventoryCreateComponent } from './sections/house-inventory-create/house-inventory-create.component';
 import { ProductCategoryCreateComponent } from './sections/product-category-create/product-category-create.component';
+import { ProductBrandCreateComponent } from './sections/product-brand-create/product-brand-create.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ProductCategoryCreateComponent } from './sections/product-category-crea
     ProductCatalogCreateComponent,
     HouseInventoryCreateComponent,
     ProductCategoryCreateComponent,
+    ProductBrandCreateComponent,
   ],
   imports: [
     BrowserModule,
