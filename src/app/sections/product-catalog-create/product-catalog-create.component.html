@@ -18,6 +18,7 @@
     <mat-autocomplete #brandId="matAutocomplete" [displayWith]="displayProductBrand">
       <mat-option *ngFor="let brand of brands | async" [value]="brand">{{brand.name}}</mat-option>
     </mat-autocomplete>
+    <a [routerLink]="['/product-brand', 'add']" *ngIf="!productCatalogForm.get('brand')?.value">Add new brand</a>
   </div>
   <div>
     <label for="type">

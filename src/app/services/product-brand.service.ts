@@ -15,4 +15,8 @@ export class ProductBrandService {
   list(): Observable<ListResponse<ProductBrand>> {
     return this.http.get<ListResponse<ProductBrand>>(environment.backendUrl + 'product-brand')
   }
+
+  add<CreateResponse>(params = {}): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(environment.backendUrl + 'product-brand', params);
+  }
 }
