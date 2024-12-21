@@ -17,6 +17,7 @@ import { HouseInventoryCreateComponent } from './sections/house-inventory-create
 import { ProductCategoryCreateComponent } from './sections/product-category-create/product-category-create.component';
 import { ProductBrandCreateComponent } from './sections/product-brand-create/product-brand-create.component';
 import { ProductTypeCreateComponent } from './sections/product-type-create/product-type-create.component';
+import { ProductPresentationCreateComponent } from './sections/product-presentation-create/product-presentation-create.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path: 'product-catalog/add', component: ProductCatalogCreateComponent},
   {path: 'product-category/add', component: ProductCategoryCreateComponent},
   {path: 'product-brand/add', component: ProductBrandCreateComponent},
-  {path: 'product-type/add', component: ProductTypeCreateComponent}
+  {path: 'product-type/add', component: ProductTypeCreateComponent},
+  {path: 'product-presentation/add', component: ProductPresentationCreateComponent}
 ];
 
 @NgModule({

@@ -35,6 +35,7 @@ import { HouseInventoryCreateComponent } from './sections/house-inventory-create
 import { ProductCategoryCreateComponent } from './sections/product-category-create/product-category-create.component';
 import { ProductBrandCreateComponent } from './sections/product-brand-create/product-brand-create.component';
 import { ProductTypeCreateComponent } from './sections/product-type-create/product-type-create.component';
+import { ProductPresentationCreateComponent } from './sections/product-presentation-create/product-presentation-create.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ProductTypeCreateComponent } from './sections/product-type-create/produ
     ProductCategoryCreateComponent,
     ProductBrandCreateComponent,
     ProductTypeCreateComponent,
+    ProductPresentationCreateComponent,
   ],
   imports: [
     BrowserModule,
