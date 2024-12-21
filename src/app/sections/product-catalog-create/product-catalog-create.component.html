@@ -28,6 +28,7 @@
     <mat-autocomplete #typeId="matAutocomplete" [displayWith]="displayProductType">
       <mat-option *ngFor="let type of types | async" [value]="type">{{type.description}}</mat-option>
     </mat-autocomplete>
+    <a [routerLink]="['/product-type', 'add']" *ngIf="!productCatalogForm.get('type')?.value">Add new type</a>
   </div>
   <div>
     <label for="presentation">

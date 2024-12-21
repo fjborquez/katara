@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductBrandCreateComponent } from './product-brand-create.component';
+import { ProductTypeCreateComponent } from './product-type-create.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-describe('ProductBrandCreateComponent', () => {
-  let component: ProductBrandCreateComponent;
-  let fixture: ComponentFixture<ProductBrandCreateComponent>;
+describe('ProductTypeCreateComponent', () => {
+  let component: ProductTypeCreateComponent;
+  let fixture: ComponentFixture<ProductTypeCreateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductBrandCreateComponent ],
+      declarations: [ ProductTypeCreateComponent ],
       imports: [MatSnackBarModule, HttpClientModule, FormsModule, ReactiveFormsModule]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProductBrandCreateComponent);
+    fixture = TestBed.createComponent(ProductTypeCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

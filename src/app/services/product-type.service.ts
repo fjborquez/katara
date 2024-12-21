@@ -15,4 +15,8 @@ export class ProductTypeService {
   list(): Observable<ListResponse<ProductType>> {
     return this.http.get<ListResponse<ProductType>>(environment.backendUrl + 'product-type')
   }
+
+  add<CreateResponse>(params = {}): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(environment.backendUrl + 'product-type', params);
+  }
 }
