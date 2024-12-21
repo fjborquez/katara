@@ -15,4 +15,8 @@ export class ProductPresentationService {
   list(): Observable<ListResponse<ProductPresentation>> {
     return this.http.get<ListResponse<ProductPresentation>>(environment.backendUrl + 'product-presentation')
   }
+
+  add<CreateResponse>(params = {}): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(environment.backendUrl + 'product-presentation', params);
+  }
 }

@@ -38,6 +38,7 @@
     <mat-autocomplete #presentationId="matAutocomplete" [displayWith]="displayProductPresentation">
       <mat-option *ngFor="let presentation of presentations | async" [value]="presentation">{{presentation.description}}</mat-option>
     </mat-autocomplete>
+    <a [routerLink]="['/product-presentation', 'add']" *ngIf="!productCatalogForm.get('presentation')?.value">Add new presentation</a>
   </div>
   <div>
     <button class="button" type="submit">Create</button>
