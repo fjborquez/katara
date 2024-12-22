@@ -102,10 +102,8 @@ export class HouseInventoryCreateComponent implements OnInit{
     const product = this.inventoryItemForm.get('product')?.value || {} as ProductCatalog;
     const purchase_date = this.inventoryItemForm.get('purchase_date')?.value;
     const unit_of_measurement = this.inventoryItemForm.get('unit_of_measurement')?.value || {} as UnitOfMeasurement;
-    const type = product['type'] || {} as ProductType;
     const category = product['category'] || {} as ProductType;
     const brand = product['brand'] || {} as ProductType;
-    const presentation = product['presentation'] || {} as ProductType;
 
     const params = {
       quantity: quantity,

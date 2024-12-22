@@ -1,22 +1,22 @@
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
-import { Component } from '@angular/core';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
-import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 
 @Component({
   selector: 'app-house-residents-update',
   templateUrl: './house-residents-update.component.html',
   styleUrls: ['./house-residents-update.component.sass']
 })
-export class HouseResidentsUpdateComponent {
+export class HouseResidentsUpdateComponent implements OnInit {
   userId = 0;
   houseId = 0;
   residentId = 0;

@@ -1,18 +1,17 @@
-import { NutritionalProfileComponent } from './../../components/nutritional-profile/nutritional-profile.component';
-import { NutritionalProfileViewComponent } from './nutritional-profile-view.component';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NutritionalProfileService } from '../../services/nutritional-profile.service';
 import { MatTableModule } from '@angular/material/table';
+import { NutritionalProfileComponent } from './../../components/nutritional-profile/nutritional-profile.component';
+import { NutritionalProfileService } from '../../services/nutritional-profile.service';
+import { NutritionalProfileViewComponent } from './nutritional-profile-view.component';
 
 describe('NutritionalProfileComponentView', () => {
   let component: NutritionalProfileViewComponent;
   let fixture: ComponentFixture<NutritionalProfileViewComponent>;
-  let nutritionalProfileService: NutritionalProfileService;
 
   const formGroupDirective = new FormGroupDirective([], []);
 
@@ -46,7 +45,6 @@ describe('NutritionalProfileComponentView', () => {
 
     fixture = TestBed.createComponent(NutritionalProfileViewComponent);
     component = fixture.componentInstance;
-    nutritionalProfileService = fixture.debugElement.injector.get(NutritionalProfileService);
     fixture.detectChanges();
   });
 

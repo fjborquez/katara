@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
-import { Component } from '@angular/core';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +13,7 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
   templateUrl: './house-residents-create.component.html',
   styleUrls: ['./house-residents-create.component.sass']
 })
-export class HouseResidentsCreateComponent {
+export class HouseResidentsCreateComponent implements OnInit {
   userId = 0;
   houseId = 0;
   houseResidentForm = this.formBuilder.group({});

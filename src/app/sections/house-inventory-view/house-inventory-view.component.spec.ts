@@ -1,18 +1,17 @@
-import { RouterTestingModule } from '@angular/router/testing';
-import { MatSelectModule } from '@angular/material/select';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HouseInventoryViewComponent } from './house-inventory-view.component';
-import { InventoryHousesService } from '../../services/inventory-houses.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
+import { HouseInventoryViewComponent } from './house-inventory-view.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { InventoryHousesService } from '../../services/inventory-houses.service';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HouseInventoryViewComponent', () => {
   let component: HouseInventoryViewComponent;
   let fixture: ComponentFixture<HouseInventoryViewComponent>;
-  let inventoryHousesService: InventoryHousesService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,7 +38,6 @@ describe('HouseInventoryViewComponent', () => {
 
     fixture = TestBed.createComponent(HouseInventoryViewComponent);
     component = fixture.componentInstance;
-    inventoryHousesService = fixture.debugElement.injector.get(InventoryHousesService);
     fixture.detectChanges();
   });
 

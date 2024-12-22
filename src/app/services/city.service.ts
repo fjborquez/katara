@@ -1,9 +1,8 @@
-import { Observable, of } from 'rxjs';
-
 import { City } from '../models/city.model';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListResponse } from '../models/list-response.model';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
 
 @Injectable({

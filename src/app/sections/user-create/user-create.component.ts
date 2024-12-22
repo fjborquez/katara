@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
@@ -12,7 +13,7 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.sass']
 })
-export class UserCreateComponent {
+export class UserCreateComponent implements OnInit {
   personForm = this.formBuilder.group({});
 
   constructor(

@@ -1,12 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 
 import { City } from 'src/app/models/city.model';
 import { CityService } from 'src/app/services/city.service';
-import { Component } from '@angular/core';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { GetResponse } from 'src/app/models/get-response.model';
 import { House } from 'src/app/models/house.model';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,7 +16,7 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
   templateUrl: './user-house-update.component.html',
   styleUrls: ['./user-house-update.component.sass']
 })
-export class UserHouseUpdateComponent {
+export class UserHouseUpdateComponent implements OnInit {
   userHouseForm = this.formBuilder.group({});
   cities: City[] = [];
   userId = 0;

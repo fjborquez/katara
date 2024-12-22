@@ -1,5 +1,6 @@
+import { Component, OnInit } from '@angular/core';
+
 import { AlertDialogComponent } from '../../components/alert-dialog/alert-dialog.component';
-import { Component } from '@angular/core';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
@@ -16,7 +17,7 @@ import { UserService } from '../../services/user.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.sass']
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
   dataSource = new MatTableDataSource<User>();
   columnsToDisplay = ['id', 'fullname', 'date_of_birth', 'email', 'options', 'nutritional_profile'];
 

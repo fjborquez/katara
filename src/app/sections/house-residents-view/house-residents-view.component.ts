@@ -1,21 +1,22 @@
+import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
-import { Component } from '@angular/core';
-import { ListResponse } from 'src/app/models/list-response.model';
-import { MatTableDataSource } from '@angular/material/table';
-import { Resident } from 'src/app/models/resident.model';
-import { ResidentService } from 'src/app/services/resident.service';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
+import { ListResponse } from 'src/app/models/list-response.model';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { Resident } from 'src/app/models/resident.model';
+import { ResidentService } from 'src/app/services/resident.service';
 
 @Component({
   selector: 'app-house-residents-view',
   templateUrl: './house-residents-view.component.html',
   styleUrls: ['./house-residents-view.component.sass']
 })
-export class HouseResidentsViewComponent {
+export class HouseResidentsViewComponent implements OnInit {
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['fullname', 'date_of_birth', 'options', 'nutritional_profile'];
   idUser = 0;
