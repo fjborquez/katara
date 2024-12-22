@@ -43,8 +43,8 @@ describe('The add inventory page', () => {
       cy.wait('@getProductCatalog');
       cy.get('#mat-select-value-1').click();
       cy.get('#mat-option-0').click();
-      cy.get('#product').click();
-      cy.get('#mat-option-10').click();
+      cy.get('#product').type('Lettuce');
+      cy.contains('.mdc-list-item__primary-text', 'Lettuce').click();
       cy.get('#expiration_date').clear().type("2025-01-01");
       cy.get('form').submit();
       cy.wait('@getHouse');
