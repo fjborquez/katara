@@ -1,23 +1,23 @@
-import { HouseService } from './../../services/house.service';
-import { formatDate } from '@angular/common';
-import { UnitOfMeasurementService } from './../../services/unit-of-measurement.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { map, startWith, Observable, of } from 'rxjs';
-import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
-import { ListResponse } from 'src/app/models/list-response.model';
-import { ProductCatalog } from 'src/app/models/product-catalog.model';
-import { UnitOfMeasurement } from 'src/app/models/unit-of-measurement.model';
-import { ProductCatalogService } from 'src/app/services/product-catalog.service';
-import { CreateResponse } from 'src/app/models/create-response.model';
-import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
-import { House } from 'src/app/models/house.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorResponse } from 'src/app/models/error-response.model';
-import { Location } from '@angular/common';
-import { ProductType } from 'src/app/models/product-type.model';
+import { Observable, map, of, startWith } from 'rxjs';
 
+import { ActivatedRoute } from '@angular/router';
+import { CreateResponse } from 'src/app/models/create-response.model';
+import { ErrorResponse } from 'src/app/models/error-response.model';
+import { FormBuilder } from '@angular/forms';
+import { House } from 'src/app/models/house.model';
+import { HouseService } from './../../services/house.service';
+import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
+import { ListResponse } from 'src/app/models/list-response.model';
+import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductCatalog } from 'src/app/models/product-catalog.model';
+import { ProductCatalogService } from 'src/app/services/product-catalog.service';
+import { ProductType } from 'src/app/models/product-type.model';
+import { UnitOfMeasurement } from 'src/app/models/unit-of-measurement.model';
+import { UnitOfMeasurementService } from './../../services/unit-of-measurement.service';
+import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-house-inventory-create',
@@ -76,6 +76,10 @@ export class HouseInventoryCreateComponent implements OnInit{
 
   saveProductCatalogText(productCatalog: ProductCatalog): string {
     let productCatalogText = '';
+
+    if (Object.keys(productCatalog).length === 0) {
+      return productCatalogText;
+    }
 
     if (productCatalog.type.description) {
       productCatalogText += productCatalog.type.description;
