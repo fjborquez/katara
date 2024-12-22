@@ -1,23 +1,23 @@
-import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
-import { Component } from '@angular/core';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
 import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
-import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
+import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
   styleUrls: ['./user-update.component.sass']
 })
-export class UserUpdateComponent {
+export class UserUpdateComponent implements OnInit {
   userForm = this.formBuilder.group({});
   nutritionalRestrictions: any;
   userId = 0;

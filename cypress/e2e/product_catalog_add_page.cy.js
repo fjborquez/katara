@@ -47,16 +47,20 @@ describe('The add product catalog page', () => {
 
   context('Given I add a new product catalog successfully', () => {
     it('Then the product catalog is not empty', () => {
-      cy.get('#category').click();
-      cy.get('#mat-option-0').click();
-      cy.get('#brand').click();
-      cy.get('#mat-option-13').click();
-      cy.get('#type').click();
-      cy.get('#mat-option-48').click();
-      cy.get('#presentation').click();
-      cy.get('#mat-option-153').click();
+      cy.wait('@productCategories');
+      cy.wait('@productBrands');
+      cy.wait('@productTypes');
+      cy.wait('@productPresentations');
+
+      cy.get('#category').type('Bakery');
+      cy.contains('.mdc-list-item__primary-text', 'Bakery').click();
+      cy.get('#brand').type('Ideal');
+      cy.contains('.mdc-list-item__primary-text', 'Ideal').click();
+      cy.get('#type').type('Bread');
+      cy.contains('.mdc-list-item__primary-text', 'Sliced Bread').click();
+      cy.get('#presentation').type('Bottled');
+      cy.contains('.mdc-list-item__primary-text', 'Bottled').click();
       cy.get('form').submit();
-      cy.wait('@addProductCatalog');
       cy.url().should("be.equals", "about:blank");
     });
 

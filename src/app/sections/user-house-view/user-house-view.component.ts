@@ -1,6 +1,7 @@
+import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
-import { Component } from '@angular/core';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { House } from 'src/app/models/house.model';
@@ -15,7 +16,7 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
   templateUrl: './user-house-view.component.html',
   styleUrls: ['./user-house-view.component.sass']
 })
-export class UserHouseViewComponent {
+export class UserHouseViewComponent implements OnInit {
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['house', 'city', 'is_default', 'options', 'residents'];
   idUser = 0;

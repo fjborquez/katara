@@ -1,18 +1,19 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { InventoryHousesService } from './../../services/inventory-houses.service';
-import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
-import { Inventory } from 'src/app/models/inventory.model';
-import { ListResponse } from 'src/app/models/list-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
+import { Inventory } from 'src/app/models/inventory.model';
+import { InventoryHousesService } from './../../services/inventory-houses.service';
+import { ListResponse } from 'src/app/models/list-response.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-house-inventory-view',
   templateUrl: './house-inventory-view.component.html',
   styleUrls: ['./house-inventory-view.component.sass']
 })
-export class HouseInventoryViewComponent {
+export class HouseInventoryViewComponent implements OnInit {
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['increment', 'quantity', 'brand', 'product', 'purchase_date', 'expiration_date', 'status_icon'];
   userId = 0;
