@@ -1,4 +1,5 @@
 export type Inventory = {
+  id: number;
   quantity: number;
   unit: string;
   brand: string;
