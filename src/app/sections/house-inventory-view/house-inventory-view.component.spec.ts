@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HouseInventoryViewComponent } from './house-inventory-view.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { InventoryHousesService } from '../../services/inventory-houses.service';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
@@ -21,7 +22,8 @@ describe('HouseInventoryViewComponent', () => {
         MatSelectModule,
         MatSnackBarModule,
         MatTableModule,
-        RouterTestingModule
+        RouterTestingModule,
+        MatDialogModule
       ],
       providers: [ HouseInventoryViewComponent, {
         provide: ActivatedRoute,
