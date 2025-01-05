@@ -1,14 +1,13 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable, catchError, forkJoin, map, of, startWith } from 'rxjs';
 
-import { ActivatedRoute } from '@angular/router';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { FormBuilder } from '@angular/forms';
 import { House } from 'src/app/models/house.model';
 import { HouseService } from './../../services/house.service';
 import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
-import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCatalog } from 'src/app/models/product-catalog.model';
 import { ProductCatalogService } from 'src/app/services/product-catalog.service';
@@ -36,7 +35,7 @@ export class HouseInventoryUpdateComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
+    private router: Router,
     private snackBar: MatSnackBar,
     private unitOfMeasurementService: UnitOfMeasurementService,
     private productCatalogService: ProductCatalogService,
@@ -147,19 +146,11 @@ export class HouseInventoryUpdateComponent implements OnInit{
     };
 
     this.inventoryHousesService.update<EditResponse>(this.userId, this.houseId, this.inventoryId, params).subscribe((response: EditResponse) => {
-      this.resetForm();
-      this.snackBar.open(response.message, "Close");
+      this.router.navigate(['/users/', this.userId, 'houses', this.houseId, 'inventory']).then(() => {
+        this.snackBar.open("Product updated", "Close");
+      });
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
-    });
-  }
-
-  resetForm() {
-    this.inventoryItemForm.reset();
-    this.inventoryItemForm.patchValue({
-      'purchase_date': formatDate(new Date(), "yyyy-MM-dd", "en"),
-      'quantity': 0.0,
-      'product': '',
     });
   }
 }
