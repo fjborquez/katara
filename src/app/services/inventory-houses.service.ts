@@ -1,3 +1,4 @@
+import { EditResponse } from '../models/edit-response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Inventory } from '../models/inventory.model';
@@ -22,5 +23,13 @@ export class InventoryHousesService {
 
   discard<EditResponse>(userId: number, houseId: number, inventoryId: number): Observable<EditResponse> {
     return this.http.put<EditResponse>(`${environment.backendUrl}user/${userId}/houses/${houseId}/inventory/${inventoryId}/discard`, {});
+  }
+
+   update<EditResponse>(userId: number, houseId: number, invevntoryId: number, params = {}): Observable<EditResponse> {
+    return this.http.put<EditResponse>(`${environment.backendUrl}user/${userId}/houses/${houseId}/inventory/${invevntoryId}`, params);
+  }
+
+  get(userId: number, houseId: number, inventoryId: number) {
+    return this.http.get(`${environment.backendUrl}user/${userId}/houses/${houseId}/inventory/${inventoryId}`);
   }
 }

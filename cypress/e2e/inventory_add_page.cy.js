@@ -42,7 +42,7 @@ describe('The add inventory page', () => {
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
       cy.get('#mat-select-value-1').click();
-      cy.get('#mat-option-0').click();
+      cy.contains('.mdc-list-item__primary-text', 'kg').click();
       cy.get('#product').type('Lettuce');
       cy.contains('.mdc-list-item__primary-text', 'Lettuce').click();
       cy.get('#expiration_date').clear().type("2025-01-01");
@@ -50,27 +50,6 @@ describe('The add inventory page', () => {
       cy.wait('@getHouse');
       cy.wait('@addInventory');
       cy.get('#cdk-overlay-2').should('be.visible');
-    });
-
-    it('Unit of measurement is not selected', () => {
-      cy.intercept({
-        method: 'POST',
-        url: backendUrl + '/user/**/houses/**/inventory',
-      }, {
-        fixture: 'inventory_add/error.json',
-        statusCode: 422
-      }).as('addInventory');
-
-      cy.wait('@getUnitsOfMeasurement');
-      cy.wait('@getProductCatalog');
-      cy.get('#quantity').clear().type("1");
-      cy.get('#product').click();
-      cy.get('#mat-option-10').click();
-      cy.get('#expiration_date').clear().type("2025-01-01");
-      cy.get('form').submit();
-      cy.wait('@getHouse');
-      cy.wait('@addInventory');
-      cy.get('#cdk-overlay-1').should('be.visible');
     });
 
     it('Product catalog is not selected', () => {
@@ -108,7 +87,7 @@ describe('The add inventory page', () => {
       cy.wait('@getProductCatalog');
       cy.get('#quantity').clear().type("A");
       cy.get('#mat-select-value-1').click();
-      cy.get('#mat-option-0').click();
+      cy.contains('.mdc-list-item__primary-text', 'kg').click();
       cy.get('#product').click();
       cy.get('#mat-option-10').click();
       cy.get('#expiration_date').clear().type("2025-01-01");

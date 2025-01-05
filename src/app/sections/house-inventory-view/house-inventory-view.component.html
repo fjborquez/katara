@@ -38,7 +38,8 @@
   <ng-container matColumnDef="options">
     <th mat-header-cell *matHeaderCellDef>Options</th>
     <td mat-cell *matCellDef="let inventory">
-      <a (click)="discard(userId, houseId, inventory)">Discard</a>
+      <a (click)="discard(userId, houseId, inventory)">Discard</a> |
+      <a [routerLink]="[inventory.id, 'update']">Edit</a>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
