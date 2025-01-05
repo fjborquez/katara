@@ -42,7 +42,7 @@ describe('The add inventory page', () => {
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
       cy.get('#mat-select-value-1').click();
-      cy.get('#mat-option-0').click();
+      cy.contains('.mdc-list-item__primary-text', 'kg').click();
       cy.get('#product').type('Lettuce');
       cy.contains('.mdc-list-item__primary-text', 'Lettuce').click();
       cy.get('#expiration_date').clear().type("2025-01-01");
@@ -87,7 +87,7 @@ describe('The add inventory page', () => {
       cy.wait('@getProductCatalog');
       cy.get('#quantity').clear().type("A");
       cy.get('#mat-select-value-1').click();
-      cy.get('#mat-option-0').click();
+      cy.contains('.mdc-list-item__primary-text', 'kg').click();
       cy.get('#product').click();
       cy.get('#mat-option-10').click();
       cy.get('#expiration_date').clear().type("2025-01-01");
