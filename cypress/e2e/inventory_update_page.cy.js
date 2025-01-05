@@ -27,6 +27,22 @@ describe('The update inventory page', () => {
       statusCode: 200
     }).as('getHouse');
 
+    cy.intercept({
+      method: 'GET',
+      url: backendUrl + '/user/**/houses/**/inventory/**'
+    }, {
+      fixture: 'inventory_update/inventory.json',
+      statusCode: 200
+    }).as('getInventory');
+
+    cy.intercept({
+      method: 'GET',
+      url: backendUrl + '/user/**/houses/**/inventory'
+    }, {
+      fixture: 'inventory_update/full_inventory.json',
+      statusCode: 200
+    }).as('getFullInventory');
+
     cy.visit('/users/1/houses/1/inventory/1/update');
   });
 
@@ -40,6 +56,7 @@ describe('The update inventory page', () => {
         statusCode: 422
       }).as('updateInventory');
 
+      cy.wait('@getInventory');
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
       cy.get('#quantity').clear().type('0');
@@ -132,9 +149,10 @@ describe('The update inventory page', () => {
 
         cy.wait('@getUnitsOfMeasurement');
         cy.wait('@getProductCatalog');
-        cy.get('form').submit();
         cy.wait('@getHouse');
+        cy.get('form').submit();
         cy.wait('@updateInventory');
+        cy.wait('@getFullInventory');
         cy.get('#cdk-overlay-0').should('be.visible');
       });
     });
