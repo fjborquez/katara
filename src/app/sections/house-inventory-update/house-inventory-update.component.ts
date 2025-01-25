@@ -31,6 +31,7 @@ export class HouseInventoryUpdateComponent implements OnInit{
   productsCatalog: Observable<ProductCatalog[]> | undefined = of([]);
   house: House | undefined = undefined;
   inventoryDetail: any;
+  productStatus: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -87,6 +88,7 @@ export class HouseInventoryUpdateComponent implements OnInit{
         purchase_date: formatDate(response.inventoryDetail.message.purchase_date, "yyyy-MM-dd", "en"),
         expiration_date: formatDate(response.inventoryDetail.message.expiration_date, "yyyy-MM-dd", "en")
       });
+      this.inventoryDetail = response.inventoryDetail.message;
     });
   }
 
@@ -142,7 +144,8 @@ export class HouseInventoryUpdateComponent implements OnInit{
       uom_id: unit_of_measurement.id,
       uom_abbreviation: unit_of_measurement.abbreviation,
       house_id: this.houseId,
-      house_description: this.house?.description || ''
+      house_description: this.house?.description || '',
+      product_status: this.inventoryDetail.product_status
     };
 
     this.inventoryHousesService.update<EditResponse>(this.userId, this.houseId, this.inventoryId, params).subscribe((response: EditResponse) => {
