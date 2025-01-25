@@ -68,14 +68,14 @@ describe('The inventory list page', () => {
           fixture: 'inventory_list/success.json',
           statusCode: 204
         }).as('disableInventory');
-        cy.get(':nth-child(1) > .cdk-column-options > a').first().click();
+        cy.get(':nth-child(1) > span > a').click();
         cy.get('app-alert-dialog').should('be.visible');
         cy.get('.mat-mdc-dialog-actions').contains('Yes').click();
         cy.wait('@disableInventory');
       });
 
       it('Then discard an inventory product and click no option', () => {
-        cy.get(':nth-child(1) > .cdk-column-options > a').first().click();
+        cy.get(':nth-child(1) > span > a').click();
         cy.get('app-alert-dialog').should('be.visible');
         cy.get('.mat-mdc-dialog-actions').contains('No').click();
         cy.get('app-alert-dialog').should('not.exist');
