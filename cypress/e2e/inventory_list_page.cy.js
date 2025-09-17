@@ -79,7 +79,28 @@ describe('The inventory list page', () => {
         cy.get('app-alert-dialog').should('be.visible');
         cy.get('.mat-mdc-dialog-actions').contains('No').click();
         cy.get('app-alert-dialog').should('not.exist');
-      })
+      });
+
+      it('Then consume an inventory product and click yes option', () => {
+        cy.intercept({
+          method: 'PUT',
+          url: `${backendUrl}/user/**/houses/**/inventory/**/consume`,
+        }, {
+          fixture: 'inventory_list/success.json',
+          statusCode: 204
+        }).as('consumeInventory');
+        cy.get(':nth-child(1) > .cdk-column-options > :nth-child(2)').first().click();
+        cy.get('app-alert-dialog').should('be.visible');
+        cy.get('.mat-mdc-dialog-actions').contains('Yes').click();
+        cy.wait('@consumeInventory');
+      });
+
+      it('Then consume an inventory product and click no option', () => {
+        cy.get(':nth-child(1) > .cdk-column-options > :nth-child(2)').first().click();
+        cy.get('app-alert-dialog').should('be.visible');
+        cy.get('.mat-mdc-dialog-actions').contains('No').click();
+        cy.get('app-alert-dialog').should('not.exist');
+      });
     });
   })
 });
