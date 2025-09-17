@@ -39,6 +39,7 @@
     <th mat-header-cell *matHeaderCellDef>Options</th>
     <td mat-cell *matCellDef="let inventory">
       <a (click)="discard(userId, houseId, inventory)">Discard</a> |
+      <a (click)="consume(userId, houseId, inventory)">Consume</a> |
       <span *ngFor="let status of inventory.product_status">
         <a [routerLink]="[inventory.id, 'update']" *ngIf="status.pivot.is_active && status.id !== 3">Edit</a>
       </span>

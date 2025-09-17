@@ -35,7 +35,6 @@ export class HouseInventoryViewComponent implements OnInit {
     this.getInventoryByHouseList(this.userId, this.houseId);
   }
 
-
   getInventoryByHouseList(idUser: number, idHouse: number) {
     return this.inventoryHousesService.getHousesByUser(idUser, idHouse).subscribe((response: ListResponse<Inventory>) => {
       this.dataSource.data = response.message;
@@ -60,6 +59,30 @@ export class HouseInventoryViewComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.inventoryHousesService.discard<EditResponse>(userId, houseId, inventory.id).subscribe((response: EditResponse) => {
+          this.snackBar.open(response.message, 'Close');
+          this.getInventoryByHouseList(this.userId, this.houseId);
+        },
+        (error: ErrorResponse) => {
+          this.snackBar.open(error.error.message, 'Close');
+        });
+      }
+    });
+  }
+
+  consume(userId: number, houseId: number, inventory: any) {
+    const message = `Are you sure of consume ${inventory.quantity} ${inventory.uom_abbreviation} of ${inventory.catalog_description}?`;
+    const title = 'Consume inventory product';
+    const dialogData = {
+      message: message,
+      title: title
+    };
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      maxWidth: '400px',
+      data: dialogData
+    });
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.inventoryHousesService.consume<EditResponse>(userId, houseId, inventory.id).subscribe((response: EditResponse) => {
           this.snackBar.open(response.message, 'Close');
           this.getInventoryByHouseList(this.userId, this.houseId);
         },
