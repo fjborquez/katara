@@ -18,9 +18,10 @@ import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-house-inventory-update',
-  templateUrl: './house-inventory-update.component.html',
-  styleUrls: ['./house-inventory-update.component.sass']
+    selector: 'app-house-inventory-update',
+    templateUrl: './house-inventory-update.component.html',
+    styleUrls: ['./house-inventory-update.component.sass'],
+    standalone: false
 })
 export class HouseInventoryUpdateComponent implements OnInit{
   inventoryItemForm = this.formBuilder.group({});

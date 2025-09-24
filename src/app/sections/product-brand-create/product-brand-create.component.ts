@@ -7,9 +7,10 @@ import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 
 @Component({
-  selector: 'app-product-brand-create',
-  templateUrl: './product-brand-create.component.html',
-  styleUrls: ['./product-brand-create.component.sass']
+    selector: 'app-product-brand-create',
+    templateUrl: './product-brand-create.component.html',
+    styleUrls: ['./product-brand-create.component.sass'],
+    standalone: false
 })
 export class ProductBrandCreateComponent implements OnInit{
   productBrandForm = this.formBuilder.group({});

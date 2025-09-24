@@ -7,9 +7,10 @@ import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-det
 import { NutritionalProfileService } from '../../services/nutritional-profile.service';
 
 @Component({
-  selector: 'app-nutritional-profile-view',
-  templateUrl: './nutritional-profile-view.component.html',
-  styleUrls: ['./nutritional-profile-view.component.sass']
+    selector: 'app-nutritional-profile-view',
+    templateUrl: './nutritional-profile-view.component.html',
+    styleUrls: ['./nutritional-profile-view.component.sass'],
+    standalone: false
 })
 export class NutritionalProfileViewComponent implements OnInit {
   nutritionalProfileForm: FormGroup = this.formBuilder.group({});

@@ -13,9 +13,10 @@ import { UserService } from '../../services/user.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
 @Component({
-  selector: 'app-user-update',
-  templateUrl: './user-update.component.html',
-  styleUrls: ['./user-update.component.sass']
+    selector: 'app-user-update',
+    templateUrl: './user-update.component.html',
+    styleUrls: ['./user-update.component.sass'],
+    standalone: false
 })
 export class UserUpdateComponent implements OnInit {
   userForm = this.formBuilder.group({});

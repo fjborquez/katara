@@ -18,9 +18,10 @@ import { Location } from '@angular/common';
 import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
 
 @Component({
-  selector: 'app-product-catalog-create',
-  templateUrl: './product-catalog-create.component.html',
-  styleUrls: ['./product-catalog-create.component.sass'],
+    selector: 'app-product-catalog-create',
+    templateUrl: './product-catalog-create.component.html',
+    styleUrls: ['./product-catalog-create.component.sass'],
+    standalone: false
 })
 export class ProductCatalogCreateComponent implements OnInit{
   productCatalogForm = this.formBuilder.group({});

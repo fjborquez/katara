@@ -12,9 +12,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
-  selector: 'app-user-house-view',
-  templateUrl: './user-house-view.component.html',
-  styleUrls: ['./user-house-view.component.sass']
+    selector: 'app-user-house-view',
+    templateUrl: './user-house-view.component.html',
+    styleUrls: ['./user-house-view.component.sass'],
+    standalone: false
 })
 export class UserHouseViewComponent implements OnInit {
   dataSource = new MatTableDataSource();

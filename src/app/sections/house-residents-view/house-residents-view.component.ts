@@ -12,9 +12,10 @@ import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
 
 @Component({
-  selector: 'app-house-residents-view',
-  templateUrl: './house-residents-view.component.html',
-  styleUrls: ['./house-residents-view.component.sass']
+    selector: 'app-house-residents-view',
+    templateUrl: './house-residents-view.component.html',
+    styleUrls: ['./house-residents-view.component.sass'],
+    standalone: false
 })
 export class HouseResidentsViewComponent implements OnInit {
   dataSource = new MatTableDataSource();

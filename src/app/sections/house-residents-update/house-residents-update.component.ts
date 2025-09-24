@@ -12,9 +12,10 @@ import { ResidentService } from 'src/app/services/resident.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
 @Component({
-  selector: 'app-house-residents-update',
-  templateUrl: './house-residents-update.component.html',
-  styleUrls: ['./house-residents-update.component.sass']
+    selector: 'app-house-residents-update',
+    templateUrl: './house-residents-update.component.html',
+    styleUrls: ['./house-residents-update.component.sass'],
+    standalone: false
 })
 export class HouseResidentsUpdateComponent implements OnInit {
   userId = 0;

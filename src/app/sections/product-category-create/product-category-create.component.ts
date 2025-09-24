@@ -7,9 +7,10 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 
 @Component({
-  selector: 'app-product-category-create',
-  templateUrl: './product-category-create.component.html',
-  styleUrls: ['./product-category-create.component.sass']
+    selector: 'app-product-category-create',
+    templateUrl: './product-category-create.component.html',
+    styleUrls: ['./product-category-create.component.sass'],
+    standalone: false
 })
 export class ProductCategoryCreateComponent implements OnInit{
   productCategoryForm = this.formBuilder.group({});

@@ -11,9 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
-  selector: 'app-user-house-create',
-  templateUrl: './user-house-create.component.html',
-  styleUrls: ['./user-house-create.component.sass']
+    selector: 'app-user-house-create',
+    templateUrl: './user-house-create.component.html',
+    styleUrls: ['./user-house-create.component.sass'],
+    standalone: false
 })
 export class UserHouseCreateComponent implements OnInit {
   userHouseForm = this.formBuilder.group({

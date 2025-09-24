@@ -9,9 +9,10 @@ import { UserService } from '../../services/user.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
 @Component({
-  selector: 'app-user-create',
-  templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.sass']
+    selector: 'app-user-create',
+    templateUrl: './user-create.component.html',
+    styleUrls: ['./user-create.component.sass'],
+    standalone: false
 })
 export class UserCreateComponent implements OnInit {
   personForm = this.formBuilder.group({});

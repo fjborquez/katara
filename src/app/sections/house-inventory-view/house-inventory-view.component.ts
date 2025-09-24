@@ -12,9 +12,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-house-inventory-view',
-  templateUrl: './house-inventory-view.component.html',
-  styleUrls: ['./house-inventory-view.component.sass']
+    selector: 'app-house-inventory-view',
+    templateUrl: './house-inventory-view.component.html',
+    styleUrls: ['./house-inventory-view.component.sass'],
+    standalone: false
 })
 export class HouseInventoryViewComponent implements OnInit {
   dataSource = new MatTableDataSource();

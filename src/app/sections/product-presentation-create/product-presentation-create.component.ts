@@ -7,9 +7,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 
 @Component({
-  selector: 'app-product-presentation-create',
-  templateUrl: './product-presentation-create.component.html',
-  styleUrls: ['./product-presentation-create.component.sass']
+    selector: 'app-product-presentation-create',
+    templateUrl: './product-presentation-create.component.html',
+    styleUrls: ['./product-presentation-create.component.sass'],
+    standalone: false
 })
 export class ProductPresentationCreateComponent implements OnInit {
   productPresentationForm = this.formBuilder.group({});

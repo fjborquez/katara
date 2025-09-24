@@ -14,9 +14,10 @@ import { NutritionalProfileService } from 'src/app/services/nutritional-profile.
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-nutritional-profile',
-  templateUrl: './nutritional-profile.component.html',
-  styleUrls: ['./nutritional-profile.component.sass']
+    selector: 'app-nutritional-profile',
+    templateUrl: './nutritional-profile.component.html',
+    styleUrls: ['./nutritional-profile.component.sass'],
+    standalone: false
 })
 export class NutritionalProfileComponent implements OnInit, DoCheck {
   @Input() defaultValues: NutritionalProfileDetail[] | any = [];

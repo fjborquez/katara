@@ -7,9 +7,10 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ProductTypeService } from 'src/app/services/product-type.service';
 
 @Component({
-  selector: 'app-product-type-create',
-  templateUrl: './product-type-create.component.html',
-  styleUrls: ['./product-type-create.component.sass']
+    selector: 'app-product-type-create',
+    templateUrl: './product-type-create.component.html',
+    styleUrls: ['./product-type-create.component.sass'],
+    standalone: false
 })
 export class ProductTypeCreateComponent implements OnInit {
   productTypeForm = this.formBuilder.group({});
