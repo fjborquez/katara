@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserHouseViewComponent } from './user-house-view.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -14,18 +14,16 @@ describe('UserHouseViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         UserHouseViewComponent,
-      ],
-      imports: [
-        HttpClientModule,
-        RouterModule.forRoot([]),
+    ],
+    imports: [RouterModule.forRoot([]),
         MatSnackBarModule,
         MatDialogModule,
         RouterTestingModule,
-        MatTableModule
-      ]
-    })
+        MatTableModule],
+    providers: [provideHttpClient(withInterceptorsFromDi())]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(UserHouseViewComponent);

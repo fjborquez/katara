@@ -2,11 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HouseInventoryUpdateComponent } from './house-inventory-update.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('HouseInventoryUpdateComponent', () => {
   let component: HouseInventoryUpdateComponent;
@@ -14,17 +15,15 @@ describe('HouseInventoryUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HouseInventoryUpdateComponent ],
-      imports: [
-        RouterTestingModule,
+    declarations: [HouseInventoryUpdateComponent],
+    imports: [RouterTestingModule,
         MatSnackBarModule,
-        HttpClientTestingModule,
         MatSelectModule,
         MatAutocompleteModule,
         ReactiveFormsModule,
-        FormsModule
-      ]
-    })
+        FormsModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(HouseInventoryUpdateComponent);

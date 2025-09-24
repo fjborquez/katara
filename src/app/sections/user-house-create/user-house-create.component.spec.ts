@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserHouseCreateComponent } from './user-house-create.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,20 +15,18 @@ describe('UserHouseCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserHouseCreateComponent ],
-      imports: [
-        HttpClientModule,
-        RouterModule.forRoot([]),
+    declarations: [UserHouseCreateComponent],
+    imports: [RouterModule.forRoot([]),
         MatSnackBarModule,
         MatSelectModule,
-        ReactiveFormsModule,
-      ],
-      providers: [
+        ReactiveFormsModule],
+    providers: [
         FormGroupDirective,
         FormBuilder,
-        {provide: FormGroupDirective, useValue: formGroupDirective}
-      ]
-    })
+        { provide: FormGroupDirective, useValue: formGroupDirective },
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(UserHouseCreateComponent);

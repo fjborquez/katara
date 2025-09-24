@@ -12,7 +12,7 @@ import { HouseInventoryViewComponent } from './sections/house-inventory-view/hou
 import { HouseResidentsCreateComponent } from './sections/house-residents-create/house-residents-create.component';
 import { HouseResidentsUpdateComponent } from './sections/house-residents-update/house-residents-update.component';
 import { HouseResidentsViewComponent } from './sections/house-residents-view/house-residents-view.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -39,51 +39,45 @@ import { UserHouseViewComponent } from './sections/user-house-view/user-house-vi
 import { UserListComponent } from './sections/user-list/user-list.component';
 import { UserUpdateComponent } from './sections/user-update/user-update.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NutritionalProfileViewComponent,
-    AlertDialogComponent,
-    UserCreateComponent,
-    UserListComponent,
-    UserUpdateComponent,
-    UserHouseViewComponent,
-    UserHouseCreateComponent,
-    UserHouseUpdateComponent,
-    HouseResidentsCreateComponent,
-    HouseResidentsViewComponent,
-    HouseResidentsUpdateComponent,
-    NutritionalProfileComponent,
-    HouseInventoryViewComponent,
-    ProductCatalogCreateComponent,
-    HouseInventoryCreateComponent,
-    ProductCategoryCreateComponent,
-    ProductBrandCreateComponent,
-    ProductTypeCreateComponent,
-    ProductPresentationCreateComponent,
-    HouseInventoryUpdateComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatTableModule,
-    BrowserAnimationsModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatAutocompleteModule,
-    MatInputModule
-  ],
-  providers: [
-    { provide: ErrorHandler, useClass: CustomErrorHandler }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NutritionalProfileViewComponent,
+        AlertDialogComponent,
+        UserCreateComponent,
+        UserListComponent,
+        UserUpdateComponent,
+        UserHouseViewComponent,
+        UserHouseCreateComponent,
+        UserHouseUpdateComponent,
+        HouseResidentsCreateComponent,
+        HouseResidentsViewComponent,
+        HouseResidentsUpdateComponent,
+        NutritionalProfileComponent,
+        HouseInventoryViewComponent,
+        ProductCatalogCreateComponent,
+        HouseInventoryCreateComponent,
+        ProductCategoryCreateComponent,
+        ProductBrandCreateComponent,
+        ProductTypeCreateComponent,
+        ProductPresentationCreateComponent,
+        HouseInventoryUpdateComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatTableModule,
+        BrowserAnimationsModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatIconModule,
+        MatAutocompleteModule,
+        MatInputModule], providers: [
+        { provide: ErrorHandler, useClass: CustomErrorHandler },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

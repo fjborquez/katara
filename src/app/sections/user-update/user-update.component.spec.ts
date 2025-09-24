@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserUpdateComponent } from './user-update.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,19 +15,17 @@ describe('UserUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         UserUpdateComponent,
         NutritionalProfileComponent
-      ],
-      imports: [
-        HttpClientModule,
-        MatSnackBarModule,
+    ],
+    imports: [MatSnackBarModule,
         RouterModule.forRoot([]),
         ReactiveFormsModule,
         MatTableModule,
-        MatSelectModule
-      ]
-    })
+        MatSelectModule],
+    providers: [provideHttpClient(withInterceptorsFromDi())]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(UserUpdateComponent);

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NutritionalProfileComponent } from './nutritional-profile.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -20,21 +20,19 @@ describe('NutritionalProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientModule,
-        MatSnackBarModule,
+    declarations: [NutritionalProfileComponent],
+    imports: [MatSnackBarModule,
         ReactiveFormsModule,
         MatSelectModule,
-        MatTableModule,
-      ],
-      providers: [
+        MatTableModule],
+    providers: [
         FormGroupDirective,
         FormBuilder,
-        {provide: FormGroupDirective, useValue: formGroupDirective},
-        {provide: ActivatedRoute, useValue: {snapshot: {params: {id: 1}}}}
-      ],
-      declarations: [ NutritionalProfileComponent ]
-    })
+        { provide: FormGroupDirective, useValue: formGroupDirective },
+        { provide: ActivatedRoute, useValue: { snapshot: { params: { id: 1 } } } },
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(NutritionalProfileComponent);

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HouseResidentsCreateComponent } from './house-residents-create.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppModule } from 'src/app/app.module';
 
 describe('HouseResidentsCreateComponent', () => {
@@ -12,14 +12,12 @@ describe('HouseResidentsCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HouseResidentsCreateComponent ],
-      imports: [
-        HttpClientModule,
-        MatSnackBarModule,
+    declarations: [HouseResidentsCreateComponent],
+    imports: [MatSnackBarModule,
         RouterModule.forRoot([]),
-        AppModule
-      ]
-    })
+        AppModule],
+    providers: [provideHttpClient(withInterceptorsFromDi())]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(HouseResidentsCreateComponent);
