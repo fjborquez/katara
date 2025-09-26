@@ -12,7 +12,6 @@ import {
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterTestingModule } from '@angular/router/testing';
 import { UserHouseUpdateComponent } from './user-house-update.component';
 
 describe('UserHouseUpdateComponent', () => {

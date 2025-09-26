@@ -48,7 +48,7 @@ export class UserHouseUpdateComponent implements OnInit {
     this.houseId = Number(this.activatedRoute.snapshot.params['idHouse']);
     this.cityService.list().subscribe((response: ListResponse<City>) => this.cities = response.message);
     this.userHousesService.getHousesByUser(this.userId).subscribe((response: ListResponse<House>) => {
-      const house = response.message.find((item: any) => Number(item.id) === this.houseId);
+      const house = response.message.find((item: House) => Number(item.id) === this.houseId);
 
       if (house) {
         const params = {

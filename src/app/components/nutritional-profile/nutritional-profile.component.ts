@@ -136,7 +136,7 @@ export class NutritionalProfileComponent implements OnInit, DoCheck {
     }
   }
 
-  delete(nutritionalProfileDetail: any) {
+  delete(nutritionalProfileDetail: NutritionalProfileDetail) {
     const data = this.dataSource.data;
     const index = data.indexOf(nutritionalProfileDetail);
     data.splice(index, 1);

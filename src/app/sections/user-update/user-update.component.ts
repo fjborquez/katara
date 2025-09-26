@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 import { EditResponse } from 'src/app/models/edit-response.model';
@@ -9,6 +9,7 @@ import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
+import { NutritionalRestriction } from '../../models/nutritional-restriction.model';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
@@ -34,7 +35,6 @@ export class UserUpdateComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
   userForm = this.formBuilder.group({});
-  nutritionalRestrictions: any;
   userId = 0;
   nutritionalProfile: NutritionalProfileDetail[] = [];
 

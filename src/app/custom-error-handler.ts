@@ -1,5 +1,6 @@
+import { ErrorHandler, Injectable, inject, isDevMode } from '@angular/core';
+
 import { LogWriterService } from './services/log-writer.service';
-import { ErrorHandler, Injectable, isDevMode, inject } from '@angular/core';
 
 @Injectable()
 export class CustomErrorHandler implements ErrorHandler {

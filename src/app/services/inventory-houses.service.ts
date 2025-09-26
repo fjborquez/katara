@@ -1,6 +1,6 @@
-import { EditResponse } from '../models/edit-response.model';
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
 import { Inventory } from '../models/inventory.model';
 import { ListResponse } from './../models/list-response.model';
 import { Observable } from 'rxjs';
