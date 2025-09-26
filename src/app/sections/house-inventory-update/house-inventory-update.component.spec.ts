@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { HouseInventoryUpdateComponent } from './house-inventory-update.component';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterTestingModule } from '@angular/router/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('HouseInventoryUpdateComponent', () => {
   let component: HouseInventoryUpdateComponent;
@@ -15,14 +15,19 @@ describe('HouseInventoryUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [HouseInventoryUpdateComponent],
-    imports: [RouterTestingModule,
+    imports: [
+        HouseInventoryUpdateComponent,
         MatSnackBarModule,
         MatSelectModule,
         MatAutocompleteModule,
         ReactiveFormsModule,
-        FormsModule],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+        FormsModule
+    ],
+    providers: [
+      provideHttpClient(withInterceptorsFromDi()),
+      provideHttpClientTesting(),
+      provideRouter([])
+    ]
 })
     .compileComponents();
 

@@ -1,39 +1,50 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormGroupDirective,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
-import { NutritionalProfileComponent } from './nutritional-profile.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { NutritionalProfileComponent } from './nutritional-profile.component';
 
 describe('NutritionalProfileComponent', () => {
   let component: NutritionalProfileComponent;
   let fixture: ComponentFixture<NutritionalProfileComponent>;
 
-  const fb = new FormBuilder()
+  const fb = new FormBuilder();
   const formGroupDirective = new FormGroupDirective([], []);
   formGroupDirective.form = fb.group({
-    test: fb.control(null)
+    test: fb.control(null),
   });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [NutritionalProfileComponent],
-    imports: [MatSnackBarModule,
+      imports: [
+        NutritionalProfileComponent,
+        MatSnackBarModule,
         ReactiveFormsModule,
         MatSelectModule,
-        MatTableModule],
-    providers: [
+        MatTableModule,
+      ],
+      providers: [
         FormGroupDirective,
         FormBuilder,
         { provide: FormGroupDirective, useValue: formGroupDirective },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: { id: 1 } } } },
-        provideHttpClient(withInterceptorsFromDi())
-    ]
-})
-    .compileComponents();
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { params: { id: 1 } } },
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NutritionalProfileComponent);
     component = fixture.componentInstance;

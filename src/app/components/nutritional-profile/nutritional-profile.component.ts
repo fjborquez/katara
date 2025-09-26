@@ -1,13 +1,15 @@
 import { Component, DoCheck, Input, OnInit, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
 import { ConsumptionLevelService } from './../../services/consumption-level.service';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
 import { NutritionalProfileDetail } from './../../models/nutritional-profile-detail.model';
 import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
 import { ProductCategory } from 'src/app/models/product-category.model';
@@ -17,7 +19,14 @@ import { ProductCategoryService } from './../../services/product-category.servic
     selector: 'app-nutritional-profile',
     templateUrl: './nutritional-profile.component.html',
     styleUrls: ['./nutritional-profile.component.sass'],
-    standalone: true
+    standalone: true,
+    imports: [
+      MatTableModule,
+      FormsModule,
+      ReactiveFormsModule,
+      CommonModule,
+      MatSelectModule
+    ]
 })
 export class NutritionalProfileComponent implements OnInit, DoCheck {
   private rootFormGroup = inject(FormGroupDirective);

@@ -1,13 +1,15 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { City } from 'src/app/models/city.model';
 import { CityService } from 'src/app/services/city.service';
+import { CommonModule } from '@angular/common';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { House } from 'src/app/models/house.model';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
@@ -15,7 +17,13 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
     selector: 'app-user-house-update',
     templateUrl: './user-house-update.component.html',
     styleUrls: ['./user-house-update.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      MatSelectModule,
+      RouterLink,
+      CommonModule,
+      ReactiveFormsModule
+    ]
 })
 export class UserHouseUpdateComponent implements OnInit {
   private formBuilder = inject(FormBuilder);

@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProductTypeCreateComponent } from './product-type-create.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProductTypeCreateComponent } from './product-type-create.component';
 
 describe('ProductTypeCreateComponent', () => {
   let component: ProductTypeCreateComponent;
@@ -11,11 +14,9 @@ describe('ProductTypeCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [ProductTypeCreateComponent],
-    imports: [MatSnackBarModule, FormsModule, ReactiveFormsModule],
-    providers: [provideHttpClient(withInterceptorsFromDi())]
-})
-    .compileComponents();
+      imports: [ProductTypeCreateComponent, MatSnackBarModule, FormsModule, ReactiveFormsModule],
+      providers: [provideHttpClient(withInterceptorsFromDi())],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductTypeCreateComponent);
     component = fixture.componentInstance;

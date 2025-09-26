@@ -1,6 +1,8 @@
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ActivatedRoute } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
@@ -8,14 +10,22 @@ import { Inventory } from 'src/app/models/inventory.model';
 import { InventoryHousesService } from './../../services/inventory-houses.service';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'app-house-inventory-view',
     templateUrl: './house-inventory-view.component.html',
     styleUrls: ['./house-inventory-view.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      RouterLink,
+      MatTableModule,
+      DecimalPipe,
+      DatePipe,
+      MatIconModule,
+      CommonModule
+    ]
 })
 export class HouseInventoryViewComponent implements OnInit {
   private inventoryHousesService = inject(InventoryHousesService);

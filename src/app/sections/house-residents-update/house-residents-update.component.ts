@@ -1,11 +1,13 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
+import { CommonModule } from '@angular/common';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
@@ -15,7 +17,13 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
     selector: 'app-house-residents-update',
     templateUrl: './house-residents-update.component.html',
     styleUrls: ['./house-residents-update.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      NutritionalProfileComponent,
+      RouterLink,
+      CommonModule,
+      ReactiveFormsModule
+    ],
 })
 export class HouseResidentsUpdateComponent implements OnInit {
   private formBuilder = inject(FormBuilder);

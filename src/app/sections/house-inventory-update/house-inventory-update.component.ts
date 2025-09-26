@@ -1,13 +1,16 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, catchError, forkJoin, map, of, startWith } from 'rxjs';
 
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { House } from 'src/app/models/house.model';
 import { HouseService } from './../../services/house.service';
 import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCatalog } from 'src/app/models/product-catalog.model';
 import { ProductCatalogService } from 'src/app/services/product-catalog.service';
@@ -15,13 +18,19 @@ import { ProductType } from 'src/app/models/product-type.model';
 import { UnitOfMeasurement } from 'src/app/models/unit-of-measurement.model';
 import { UnitOfMeasurementService } from './../../services/unit-of-measurement.service';
 import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
-import { formatDate } from '@angular/common';
 
 @Component({
     selector: 'app-house-inventory-update',
     templateUrl: './house-inventory-update.component.html',
     styleUrls: ['./house-inventory-update.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      RouterLink,
+      ReactiveFormsModule,
+      CommonModule,
+      MatSelectModule,
+      MatAutocompleteModule
+    ]
 })
 export class HouseInventoryUpdateComponent implements OnInit{
   private formBuilder = inject(FormBuilder);

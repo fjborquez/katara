@@ -1,6 +1,7 @@
+import { Injectable, inject } from '@angular/core';
+
 import { GetResponse } from '../models/get-response.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
 import { ListResponse } from '../models/list-response.model';
 import { Observable } from 'rxjs';
 import { Person } from '../models/person.model';

@@ -1,10 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 import { HouseResidentsUpdateComponent } from './house-residents-update.component';
-import { RouterModule } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AppModule } from 'src/app/app.module';
+import { RouterModule } from '@angular/router';
 
 describe('HouseResidentsUpdateComponent', () => {
   let component: HouseResidentsUpdateComponent;
@@ -12,13 +14,9 @@ describe('HouseResidentsUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [HouseResidentsUpdateComponent],
-    imports: [RouterModule.forRoot([]),
-        MatSnackBarModule,
-        AppModule],
-    providers: [provideHttpClient(withInterceptorsFromDi())]
-})
-    .compileComponents();
+      imports: [HouseResidentsUpdateComponent, RouterModule.forRoot([]), MatSnackBarModule],
+      providers: [provideHttpClient(withInterceptorsFromDi())],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HouseResidentsUpdateComponent);
     component = fixture.componentInstance;

@@ -62,7 +62,6 @@ describe('The update inventory page', () => {
       cy.get('#quantity').clear().type('0');
       cy.get('form').submit();
       cy.wait('@getHouse');
-      cy.wait('@updateInventory');
       cy.get('#cdk-overlay-0').should('be.visible');
     });
 

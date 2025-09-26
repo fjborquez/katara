@@ -37,12 +37,12 @@ describe('The add resident page', () => {
         cy.get('#mat-select-value-0').click();
         cy.get('#mat-option-6').click();
         cy.get('#mat-select-value-1').click().get('mat-option').contains('Very Low').click();
-        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('[style="width: 35%;"] > button').click();
         cy.get('.mat-mdc-row > .cdk-column-category').should('be.visible');
         cy.get('.mat-mdc-row > .cdk-column-consumptionLevel').should('be.visible');
         cy.get('form').submit();
         cy.wait('@addResident');
-        cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
+        cy.get('#cdk-overlay-2').should('be.visible');
       });
     });
 
@@ -74,7 +74,7 @@ describe('The add resident page', () => {
         cy.get('#mat-option-6').click();
         cy.get('#mat-select-value-1').click();
         cy.get('#mat-option-12').click();
-        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('[style="width: 35%;"] > button').click();
         cy.get('.cdk-column-options > a').click();
         cy.get('.mat-mdc-row').should('not.exist');
       });

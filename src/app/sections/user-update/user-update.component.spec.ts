@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { UserUpdateComponent } from './user-update.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
-import { MatTableModule } from '@angular/material/table';
+
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { UserUpdateComponent } from './user-update.component';
 
 describe('UserUpdateComponent', () => {
   let component: UserUpdateComponent;
@@ -15,11 +15,10 @@ describe('UserUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [
+    imports: [
         UserUpdateComponent,
-        NutritionalProfileComponent
-    ],
-    imports: [MatSnackBarModule,
+        NutritionalProfileComponent,
+        MatSnackBarModule,
         RouterModule.forRoot([]),
         ReactiveFormsModule,
         MatTableModule,

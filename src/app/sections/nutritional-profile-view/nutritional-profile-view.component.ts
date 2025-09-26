@@ -1,8 +1,10 @@
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 import { NutritionalProfileService } from '../../services/nutritional-profile.service';
 
@@ -10,7 +12,13 @@ import { NutritionalProfileService } from '../../services/nutritional-profile.se
     selector: 'app-nutritional-profile-view',
     templateUrl: './nutritional-profile-view.component.html',
     styleUrls: ['./nutritional-profile-view.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      NutritionalProfileComponent,
+      RouterLink
+    ]
 })
 export class NutritionalProfileViewComponent implements OnInit {
   private formBuilder = inject(FormBuilder);

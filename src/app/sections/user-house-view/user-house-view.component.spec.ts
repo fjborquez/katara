@@ -1,12 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule, provideRouter } from '@angular/router';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
-import { UserHouseViewComponent } from './user-house-view.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UserHouseViewComponent } from './user-house-view.component';
 
 describe('UserHouseViewComponent', () => {
   let component: UserHouseViewComponent;
@@ -14,17 +17,18 @@ describe('UserHouseViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [
+      imports: [
         UserHouseViewComponent,
-    ],
-    imports: [RouterModule.forRoot([]),
+        RouterModule.forRoot([]),
         MatSnackBarModule,
         MatDialogModule,
-        RouterTestingModule,
-        MatTableModule],
-    providers: [provideHttpClient(withInterceptorsFromDi())]
-})
-    .compileComponents();
+        MatTableModule,
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideRouter([]),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UserHouseViewComponent);
     component = fixture.componentInstance;

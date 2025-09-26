@@ -1,10 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
+import { CommonModule } from '@angular/common';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
 import { UserService } from '../../services/user.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
@@ -12,7 +14,14 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
     selector: 'app-user-create',
     templateUrl: './user-create.component.html',
     styleUrls: ['./user-create.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      FormsModule,
+      ReactiveFormsModule,
+      NutritionalProfileComponent,
+      RouterLink,
+      CommonModule,
+    ]
 })
 export class UserCreateComponent implements OnInit {
   private formBuilder = inject(FormBuilder);

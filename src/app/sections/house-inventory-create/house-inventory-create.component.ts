@@ -1,15 +1,17 @@
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, map, of, startWith } from 'rxjs';
 
-import { ActivatedRoute } from '@angular/router';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { House } from 'src/app/models/house.model';
 import { HouseService } from './../../services/house.service';
 import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
 import { ListResponse } from 'src/app/models/list-response.model';
-import { Location } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCatalog } from 'src/app/models/product-catalog.model';
 import { ProductCatalogService } from 'src/app/services/product-catalog.service';
@@ -23,7 +25,14 @@ import { formatDate } from '@angular/common';
     selector: 'app-house-inventory-create',
     templateUrl: './house-inventory-create.component.html',
     styleUrls: ['./house-inventory-create.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      RouterLink,
+      CommonModule,
+      ReactiveFormsModule,
+      MatSelectModule,
+      MatAutocompleteModule
+    ]
 })
 export class HouseInventoryCreateComponent implements OnInit{
   private formBuilder = inject(FormBuilder);

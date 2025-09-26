@@ -1,10 +1,12 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
+import { CommonModule } from '@angular/common';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
 import { ResidentService } from 'src/app/services/resident.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
@@ -12,7 +14,13 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
     selector: 'app-house-residents-create',
     templateUrl: './house-residents-create.component.html',
     styleUrls: ['./house-residents-create.component.sass'],
-    standalone: false
+    standalone: true,
+    imports:[
+      NutritionalProfileComponent,
+      RouterLink,
+      CommonModule,
+      ReactiveFormsModule
+    ]
 })
 export class HouseResidentsCreateComponent implements OnInit {
   private formBuilder = inject(FormBuilder);

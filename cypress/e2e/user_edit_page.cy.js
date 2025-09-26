@@ -67,7 +67,7 @@ describe('The edit user page', () => {
         cy.get('#mat-option-6').click();
         cy.get('#mat-select-value-1').click();
         cy.get('#mat-option-12').click();
-        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('[style="width: 35%;"] > button').click();
         cy.get(':nth-child(3) > .cdk-column-options > a').click();
         cy.get(':nth-child(6) > [data-layer="Content"]').should('not.exist');
       });

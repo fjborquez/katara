@@ -20,7 +20,7 @@ import { UserHouseViewComponent } from './sections/user-house-view/user-house-vi
 import { UserListComponent } from './sections/user-list/user-list.component';
 import { UserUpdateComponent } from './sections/user-update/user-update.component';
 
-const routes: Routes = [
+export const ROUTES: Routes = [
   {path: 'users', component: UserListComponent},
   {path: 'users/add', component: UserCreateComponent},
   {path: 'users/:id/update', component: UserUpdateComponent},
@@ -40,9 +40,3 @@ const routes: Routes = [
   {path: 'product-type/add', component: ProductTypeCreateComponent},
   {path: 'product-presentation/add', component: ProductPresentationCreateComponent}
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

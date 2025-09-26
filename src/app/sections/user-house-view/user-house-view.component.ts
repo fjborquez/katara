@@ -1,21 +1,30 @@
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ActivatedRoute } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
+import { CommonModule } from '@angular/common';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { House } from 'src/app/models/house.model';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
     selector: 'app-user-house-view',
     templateUrl: './user-house-view.component.html',
     styleUrls: ['./user-house-view.component.sass'],
-    standalone: false
+    standalone: true,
+    imports: [
+      RouterLink,
+      MatTableModule,
+      MatIconModule,
+      RouterLink,
+      CommonModule
+    ]
 })
 export class UserHouseViewComponent implements OnInit {
   private userHousesService = inject(UserHousesService);
