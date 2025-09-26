@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     selector: 'app-alert-dialog',
     templateUrl: './alert-dialog.component.html',
     styleUrls: ['./alert-dialog.component.sass'],
-    standalone: false
+    standalone: true
 })
 export class AlertDialogComponent {
   dialogRef = inject<MatDialogRef<AlertDialogComponent>>(MatDialogRef);

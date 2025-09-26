@@ -1,23 +1,23 @@
-import { NutritionalProfileDetail } from './../../models/nutritional-profile-detail.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConsumptionLevelService } from './../../services/consumption-level.service';
-import { ProductCategoryService } from './../../services/product-category.service';
 import { Component, DoCheck, Input, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
-import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
-import { ErrorResponse } from 'src/app/models/error-response.model';
 
-import { ListResponse } from 'src/app/models/list-response.model';
-import { ProductCategory } from 'src/app/models/product-category.model';
-import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
 import { ActivatedRoute } from '@angular/router';
+import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
+import { ConsumptionLevelService } from './../../services/consumption-level.service';
+import { ErrorResponse } from 'src/app/models/error-response.model';
+import { ListResponse } from 'src/app/models/list-response.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { NutritionalProfileDetail } from './../../models/nutritional-profile-detail.model';
+import { NutritionalProfileService } from 'src/app/services/nutritional-profile.service';
+import { ProductCategory } from 'src/app/models/product-category.model';
+import { ProductCategoryService } from './../../services/product-category.service';
 
 @Component({
     selector: 'app-nutritional-profile',
     templateUrl: './nutritional-profile.component.html',
     styleUrls: ['./nutritional-profile.component.sass'],
-    standalone: false
+    standalone: true
 })
 export class NutritionalProfileComponent implements OnInit, DoCheck {
   private rootFormGroup = inject(FormGroupDirective);
@@ -28,7 +28,7 @@ export class NutritionalProfileComponent implements OnInit, DoCheck {
   private consumptionLevelService = inject(ConsumptionLevelService);
   private nutritionalProfileService = inject(NutritionalProfileService);
 
-  @Input() defaultValues: NutritionalProfileDetail[] | any = [];
+  @Input() defaultValues: NutritionalProfileDetail[] = [];
   @Input() viewMode = false;
   prevDefaultValues: NutritionalProfileDetail[] = [];
   productCategories: ProductCategory[] = [];
@@ -64,7 +64,7 @@ export class NutritionalProfileComponent implements OnInit, DoCheck {
     });
 
     if (this.defaultValues.length > 0) {
-      this.defaultValues.forEach((element: any) => {
+      this.defaultValues.forEach((element: NutritionalProfileDetail) => {
         const data = this.dataSource.data;
         data.push({
           category_id: element.product_category_id,
