@@ -15,7 +15,7 @@ describe('The add house page', () => {
 
       cy.fixture('houses_add/house_input.json').then((input) => {
         cy.get('#description').type(input.description);
-        cy.get('#mat-select-value-1').type(input.city);
+        cy.get('#mat-select-value-0').type(input.city);
         cy.get('#is_default').check({force:true});
         cy.get('.button').click({force:true});
         cy.wait('@userAdded');
@@ -33,7 +33,7 @@ describe('The add house page', () => {
 
       cy.fixture('houses_add/house_input.json').then((input) => {
         cy.get('#description').type(input.description);
-        cy.get('#mat-select-value-1').type(input.city);
+        cy.get('#mat-select-value-0').type(input.city);
         cy.get('.button').click({force:true});
         cy.wait('@userAdded');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
@@ -53,7 +53,7 @@ describe('The add house page', () => {
 
       cy.fixture('houses_add/house_wrong_input.json').then((input) => {
         cy.get('#description').type(input.description);
-        cy.get('#mat-select-value-1').type(input.city);
+        cy.get('#mat-select-value-0').type(input.city);
         cy.get('.button').click({force:true});
         cy.wait('@userAdded');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
@@ -63,7 +63,7 @@ describe('The add house page', () => {
 
   context('Given I want go back', () => {
     it('Then I am redirected to the houses list page', () => {
-      cy.get('app-user-house-create.ng-star-inserted > a').click();
+      cy.get('app-user-house-create > a').click();
       cy.location().should((location) => {
         expect(location.pathname.toString()).equal('/users/1/houses');
       })

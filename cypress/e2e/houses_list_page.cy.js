@@ -70,7 +70,7 @@ describe('The houses list page', () => {
 
     context('When execute some action', () => {
       it('Then the edit action must be executed', () => {
-        cy.get('[ng-reflect-router-link="31,update"]').click();
+        cy.get('[href="/users/1/houses/31/update"]').click();
         cy.location().should((location) => {
           expect(location.pathname.toString()).equal('/users/1/houses/31/update');
         });
@@ -87,7 +87,7 @@ describe('The houses list page', () => {
 
   context('Given I want to add a new house', () => {
     it('Then redirect to add house page', () => {
-      cy.get('[ng-reflect-router-link="add"]').click();
+      cy.get('[href="/users/1/houses/add"]').click();
       cy.location().should((location) => {
         expect(location.pathname.toString()).equal('/users/1/houses/add');
       });

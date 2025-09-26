@@ -63,13 +63,13 @@ describe('The edit user page', () => {
         cy.get('#lastname').clear().type(user.lastname);
         cy.get('#date_of_birth').clear().type(user.date_of_birth);
         cy.get('#password').clear().type(user.password);
-        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-select-value-0').click();
         cy.get('#mat-option-6').click();
-        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-select-value-1').click();
         cy.get('#mat-option-12').click();
         cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
-        cy.get('.cdk-column-options > a').click();
-        cy.get('.mat-mdc-row').should('not.exist');
+        cy.get(':nth-child(3) > .cdk-column-options > a').click();
+        cy.get(':nth-child(6) > [data-layer="Content"]').should('not.exist');
       });
     });
 

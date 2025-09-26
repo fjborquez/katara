@@ -41,7 +41,7 @@ describe('The add inventory page', () => {
 
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
-      cy.get('#mat-select-value-1').click();
+      cy.get('#mat-select-value-0').click();
       cy.contains('.mdc-list-item__primary-text', 'kg').click();
       cy.get('#product').type('Lettuce');
       cy.contains('.mdc-list-item__primary-text', 'Lettuce').click();
@@ -64,7 +64,7 @@ describe('The add inventory page', () => {
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
       cy.get('#quantity').clear().type("1");
-      cy.get('#mat-select-value-1').click();
+      cy.get('#mat-select-value-0').click();
       cy.get('#mat-option-0').click();
       cy.get('#expiration_date').clear().type("2025-01-01");
       cy.get('form').submit();
@@ -86,7 +86,7 @@ describe('The add inventory page', () => {
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
       cy.get('#quantity').clear().type("A");
-      cy.get('#mat-select-value-1').click();
+      cy.get('#mat-select-value-0').click();
       cy.contains('.mdc-list-item__primary-text', 'kg').click();
       cy.get('#product').click();
       cy.get('#mat-option-10').click();
@@ -108,7 +108,7 @@ describe('The add inventory page', () => {
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
       cy.get('#quantity').clear().type("-100");
-      cy.get('#mat-select-value-1').click();
+      cy.get('#mat-select-value-0').click();
       cy.contains('.mdc-list-item__primary-text', 'mg').click();
       cy.get('#product').click();
       cy.get('#mat-option-10').click();
@@ -121,7 +121,7 @@ describe('The add inventory page', () => {
   });
   context('A product is not selected yet', () => {
     it('should show the add new product link', () => {
-      cy.get('a.ng-star-inserted').should('be.visible');
+      cy.get('[style="width: 800px;"] > a').should('be.visible');
     });
 
     it('should hide the add new product link', () => {
@@ -143,7 +143,7 @@ describe('The add inventory page', () => {
       cy.wait('@getUnitsOfMeasurement');
       cy.wait('@getProductCatalog');
       cy.get('#quantity').clear().type("-100");
-      cy.get('#mat-select-value-1').click();
+      cy.get('#mat-select-value-0').click();
       cy.contains('.mdc-list-item__primary-text', 'mg').click();
       cy.get('#product').click();
       cy.get('#mat-option-10').click();

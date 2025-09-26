@@ -127,13 +127,13 @@ describe('The update inventory page', () => {
         cy.wait('@getUnitsOfMeasurement');
         cy.wait('@getProductCatalog');
         cy.get('#product').clear();
-        cy.get('a.ng-star-inserted').should('be.visible');
+        cy.get('[style="width: 800px;"] > a').should('be.visible');
       });
 
       it('should hide the add new product link', () => {
         cy.wait('@getUnitsOfMeasurement');
         cy.wait('@getProductCatalog');
-        cy.get('a.ng-star-inserted').should('not.exist');
+        cy.get('[style="width: 800px;"] > a').should('not.exist');
       });
     });
 
