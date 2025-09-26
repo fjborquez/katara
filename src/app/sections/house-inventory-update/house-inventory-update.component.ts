@@ -156,7 +156,7 @@ export class HouseInventoryUpdateComponent implements OnInit{
       product_status: this.inventoryDetail.product_status
     };
 
-    this.inventoryHousesService.update<EditResponse>(this.userId, this.houseId, this.inventoryId, params).subscribe((response: EditResponse) => {
+    this.inventoryHousesService.update<EditResponse>(this.userId, this.houseId, this.inventoryId, params).subscribe(() => {
       this.router.navigate(['/users/', this.userId, 'houses', this.houseId, 'inventory']).then(() => {
         this.snackBar.open("Product updated", "Close");
       });

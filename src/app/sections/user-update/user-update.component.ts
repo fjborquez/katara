@@ -9,7 +9,6 @@ import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
-import { NutritionalRestriction } from '../../models/nutritional-restriction.model';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
