@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
@@ -19,18 +19,16 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
     standalone: false
 })
 export class UserUpdateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+  private route = inject(ActivatedRoute);
+
   userForm = this.formBuilder.group({});
   nutritionalRestrictions: any;
   userId = 0;
   nutritionalProfile: NutritionalProfileDetail[] = [];
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router,
-    private snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-  ) { }
 
   ngOnInit(): void {
     this.userId = Number(this.route.snapshot.paramMap.get('id'));

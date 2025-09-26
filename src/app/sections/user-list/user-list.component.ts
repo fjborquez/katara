@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { AlertDialogComponent } from '../../components/alert-dialog/alert-dialog.component';
 import { EditResponse } from 'src/app/models/edit-response.model';
@@ -19,15 +19,15 @@ import { UserService } from '../../services/user.service';
     standalone: false
 })
 export class UserListComponent implements OnInit {
+  private userService = inject(UserService);
+  dialog = inject(MatDialog);
+  snackBar = inject(MatSnackBar);
+  router = inject(Router);
+
   dataSource = new MatTableDataSource<User>();
   columnsToDisplay = ['id', 'fullname', 'date_of_birth', 'email', 'options', 'nutritional_profile'];
 
-  constructor(
-    private userService: UserService,
-    public dialog: MatDialog,
-    public snackBar: MatSnackBar,
-    public router: Router,
-  ) {
+  constructor() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 

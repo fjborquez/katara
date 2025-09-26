@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
@@ -13,16 +13,14 @@ import { NutritionalProfileService } from '../../services/nutritional-profile.se
     standalone: false
 })
 export class NutritionalProfileViewComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private nutritionalProfileService = inject(NutritionalProfileService);
+  private route = inject(ActivatedRoute);
+
   nutritionalProfileForm: FormGroup = this.formBuilder.group({});
   userId = 0;
   nutritionalProfile: NutritionalProfileDetail[] = [];
   viewMode = true;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private nutritionalProfileService: NutritionalProfileService,
-    private route: ActivatedRoute,
-  ) {}
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];

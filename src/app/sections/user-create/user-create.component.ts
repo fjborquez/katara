@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
@@ -15,14 +15,12 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
     standalone: false
 })
 export class UserCreateComponent implements OnInit {
-  personForm = this.formBuilder.group({});
+  private formBuilder = inject(FormBuilder);
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router,
-    private snackBar: MatSnackBar,
-  ) { }
+  personForm = this.formBuilder.group({});
 
   ngOnInit(): void {
     this.personForm.addControl('name', this.formBuilder.control(''));

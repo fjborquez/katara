@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Observable, catchError, forkJoin, map, of, startWith } from 'rxjs';
 
 import { EditResponse } from 'src/app/models/edit-response.model';
@@ -24,6 +24,15 @@ import { formatDate } from '@angular/common';
     standalone: false
 })
 export class HouseInventoryUpdateComponent implements OnInit{
+  private formBuilder = inject(FormBuilder);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+  private unitOfMeasurementService = inject(UnitOfMeasurementService);
+  private productCatalogService = inject(ProductCatalogService);
+  private inventoryHousesService = inject(InventoryHousesService);
+  private houseService = inject(HouseService);
+
   inventoryItemForm = this.formBuilder.group({});
   userId = 0;
   houseId = 0;
@@ -33,17 +42,6 @@ export class HouseInventoryUpdateComponent implements OnInit{
   house: House | undefined = undefined;
   inventoryDetail: any;
   productStatus: any;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private snackBar: MatSnackBar,
-    private unitOfMeasurementService: UnitOfMeasurementService,
-    private productCatalogService: ProductCatalogService,
-    private inventoryHousesService: InventoryHousesService,
-    private houseService: HouseService
-  ) {}
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.params['id'];

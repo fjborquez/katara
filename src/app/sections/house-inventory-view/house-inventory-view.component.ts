@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
@@ -18,17 +18,15 @@ import { MatTableDataSource } from '@angular/material/table';
     standalone: false
 })
 export class HouseInventoryViewComponent implements OnInit {
+  private inventoryHousesService = inject(InventoryHousesService);
+  private activatedRoute = inject(ActivatedRoute);
+  private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
+
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['increment', 'quantity', 'brand', 'product', 'purchase_date', 'expiration_date', 'status_icon', 'options'];
   userId = 0;
   houseId = 0;
-
-  constructor(
-    private inventoryHousesService: InventoryHousesService,
-    private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog
-  ) {}
 
   ngOnInit(): void {
     this.userId = Number(this.activatedRoute.snapshot.params['id']);

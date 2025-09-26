@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Observable, map, of, startWith } from 'rxjs';
 
 import { ActivatedRoute } from '@angular/router';
@@ -26,23 +26,21 @@ import { formatDate } from '@angular/common';
     standalone: false
 })
 export class HouseInventoryCreateComponent implements OnInit{
+  private formBuilder = inject(FormBuilder);
+  private activatedRoute = inject(ActivatedRoute);
+  private location = inject(Location);
+  private snackBar = inject(MatSnackBar);
+  private unitOfMeasurementService = inject(UnitOfMeasurementService);
+  private productCatalogService = inject(ProductCatalogService);
+  private inventoryHousesService = inject(InventoryHousesService);
+  private houseService = inject(HouseService);
+
   inventoryItemForm = this.formBuilder.group({});
   userId = 0;
   houseId = 0;
   unitsOfMeasurement: UnitOfMeasurement[] = [];
   productsCatalog: Observable<ProductCatalog[]> | undefined = of([]);
   house: House | undefined = undefined;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private location: Location,
-    private snackBar: MatSnackBar,
-    private unitOfMeasurementService: UnitOfMeasurementService,
-    private productCatalogService: ProductCatalogService,
-    private inventoryHousesService: InventoryHousesService,
-    private houseService: HouseService
-  ) {}
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.params['id'];

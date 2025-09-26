@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
 import { EditResponse } from 'src/app/models/edit-response.model';
@@ -18,6 +18,12 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
     standalone: false
 })
 export class HouseResidentsUpdateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private activatedRoute = inject(ActivatedRoute);
+  private residentService = inject(ResidentService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
   userId = 0;
   houseId = 0;
   residentId = 0;
@@ -28,14 +34,6 @@ export class HouseResidentsUpdateComponent implements OnInit {
     nutritionalProfile: new FormArray([])
   });
   nutritionalProfile: NutritionalProfileDetail[] = [];
-
-  public constructor(
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private residentService: ResidentService,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) {}
 
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.params['id'];

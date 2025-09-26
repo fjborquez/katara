@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateResponse } from 'src/app/models/create-response.model';
@@ -13,14 +13,12 @@ import { ProductTypeService } from 'src/app/services/product-type.service';
     standalone: false
 })
 export class ProductTypeCreateComponent implements OnInit {
-  productTypeForm = this.formBuilder.group({});
+  private formBuilder = inject(FormBuilder);
+  private location = inject(Location);
+  private snackBar = inject(MatSnackBar);
+  private productTypeService = inject(ProductTypeService);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private location: Location,
-    private snackBar: MatSnackBar,
-    private productTypeService: ProductTypeService
-  ) {}
+  productTypeForm = this.formBuilder.group({});
 
   ngOnInit() {
     this.productTypeForm.addControl('description', this.formBuilder.control(''));

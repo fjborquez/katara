@@ -2,7 +2,7 @@ import { NutritionalProfileDetail } from './../../models/nutritional-profile-det
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConsumptionLevelService } from './../../services/consumption-level.service';
 import { ProductCategoryService } from './../../services/product-category.service';
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
@@ -20,6 +20,14 @@ import { ActivatedRoute } from '@angular/router';
     standalone: false
 })
 export class NutritionalProfileComponent implements OnInit, DoCheck {
+  private rootFormGroup = inject(FormGroupDirective);
+  private formBuilder = inject(FormBuilder);
+  private snackBar = inject(MatSnackBar);
+  private activatedRoute = inject(ActivatedRoute);
+  private productCategoryService = inject(ProductCategoryService);
+  private consumptionLevelService = inject(ConsumptionLevelService);
+  private nutritionalProfileService = inject(NutritionalProfileService);
+
   @Input() defaultValues: NutritionalProfileDetail[] | any = [];
   @Input() viewMode = false;
   prevDefaultValues: NutritionalProfileDetail[] = [];
@@ -29,16 +37,6 @@ export class NutritionalProfileComponent implements OnInit, DoCheck {
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource();
   userId = 0;
-
-  constructor(
-    private rootFormGroup: FormGroupDirective,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
-    private activatedRoute: ActivatedRoute,
-    private productCategoryService: ProductCategoryService,
-    private consumptionLevelService: ConsumptionLevelService,
-    private nutritionalProfileService: NutritionalProfileService
-  ) { }
 
   ngOnInit() {
     this.form = this.rootFormGroup.control;

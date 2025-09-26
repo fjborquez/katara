@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
 import { CreateResponse } from 'src/app/models/create-response.model';
@@ -15,18 +15,16 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
     standalone: false
 })
 export class HouseResidentsCreateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+  private activatedRoute = inject(ActivatedRoute);
+  private residentService = inject(ResidentService);
+
   userId = 0;
   houseId = 0;
   houseResidentForm = this.formBuilder.group({});
   nutritionalRestrictions: any = [];
-
-  public constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private snackBar: MatSnackBar,
-    private activatedRoute: ActivatedRoute,
-    private residentService: ResidentService
-  ) {}
 
   public ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.params['id'];

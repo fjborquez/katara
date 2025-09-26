@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
@@ -18,17 +18,14 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
     standalone: false
 })
 export class UserHouseViewComponent implements OnInit {
+  private userHousesService = inject(UserHousesService);
+  private activatedRoute = inject(ActivatedRoute);
+  private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
+
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['house', 'city', 'is_default', 'options', 'residents'];
   idUser = 0;
-
-  constructor(
-    private userHousesService: UserHousesService,
-    private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-  ) {
-  }
 
   ngOnInit(): void {
     this.idUser = Number(this.activatedRoute.snapshot.params['id']);

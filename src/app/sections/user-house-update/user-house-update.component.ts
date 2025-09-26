@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 
 import { City } from 'src/app/models/city.model';
@@ -18,19 +18,17 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
     standalone: false
 })
 export class UserHouseUpdateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private cityService = inject(CityService);
+  private userHousesService = inject(UserHousesService);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
   userHouseForm = this.formBuilder.group({});
   cities: City[] = [];
   userId = 0;
   houseId = 0;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private cityService: CityService,
-    private userHousesService: UserHousesService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) { }
 
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.params['id'];

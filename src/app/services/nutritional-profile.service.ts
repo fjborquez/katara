@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ListResponse } from '../models/list-response.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,8 +9,8 @@ import { NutritionalProfileDetail } from '../models/nutritional-profile-detail.m
   providedIn: 'root'
 })
 export class NutritionalProfileService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
 
   // TODO: Corregir llamada a aang
   add(userId: number, params = {}) {

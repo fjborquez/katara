@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { City } from '../../models/city.model';
 import { CityService } from './../../services/city.service';
@@ -17,6 +17,13 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
     standalone: false
 })
 export class UserHouseCreateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private cityService = inject(CityService);
+  private userHousesService = inject(UserHousesService);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
   userHouseForm = this.formBuilder.group({
     description: '',
     city_id: '',
@@ -24,15 +31,6 @@ export class UserHouseCreateComponent implements OnInit {
   });
   userId = 0;
   cities: City[] = [];
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private cityService: CityService,
-    private userHousesService: UserHousesService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) { }
 
   ngOnInit(): void {
     this.cityService.list().subscribe((response: ListResponse<City>) => this.cities = response.message);
