@@ -1,21 +1,37 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { City } from '../../models/city.model';
 import { CityService } from './../../services/city.service';
+import { CommonModule } from '@angular/common';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
-  selector: 'app-user-house-create',
-  templateUrl: './user-house-create.component.html',
-  styleUrls: ['./user-house-create.component.sass']
+    selector: 'app-user-house-create',
+    templateUrl: './user-house-create.component.html',
+    styleUrls: ['./user-house-create.component.sass'],
+    standalone: true,
+    imports: [
+      MatSelectModule,
+      RouterLink,
+      CommonModule,
+      ReactiveFormsModule
+    ]
 })
 export class UserHouseCreateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private cityService = inject(CityService);
+  private userHousesService = inject(UserHousesService);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
   userHouseForm = this.formBuilder.group({
     description: '',
     city_id: '',
@@ -23,15 +39,6 @@ export class UserHouseCreateComponent implements OnInit {
   });
   userId = 0;
   cities: City[] = [];
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private cityService: CityService,
-    private userHousesService: UserHousesService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) { }
 
   ngOnInit(): void {
     this.cityService.list().subscribe((response: ListResponse<City>) => this.cities = response.message);

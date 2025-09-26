@@ -1,11 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormGroupDirective,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
-import { UserHouseCreateComponent } from './user-house-create.component';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UserHouseCreateComponent } from './user-house-create.component';
+import { provideRouter } from '@angular/router';
 
 describe('UserHouseCreateComponent', () => {
   let component: UserHouseCreateComponent;
@@ -15,21 +23,20 @@ describe('UserHouseCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserHouseCreateComponent ],
       imports: [
-        HttpClientModule,
-        RouterModule.forRoot([]),
+        UserHouseCreateComponent,
         MatSnackBarModule,
         MatSelectModule,
         ReactiveFormsModule,
+        CommonModule
       ],
       providers: [
-        FormGroupDirective,
         FormBuilder,
-        {provide: FormGroupDirective, useValue: formGroupDirective}
-      ]
-    })
-    .compileComponents();
+        { provide: FormGroupDirective, useValue: formGroupDirective },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideRouter([]),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UserHouseCreateComponent);
     component = fixture.componentInstance;

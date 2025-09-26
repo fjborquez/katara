@@ -55,11 +55,11 @@ describe('The edit resident page', () => {
         cy.get('#date_of_birth').clear().type(input.date_of_birth);
         cy.get('.mat-mdc-row > .cdk-column-category').should('be.visible');
         cy.get('.mat-mdc-row > .cdk-column-consumptionLevel').should('be.visible');
-        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-select-value-0').click();
         cy.get('#mat-option-6').click();
-        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-select-value-1').click();
         cy.get('#mat-option-12').click();
-        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('[style="width: 35%;"] > button').click();
         cy.get('form').submit();
         cy.wait('@residentUpdate');
         cy.get('#cdk-overlay-2').should('be.visible');

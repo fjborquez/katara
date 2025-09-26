@@ -1,6 +1,6 @@
-import { EditResponse } from '../models/edit-response.model';
+import { Injectable, inject } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Inventory } from '../models/inventory.model';
 import { ListResponse } from './../models/list-response.model';
 import { Observable } from 'rxjs';
@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class InventoryHousesService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
 
   getHousesByUser(userId: number, houseId: number): Observable<ListResponse<Inventory>> {
     return this.http.get<ListResponse<Inventory>>(`${environment.backendUrl}user/${userId}/houses/${houseId}/inventory`);

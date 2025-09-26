@@ -1,7 +1,22 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppComponent } from './app/app.component';
+import { Component } from '@angular/core';
+import { ROUTES } from './app/app-routing.module';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
-import { AppModule } from './app/app.module';
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: ''
+})
+export class MainComponent {
 
+}
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(ROUTES),
+    provideHttpClient()
+  ]
+});

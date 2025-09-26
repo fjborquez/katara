@@ -1,33 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ActivatedRoute } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
 import { Resident } from 'src/app/models/resident.model';
 import { ResidentService } from 'src/app/services/resident.service';
 
 @Component({
-  selector: 'app-house-residents-view',
-  templateUrl: './house-residents-view.component.html',
-  styleUrls: ['./house-residents-view.component.sass']
+    selector: 'app-house-residents-view',
+    templateUrl: './house-residents-view.component.html',
+    styleUrls: ['./house-residents-view.component.sass'],
+    standalone: true,
+    imports: [
+      RouterLink,
+      MatTableModule,
+      DatePipe,
+      MatIconModule,
+      CommonModule
+    ]
 })
 export class HouseResidentsViewComponent implements OnInit {
+  private residentService = inject(ResidentService);
+  private activatedRoute = inject(ActivatedRoute);
+  private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
+
   dataSource = new MatTableDataSource();
   columnsToDisplay = ['fullname', 'date_of_birth', 'options', 'nutritional_profile'];
   idUser = 0;
   idHouse = 0;
-
-  constructor(
-    private residentService: ResidentService,
-    private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-  ) {}
 
   ngOnInit(): void {
     this.idUser = Number(this.activatedRoute.snapshot.params['id']);

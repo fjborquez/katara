@@ -1,11 +1,12 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProductCatalogCreateComponent } from './product-catalog-create.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProductCatalogCreateComponent } from './product-catalog-create.component';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('ProductCatalogCreateComponent', () => {
   let component: ProductCatalogCreateComponent;
@@ -13,9 +14,16 @@ describe('ProductCatalogCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductCatalogCreateComponent ],
-      imports: [MatSnackBarModule, HttpClientTestingModule, MatAutocompleteModule, RouterTestingModule, FormsModule, ReactiveFormsModule]
-    })
+    declarations: [],
+    imports: [
+      ProductCatalogCreateComponent,
+      MatSnackBarModule,
+      MatAutocompleteModule,
+      FormsModule,
+      ReactiveFormsModule
+    ],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting(), provideRouter([])]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(ProductCatalogCreateComponent);

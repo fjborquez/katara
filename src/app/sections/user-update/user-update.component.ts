@@ -1,11 +1,13 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
+import { CommonModule } from '@angular/common';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { GetResponse } from 'src/app/models/get-response.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
 import { Person } from 'src/app/models/person.model';
 import { User } from 'src/app/models/user.model';
@@ -13,23 +15,27 @@ import { UserService } from '../../services/user.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
 @Component({
-  selector: 'app-user-update',
-  templateUrl: './user-update.component.html',
-  styleUrls: ['./user-update.component.sass']
+    selector: 'app-user-update',
+    templateUrl: './user-update.component.html',
+    styleUrls: ['./user-update.component.sass'],
+    standalone: true,
+    imports: [
+      RouterLink,
+      NutritionalProfileComponent,
+      CommonModule,
+      ReactiveFormsModule
+    ],
 })
 export class UserUpdateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+  private route = inject(ActivatedRoute);
+
   userForm = this.formBuilder.group({});
-  nutritionalRestrictions: any;
   userId = 0;
   nutritionalProfile: NutritionalProfileDetail[] = [];
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router,
-    private snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-  ) { }
 
   ngOnInit(): void {
     this.userId = Number(this.route.snapshot.paramMap.get('id'));

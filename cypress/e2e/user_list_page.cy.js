@@ -65,8 +65,8 @@ describe('The list user page', () => {
       }).as('disable');
 
         cy.get(':nth-child(1) > .cdk-column-options > :nth-child(2)').click();
-        cy.get('app-alert-dialog').should('be.visible');
-        cy.get('.mdc-button__label').contains('Yes').click();
+        cy.get('.mat-mdc-dialog-surface').should('be.visible');
+        cy.get('[mat-dialog-actions=""]').contains('Yes').click();
         cy.wait('@disable');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
       });
@@ -80,8 +80,8 @@ describe('The list user page', () => {
         }).as('enable');
 
         cy.get(':nth-child(2) > .cdk-column-options > :nth-child(2)').click();
-        cy.get('app-alert-dialog').should('be.visible');
-        cy.get('.mdc-button__label').contains('Yes').click();
+        cy.get('.mat-mdc-dialog-surface').should('be.visible');
+        cy.get('[mat-dialog-actions=""]').contains('Yes').click();
         cy.wait('@enable');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
       });
@@ -89,30 +89,30 @@ describe('The list user page', () => {
 
     context('When I want to execute some action', () => {
       it('Then should go to add user page', () => {
-        cy.get('[ng-reflect-router-link="add"]').click();
+        cy.get('[href="/users/add"]').click();
         cy.location().should((location) => {
           expect(location.pathname.toString()).equal('/users/add');
         });
       });
 
       it('Then should go to edit user page', () => {
-        cy.get('[ng-reflect-router-link="1,update"]').click();
+        cy.get('[href="/users/1/update"]').click();
         cy.location().should((location) => {
           expect(location.pathname.toString()).equal('/users/1/update');
         });
       });
 
       it('Then should go to add house page', () => {
-        cy.get('[ng-reflect-router-link="1,houses,add"]').should('have.text', 'Add house');
-        cy.get('[ng-reflect-router-link="1,houses,add"]').click();
+        cy.get('[href="/users/1/houses/add"]').should('have.text', 'Add house');
+        cy.get('[href="/users/1/houses/add"]').click();
         cy.location().should((location) => {
           expect(location.pathname.toString()).equal('/users/1/houses/add');
         });
       });
 
       it('Then should go to view houses page', () => {
-        cy.get('[ng-reflect-router-link="2,houses"]').should('have.text', 'View houses');
-        cy.get('[ng-reflect-router-link="2,houses"]').click();
+        cy.get('[href="/users/2/houses"]').should('have.text', 'View houses');
+        cy.get('[href="/users/2/houses"]').click();
         cy.location().should((location) => {
           expect(location.pathname.toString()).equal('/users/2/houses');
         });

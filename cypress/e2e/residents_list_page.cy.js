@@ -38,7 +38,7 @@ describe('The resident list page', () => {
   });
   context('Given I want to add a new resident', () => {
     it('Then redirect to add resident page', () => {
-      cy.get('[ng-reflect-router-link="add"]').click();
+      cy.get('[href="/users/1/houses/31/residents/add"]').click();
       cy.location().should((location) => {
         expect(location.pathname.toString()).equal('/users/1/houses/31/residents/add');
       });
@@ -47,7 +47,7 @@ describe('The resident list page', () => {
   context('Given I want to delete an existing resident', () => {
     it('Then it should delete him successfully', () => {
       cy.get(':nth-child(2) > .cdk-column-options > :nth-child(2)').click();
-      cy.contains('span', 'Yes').click()
+      cy.get('[mat-dialog-actions=""]').contains('Yes').click()
       cy.location().should((location) => {
         expect(location.pathname.toString()).equal('/users/1/houses/31/residents');
       });
@@ -55,7 +55,7 @@ describe('The resident list page', () => {
 
     it('Then it should not delete him', () => {
       cy.get(':nth-child(2) > .cdk-column-options > :nth-child(2)').click();
-      cy.contains('span', 'No').click()
+      cy.get('[mat-dialog-actions=""]').contains('No').click()
       cy.location().should((location) => {
         expect(location.pathname.toString()).equal('/users/1/houses/31/residents');
       });

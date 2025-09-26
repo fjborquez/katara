@@ -1,8 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 import { AlertDialogComponent } from './alert-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 describe('AlertDialogComponent', () => {
@@ -12,21 +19,22 @@ describe('AlertDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
         MatDialogModule,
-        RouterModule.forRoot([])
+        AlertDialogComponent,
+        RouterModule.forRoot([]),
       ],
-      declarations: [ AlertDialogComponent ],
       providers: [
         {
-          provide: MatDialogRef, useValue: {}
+          provide: MatDialogRef,
+          useValue: {},
         },
         {
-          provide: MAT_DIALOG_DATA, useValue: []
-        }
-      ]
-    })
-    .compileComponents();
+          provide: MAT_DIALOG_DATA,
+          useValue: [],
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AlertDialogComponent);
     component = fixture.componentInstance;

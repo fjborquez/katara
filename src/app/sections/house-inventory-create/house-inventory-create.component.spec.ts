@@ -1,12 +1,13 @@
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatSelectModule } from '@angular/material/select';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { HouseInventoryCreateComponent } from './house-inventory-create.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('HouseInventoryCreateComponent', () => {
   let component: HouseInventoryCreateComponent;
@@ -14,10 +15,10 @@ describe('HouseInventoryCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HouseInventoryCreateComponent ],
-      imports: [RouterTestingModule, MatSnackBarModule, HttpClientTestingModule, MatSelectModule,
-          MatAutocompleteModule, FormsModule, ReactiveFormsModule ]
-    })
+    imports: [HouseInventoryCreateComponent, MatSnackBarModule, MatSelectModule,
+        MatAutocompleteModule, FormsModule, ReactiveFormsModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting(), provideRouter([])]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(HouseInventoryCreateComponent);

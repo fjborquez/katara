@@ -1,27 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
+import { CommonModule } from '@angular/common';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
 import { UserService } from '../../services/user.service';
 import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
 
 @Component({
-  selector: 'app-user-create',
-  templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.sass']
+    selector: 'app-user-create',
+    templateUrl: './user-create.component.html',
+    styleUrls: ['./user-create.component.sass'],
+    standalone: true,
+    imports: [
+      FormsModule,
+      ReactiveFormsModule,
+      NutritionalProfileComponent,
+      RouterLink,
+      CommonModule,
+    ]
 })
 export class UserCreateComponent implements OnInit {
-  personForm = this.formBuilder.group({});
+  private formBuilder = inject(FormBuilder);
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router,
-    private snackBar: MatSnackBar,
-  ) { }
+  personForm = this.formBuilder.group({});
 
   ngOnInit(): void {
     this.personForm.addControl('name', this.formBuilder.control(''));

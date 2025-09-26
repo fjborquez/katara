@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Router, RouterLink } from '@angular/router';
 
 import { AlertDialogComponent } from '../../components/alert-dialog/alert-dialog.component';
 import { EditResponse } from 'src/app/models/edit-response.model';
@@ -6,27 +9,32 @@ import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.sass']
+    selector: 'app-user-list',
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.sass'],
+    standalone: true,
+    imports: [
+      RouterLink,
+      MatTableModule,
+      DatePipe,
+      CommonModule
+    ]
 })
 export class UserListComponent implements OnInit {
+  private userService = inject(UserService);
+  dialog = inject(MatDialog);
+  snackBar = inject(MatSnackBar);
+  router = inject(Router);
+
   dataSource = new MatTableDataSource<User>();
   columnsToDisplay = ['id', 'fullname', 'date_of_birth', 'email', 'options', 'nutritional_profile'];
 
-  constructor(
-    private userService: UserService,
-    public dialog: MatDialog,
-    public snackBar: MatSnackBar,
-    public router: Router,
-  ) {
+  constructor() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 

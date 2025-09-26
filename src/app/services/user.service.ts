@@ -1,6 +1,7 @@
+import { Injectable, inject } from '@angular/core';
+
 import { GetResponse } from '../models/get-response.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { ListResponse } from '../models/list-response.model';
 import { Observable } from 'rxjs';
 import { Person } from '../models/person.model';
@@ -11,8 +12,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
 
   add<CreateResponse>(params = {}): Observable<CreateResponse> {
     return this.http.post<CreateResponse>(environment.backendUrl + 'user', params);

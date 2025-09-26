@@ -1,13 +1,16 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CommonModule, formatDate } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, catchError, forkJoin, map, of, startWith } from 'rxjs';
 
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { House } from 'src/app/models/house.model';
 import { HouseService } from './../../services/house.service';
 import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCatalog } from 'src/app/models/product-catalog.model';
 import { ProductCatalogService } from 'src/app/services/product-catalog.service';
@@ -15,14 +18,30 @@ import { ProductType } from 'src/app/models/product-type.model';
 import { UnitOfMeasurement } from 'src/app/models/unit-of-measurement.model';
 import { UnitOfMeasurementService } from './../../services/unit-of-measurement.service';
 import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
-import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-house-inventory-update',
-  templateUrl: './house-inventory-update.component.html',
-  styleUrls: ['./house-inventory-update.component.sass']
+    selector: 'app-house-inventory-update',
+    templateUrl: './house-inventory-update.component.html',
+    styleUrls: ['./house-inventory-update.component.sass'],
+    standalone: true,
+    imports: [
+      RouterLink,
+      ReactiveFormsModule,
+      CommonModule,
+      MatSelectModule,
+      MatAutocompleteModule
+    ]
 })
 export class HouseInventoryUpdateComponent implements OnInit{
+  private formBuilder = inject(FormBuilder);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+  private unitOfMeasurementService = inject(UnitOfMeasurementService);
+  private productCatalogService = inject(ProductCatalogService);
+  private inventoryHousesService = inject(InventoryHousesService);
+  private houseService = inject(HouseService);
+
   inventoryItemForm = this.formBuilder.group({});
   userId = 0;
   houseId = 0;
@@ -32,17 +51,6 @@ export class HouseInventoryUpdateComponent implements OnInit{
   house: House | undefined = undefined;
   inventoryDetail: any;
   productStatus: any;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private snackBar: MatSnackBar,
-    private unitOfMeasurementService: UnitOfMeasurementService,
-    private productCatalogService: ProductCatalogService,
-    private inventoryHousesService: InventoryHousesService,
-    private houseService: HouseService
-  ) {}
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.params['id'];
@@ -148,7 +156,7 @@ export class HouseInventoryUpdateComponent implements OnInit{
       product_status: this.inventoryDetail.product_status
     };
 
-    this.inventoryHousesService.update<EditResponse>(this.userId, this.houseId, this.inventoryId, params).subscribe((response: EditResponse) => {
+    this.inventoryHousesService.update<EditResponse>(this.userId, this.houseId, this.inventoryId, params).subscribe(() => {
       this.router.navigate(['/users/', this.userId, 'houses', this.houseId, 'inventory']).then(() => {
         this.snackBar.open("Product updated", "Close");
       });

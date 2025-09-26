@@ -35,11 +35,11 @@ describe('The add user page', () => {
         cy.get('#date_of_birth').type(input.date_of_birth, {force: true});
         cy.get('#email').type(input.email);
         cy.get('#password').type(input.password);
-        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-select-value-0').click();
         cy.get('mat-option').contains('Dairy').click();
-        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-select-value-1').click();
         cy.get('mat-option').contains('High').click();
-        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('[style="width: 35%;"] > button').click();
 
         cy.get('form').submit();
         cy.wait('@addUser').its('response.statusCode').should('equal', 201);
@@ -72,11 +72,11 @@ describe('The add user page', () => {
         cy.get('#name').type(input.name);
         cy.get('#lastname').type(input.lastname);
         cy.get('#date_of_birth').type(input.date_of_birth);
-        cy.get('#mat-select-value-1').click();
+        cy.get('#mat-select-value-0').click();
         cy.get('#mat-option-6').click();
-        cy.get('#mat-select-value-3').click();
+        cy.get('#mat-select-value-1').click();
         cy.get('#mat-option-12').click();
-        cy.get('[style="width: 35%;"] > .mdc-button > .mdc-button__label').click();
+        cy.get('[style="width: 35%;"] > button').click();
         cy.get('.cdk-column-options > a').click();
         cy.get('.mat-mdc-row').should('not.exist');
       });

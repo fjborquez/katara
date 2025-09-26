@@ -1,25 +1,29 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonModule, Location } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 
 @Component({
-  selector: 'app-product-category-create',
-  templateUrl: './product-category-create.component.html',
-  styleUrls: ['./product-category-create.component.sass']
+    selector: 'app-product-category-create',
+    templateUrl: './product-category-create.component.html',
+    styleUrls: ['./product-category-create.component.sass'],
+    standalone: true,
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+    ]
 })
 export class ProductCategoryCreateComponent implements OnInit{
-  productCategoryForm = this.formBuilder.group({});
+  private formBuilder = inject(FormBuilder);
+  private location = inject(Location);
+  private snackBar = inject(MatSnackBar);
+  private productCategoryService = inject(ProductCategoryService);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private location: Location,
-    private snackBar: MatSnackBar,
-    private productCategoryService: ProductCategoryService
-  ) { }
+  productCategoryForm = this.formBuilder.group({});
 
   ngOnInit() {
     this.productCategoryForm.addControl('name', this.formBuilder.control(''));

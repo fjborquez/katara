@@ -1,35 +1,42 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { City } from 'src/app/models/city.model';
 import { CityService } from 'src/app/services/city.service';
+import { CommonModule } from '@angular/common';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { House } from 'src/app/models/house.model';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
-  selector: 'app-user-house-update',
-  templateUrl: './user-house-update.component.html',
-  styleUrls: ['./user-house-update.component.sass']
+    selector: 'app-user-house-update',
+    templateUrl: './user-house-update.component.html',
+    styleUrls: ['./user-house-update.component.sass'],
+    standalone: true,
+    imports: [
+      MatSelectModule,
+      RouterLink,
+      CommonModule,
+      ReactiveFormsModule
+    ]
 })
 export class UserHouseUpdateComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private cityService = inject(CityService);
+  private userHousesService = inject(UserHousesService);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
   userHouseForm = this.formBuilder.group({});
   cities: City[] = [];
   userId = 0;
   houseId = 0;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private cityService: CityService,
-    private userHousesService: UserHousesService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) { }
 
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.params['id'];
@@ -41,7 +48,7 @@ export class UserHouseUpdateComponent implements OnInit {
     this.houseId = Number(this.activatedRoute.snapshot.params['idHouse']);
     this.cityService.list().subscribe((response: ListResponse<City>) => this.cities = response.message);
     this.userHousesService.getHousesByUser(this.userId).subscribe((response: ListResponse<House>) => {
-      const house = response.message.find((item: any) => Number(item.id) === this.houseId);
+      const house = response.message.find((item: House) => Number(item.id) === this.houseId);
 
       if (house) {
         const params = {

@@ -1,44 +1,52 @@
-import { ProductCategory } from './../../models/product-category.model';
+import { CommonModule, Location } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Observable, map, of, startWith } from 'rxjs';
+
 import { CreateResponse } from './../../models/create-response.model';
-import { ProductCatalogService } from './../../services/product-catalog.service';
-import { ProductPresentationService } from './../../services/product-presentation.service';
-import { ProductTypeService } from './../../services/product-type.service';
-import { ProductType } from './../../models/product-type.model';
-import { ProductBrandService } from './../../services/product-brand.service';
-import { ProductBrand } from './../../models/product-brand.model';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { map, Observable, of, startWith } from 'rxjs';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductBrand } from './../../models/product-brand.model';
+import { ProductBrandService } from './../../services/product-brand.service';
+import { ProductCatalogService } from './../../services/product-catalog.service';
+import { ProductCategory } from './../../models/product-category.model';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductPresentation } from 'src/app/models/product-presentation.model';
-import { Location } from '@angular/common';
+import { ProductPresentationService } from './../../services/product-presentation.service';
+import { ProductType } from './../../models/product-type.model';
+import { ProductTypeService } from './../../services/product-type.service';
+import { RouterLink } from '@angular/router';
 import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
 
 @Component({
-  selector: 'app-product-catalog-create',
-  templateUrl: './product-catalog-create.component.html',
-  styleUrls: ['./product-catalog-create.component.sass'],
+    selector: 'app-product-catalog-create',
+    templateUrl: './product-catalog-create.component.html',
+    styleUrls: ['./product-catalog-create.component.sass'],
+    standalone: true,
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      MatAutocompleteModule,
+      RouterLink
+    ]
 })
 export class ProductCatalogCreateComponent implements OnInit{
+  private formBuilder = inject(FormBuilder);
+  private snackBar = inject(MatSnackBar);
+  private location = inject(Location);
+  private productCategoryService = inject(ProductCategoryService);
+  private productBrandService = inject(ProductBrandService);
+  private productTypeService = inject(ProductTypeService);
+  private productPresentationService = inject(ProductPresentationService);
+  private productCatalogService = inject(ProductCatalogService);
+
   productCatalogForm = this.formBuilder.group({});
   categories: Observable<ProductCategory[]> | undefined = of([]);
   brands: Observable<ProductBrand[]> | undefined= of([]);
   types: Observable<ProductType[]> | undefined = of([]);
   presentations: Observable<ProductPresentation[]> | undefined = of([]);
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
-    private location: Location,
-    private productCategoryService: ProductCategoryService,
-    private productBrandService: ProductBrandService,
-    private productTypeService: ProductTypeService,
-    private productPresentationService: ProductPresentationService,
-    private productCatalogService: ProductCatalogService
-  ) { }
 
   ngOnInit(): void {
     this.productCatalogForm.addControl('category', this.formBuilder.control(''));

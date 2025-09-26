@@ -1,6 +1,6 @@
 import { GetResponse } from '../models/get-response.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ListResponse } from '../models/list-response.model';
 import { Observable } from 'rxjs';
 import { Resident } from '../models/resident.model';
@@ -11,8 +11,8 @@ import { EditResponse } from '../models/edit-response.model';
   providedIn: 'root'
 })
 export class ResidentService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
 
   add<CreateResponse>(userId: number, houseId: number, params = {}): Observable<CreateResponse> {
     return this.http.post<CreateResponse>(`${environment.backendUrl}user/${userId}/houses/${houseId}/residents`, params)

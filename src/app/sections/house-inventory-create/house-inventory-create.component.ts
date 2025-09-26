@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, map, of, startWith } from 'rxjs';
 
-import { ActivatedRoute } from '@angular/router';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { FormBuilder } from '@angular/forms';
 import { House } from 'src/app/models/house.model';
 import { HouseService } from './../../services/house.service';
 import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
 import { ListResponse } from 'src/app/models/list-response.model';
-import { Location } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCatalog } from 'src/app/models/product-catalog.model';
 import { ProductCatalogService } from 'src/app/services/product-catalog.service';
@@ -20,28 +22,34 @@ import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-house-inventory-create',
-  templateUrl: './house-inventory-create.component.html',
-  styleUrls: ['./house-inventory-create.component.sass']
+    selector: 'app-house-inventory-create',
+    templateUrl: './house-inventory-create.component.html',
+    styleUrls: ['./house-inventory-create.component.sass'],
+    standalone: true,
+    imports: [
+      RouterLink,
+      CommonModule,
+      ReactiveFormsModule,
+      MatSelectModule,
+      MatAutocompleteModule
+    ]
 })
 export class HouseInventoryCreateComponent implements OnInit{
+  private formBuilder = inject(FormBuilder);
+  private activatedRoute = inject(ActivatedRoute);
+  private location = inject(Location);
+  private snackBar = inject(MatSnackBar);
+  private unitOfMeasurementService = inject(UnitOfMeasurementService);
+  private productCatalogService = inject(ProductCatalogService);
+  private inventoryHousesService = inject(InventoryHousesService);
+  private houseService = inject(HouseService);
+
   inventoryItemForm = this.formBuilder.group({});
   userId = 0;
   houseId = 0;
   unitsOfMeasurement: UnitOfMeasurement[] = [];
   productsCatalog: Observable<ProductCatalog[]> | undefined = of([]);
   house: House | undefined = undefined;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private location: Location,
-    private snackBar: MatSnackBar,
-    private unitOfMeasurementService: UnitOfMeasurementService,
-    private productCatalogService: ProductCatalogService,
-    private inventoryHousesService: InventoryHousesService,
-    private houseService: HouseService
-  ) {}
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.params['id'];
