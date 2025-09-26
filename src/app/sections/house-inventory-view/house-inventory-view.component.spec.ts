@@ -6,12 +6,10 @@ import {
 } from '@angular/common/http';
 
 import { HouseInventoryViewComponent } from './house-inventory-view.component';
-import { InventoryHousesService } from '../../services/inventory-houses.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { RouterTestingModule } from '@angular/router/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('HouseInventoryViewComponent', () => {

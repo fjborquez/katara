@@ -13,7 +13,6 @@ import {
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { NutritionalProfileComponent } from './../../components/nutritional-profile/nutritional-profile.component';
-import { NutritionalProfileService } from '../../services/nutritional-profile.service';
 import { NutritionalProfileViewComponent } from './nutritional-profile-view.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
