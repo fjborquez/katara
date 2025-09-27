@@ -5,6 +5,7 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule } from '@angul
 import { CommonModule } from '@angular/common';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NutritionalProfileComponent } from '../../components/nutritional-profile/nutritional-profile.component';
 import { ResidentService } from 'src/app/services/resident.service';
@@ -19,7 +20,8 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
       NutritionalProfileComponent,
       RouterLink,
       CommonModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatButtonModule
     ]
 })
 export class HouseResidentsCreateComponent implements OnInit {

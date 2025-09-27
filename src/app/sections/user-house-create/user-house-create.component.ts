@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserHousesService } from 'src/app/services/user-houses.service';
@@ -21,7 +22,8 @@ import { UserHousesService } from 'src/app/services/user-houses.service';
       MatSelectModule,
       RouterLink,
       CommonModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatButtonModule
     ]
 })
 export class UserHouseCreateComponent implements OnInit {

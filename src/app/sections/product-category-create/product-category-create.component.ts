@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 
@@ -15,6 +16,7 @@ import { ProductCategoryService } from 'src/app/services/product-category.servic
     imports: [
       CommonModule,
       ReactiveFormsModule,
+      MatButtonModule
     ]
 })
 export class ProductCategoryCreateComponent implements OnInit{

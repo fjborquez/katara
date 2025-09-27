@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { GetResponse } from 'src/app/models/get-response.model';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
 import { NutritionalProfileDetail } from 'src/app/models/nutritional-profile-detail.model';
@@ -22,7 +23,8 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
       NutritionalProfileComponent,
       RouterLink,
       CommonModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatButtonModule
     ],
 })
 export class HouseResidentsUpdateComponent implements OnInit {

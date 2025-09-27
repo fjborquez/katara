@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NutritionalProfileComponent } from 'src/app/components/nutritional-profile/nutritional-profile.component';
 import { UserService } from '../../services/user.service';
@@ -21,6 +22,7 @@ import { dateToChileanFormat } from 'src/app/functions/dateToChileanFormat';
       NutritionalProfileComponent,
       RouterLink,
       CommonModule,
+      MatButtonModule
     ]
 })
 export class UserCreateComponent implements OnInit {

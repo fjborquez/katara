@@ -66,7 +66,7 @@ describe('The list user page', () => {
 
         cy.get(':nth-child(1) > .cdk-column-options > :nth-child(2)').click();
         cy.get('.mat-mdc-dialog-surface').should('be.visible');
-        cy.get('[mat-dialog-actions=""]').contains('Yes').click();
+        cy.get('.mat-mdc-dialog-actions').contains('Yes').click();
         cy.wait('@disable');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
       });
@@ -81,7 +81,7 @@ describe('The list user page', () => {
 
         cy.get(':nth-child(2) > .cdk-column-options > :nth-child(2)').click();
         cy.get('.mat-mdc-dialog-surface').should('be.visible');
-        cy.get('[mat-dialog-actions=""]').contains('Yes').click();
+        cy.get('.mat-mdc-dialog-actions').contains('Yes').click();
         cy.wait('@enable');
         cy.get('.mat-mdc-simple-snack-bar > .mat-mdc-snack-bar-label').should('be.visible');
       });

@@ -70,14 +70,14 @@ describe('The inventory list page', () => {
         }).as('disableInventory');
         cy.get(':nth-child(1) > .cdk-column-options > a').first().click();
         cy.get('.mat-mdc-dialog-surface').should('be.visible');
-        cy.get('[mat-dialog-actions=""]').contains('Yes').click();
+        cy.get('.mat-mdc-dialog-actions').contains('Yes').click();
         cy.wait('@disableInventory');
       });
 
       it('Then discard an inventory product and click no option', () => {
         cy.get(':nth-child(1) > .cdk-column-options > a').first().click();
         cy.get('.mat-mdc-dialog-surface').should('be.visible');
-        cy.get('[mat-dialog-actions=""]').contains('No').click();
+        cy.get('.mat-mdc-dialog-actions').contains('No').click();
         cy.get('.mat-mdc-dialog-surface').should('not.exist');
       });
 
@@ -91,14 +91,14 @@ describe('The inventory list page', () => {
         }).as('consumeInventory');
         cy.get(':nth-child(1) > .cdk-column-options > :nth-child(2)').first().click();
         cy.get('.mat-mdc-dialog-surface').should('be.visible');
-        cy.get('[mat-dialog-actions=""]').contains('Yes').click();
+        cy.get('.mat-mdc-dialog-actions').contains('Yes').click();
         cy.wait('@consumeInventory');
       });
 
       it('Then consume an inventory product and click no option', () => {
         cy.get(':nth-child(1) > .cdk-column-options > :nth-child(2)').first().click();
         cy.get('.mat-mdc-dialog-surface').should('be.visible');
-        cy.get('[mat-dialog-actions=""]').contains('No').click();
+        cy.get('.mat-mdc-dialog-actions').contains('No').click();
         cy.get('.mat-mdc-dialog-surface').should('not.exist');
       });
     });
