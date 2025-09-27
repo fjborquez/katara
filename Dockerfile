@@ -9,10 +9,7 @@ FROM nginx:alpine
 ARG name
 COPY --from=angular /ng-app/dist/$name /usr/share/nginx/html
 RUN rm -f /usr/share/nginx/html/index.html
-RUN mv -f /usr/share/nginx/html/katara/* /usr/share/nginx/html
+RUN mv -f /usr/share/nginx/html/katara/browser/* /usr/share/nginx/html
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
-
-RUN chmod -R 755 /usr/share/nginx/html
-RUN chmod -R 644 /usr/share/nginx/html/*
 
 EXPOSE 80
