@@ -8,6 +8,7 @@ import { ConsumptionLevel } from 'src/app/models/consumption-level.model';
 import { ConsumptionLevelService } from './../../services/consumption-level.service';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NutritionalProfileDetail } from './../../models/nutritional-profile-detail.model';
@@ -25,7 +26,8 @@ import { ProductCategoryService } from './../../services/product-category.servic
       FormsModule,
       ReactiveFormsModule,
       CommonModule,
-      MatSelectModule
+      MatSelectModule,
+      MatButtonModule
     ]
 })
 export class NutritionalProfileComponent implements OnInit, DoCheck {

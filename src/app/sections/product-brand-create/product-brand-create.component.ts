@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { CreateResponse } from 'src/app/models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductBrandService } from './../../services/product-brand.service';
 
@@ -14,7 +15,8 @@ import { ProductBrandService } from './../../services/product-brand.service';
     standalone: true,
     imports: [
       CommonModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatButtonModule
     ]
 })
 export class ProductBrandCreateComponent implements OnInit{

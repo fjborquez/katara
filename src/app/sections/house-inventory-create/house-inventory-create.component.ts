@@ -11,6 +11,7 @@ import { HouseService } from './../../services/house.service';
 import { InventoryHousesService } from 'src/app/services/inventory-houses.service';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductCatalog } from 'src/app/models/product-catalog.model';
@@ -31,7 +32,8 @@ import { formatDate } from '@angular/common';
       CommonModule,
       ReactiveFormsModule,
       MatSelectModule,
-      MatAutocompleteModule
+      MatAutocompleteModule,
+      MatButtonModule
     ]
 })
 export class HouseInventoryCreateComponent implements OnInit{

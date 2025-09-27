@@ -7,6 +7,7 @@ import { CreateResponse } from './../../models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductBrand } from './../../models/product-brand.model';
 import { ProductBrandService } from './../../services/product-brand.service';
@@ -29,7 +30,8 @@ import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
       CommonModule,
       ReactiveFormsModule,
       MatAutocompleteModule,
-      RouterLink
+      RouterLink,
+      MatButtonModule
     ]
 })
 export class ProductCatalogCreateComponent implements OnInit{
