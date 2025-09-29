@@ -102,4 +102,14 @@ export class HouseInventoryViewComponent implements OnInit {
     });
   }
 
+  isConsumable(inventory: any) {
+    const currentState = inventory.product_status.find((product: any) => product.pivot.is_active);
+    console.log(currentState);
+    if (currentState) {
+      return currentState.id === 1 || currentState.id === 2;
+    } else {
+      return false;
+    }
+  }
+
 }
