@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, map, of, startWith } from 'rxjs';
 
@@ -19,7 +19,6 @@ import { ProductType } from './../../models/product-type.model';
 import { ProductTypeService } from './../../services/product-type.service';
 import { NavigationExtras, Router, RouterLink } from '@angular/router';
 import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'app-product-catalog-create',
