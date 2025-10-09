@@ -1,5 +1,5 @@
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule, Location } from '@angular/common';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, map, of, startWith } from 'rxjs';
@@ -39,12 +39,12 @@ import { formatDate } from '@angular/common';
 export class HouseInventoryCreateComponent implements OnInit{
   private formBuilder = inject(FormBuilder);
   private activatedRoute = inject(ActivatedRoute);
-  private location = inject(Location);
   private snackBar = inject(MatSnackBar);
   private unitOfMeasurementService = inject(UnitOfMeasurementService);
   private productCatalogService = inject(ProductCatalogService);
   private inventoryHousesService = inject(InventoryHousesService);
   private houseService = inject(HouseService);
+  private router = inject(Router);
 
   inventoryItemForm = this.formBuilder.group({});
   userId = 0;
@@ -67,14 +67,24 @@ export class HouseInventoryCreateComponent implements OnInit{
       'filter[category.name]': 'Mass,Volume,Count'
     }).subscribe((response: ListResponse<UnitOfMeasurement>) => this.unitsOfMeasurement = response.message);
     this.productCatalogService.list().subscribe((response: ListResponse<ProductCatalog>) => {
+      const createdProductId = history.state?.productId;
+      const defaultProduct = response.message.find((product: ProductCatalog) => product.id === Number(createdProductId));
+
+      if (createdProductId && defaultProduct) {
+        this.inventoryItemForm.patchValue({
+          product: defaultProduct
+        });
+      }
+
       this.productsCatalog = this.inventoryItemForm.get('product')?.valueChanges.pipe(
         startWith(''),
         map((value: string) => response.message.filter((product: ProductCatalog) => existsForAutocomplete(product.type.description, value)
-          || existsForAutocomplete(product.presentation?.description, value) || existsForAutocomplete(product.brand?.name, value)))
-      );
+          || existsForAutocomplete(product.presentation?.description, value) || existsForAutocomplete(product.brand?.name, value))),
+      )
     });
 
     this.houseService.get(this.houseId).subscribe((response: any) => this.house = response.message);
+
   }
 
   displayProductCatalog(productCatalog: ProductCatalog): string {
