@@ -39,7 +39,10 @@ describe('The add product catalog page', () => {
       url: backendUrl + '/product-catalog',
     },{
       statusCode: 201,
-      fixture: 'product_catalog_add/success.json'
+      fixture: 'product_catalog_add/success.json',
+      headers: {
+        'Location': 'http://katara-back.test/api/product-catalog/1'
+      }
     }).as('addProductCatalog');
 
     cy.visit('/product-catalog/add');

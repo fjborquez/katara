@@ -3,7 +3,8 @@ import { environment } from '../../environments/environment';
 import { ListResponse } from '../models/list-response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { CreateResponse } from '../models/create-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,13 @@ export class ProductCatalogService {
     return this.http.get<ListResponse<ProductCatalog>>(environment.backendUrl + 'product-catalog')
   }
 
-  add<CreateResponse>(params = {}): Observable<CreateResponse> {
-    return this.http.post<CreateResponse>(environment.backendUrl + 'product-catalog', params);
+  add(params = {}) {
+    return this.http.post(environment.backendUrl + 'product-catalog', params, { observe: 'response' }).pipe(
+      map((response) => {
+        const data = response.body as CreateResponse;
+        const headers = response.headers;
+        return { data, headers };
+      })
+    );
   }
 }

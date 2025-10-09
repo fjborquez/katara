@@ -3,7 +3,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, map, of, startWith } from 'rxjs';
 
-import { CreateResponse } from './../../models/create-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -18,7 +17,7 @@ import { ProductPresentation } from 'src/app/models/product-presentation.model';
 import { ProductPresentationService } from './../../services/product-presentation.service';
 import { ProductType } from './../../models/product-type.model';
 import { ProductTypeService } from './../../services/product-type.service';
-import { RouterLink } from '@angular/router';
+import { NavigationExtras, Router, RouterLink } from '@angular/router';
 import { existsForAutocomplete } from 'src/app/functions/existsForAutocomplete';
 
 @Component({
@@ -43,6 +42,7 @@ export class ProductCatalogCreateComponent implements OnInit{
   private productTypeService = inject(ProductTypeService);
   private productPresentationService = inject(ProductPresentationService);
   private productCatalogService = inject(ProductCatalogService);
+  private router = inject(Router);
 
   productCatalogForm = this.formBuilder.group({});
   categories: Observable<ProductCategory[]> | undefined = of([]);
@@ -110,7 +110,15 @@ export class ProductCatalogCreateComponent implements OnInit{
   }
 
   goBack() {
-    this.location.back();
+    const navigationExtras: NavigationExtras = {
+      state: {}
+    };
+    const previousRoute = this.router.lastSuccessfulNavigation?.previousNavigation?.finalUrl?.toString();
+    if (previousRoute) {
+      this.router.navigate([previousRoute], navigationExtras);
+    } else {
+      this.location.back();
+    }
   }
 
   onSubmit() {
@@ -119,14 +127,27 @@ export class ProductCatalogCreateComponent implements OnInit{
     const productType: any = this.productCatalogForm.get('type')?.value;
     const productPresentation: any = this.productCatalogForm.get('presentation')?.value;
 
-    this.productCatalogService.add<CreateResponse>({
+    this.productCatalogService.add({
       category_id: productCategory !== undefined ? productCategory.id : null,
       brand_id: productBrand !== undefined ? productBrand.id : null,
       type_id: productType !== undefined ? productType.id : null,
       presentation_id: productPresentation !== undefined ? productPresentation.id : null,
-    }).subscribe((response: CreateResponse) => {
-      this.location.back();
-      this.snackBar.open(response.message, "Close");
+    }).subscribe((response: any) => {
+      const urlParts = response.headers.get('Location').split('/');
+      const id = urlParts[urlParts.length - 1];
+      const navigationExtras: NavigationExtras = {
+        state: {
+          productId: id
+        }
+      };
+      const previousRoute = this.router.lastSuccessfulNavigation?.previousNavigation?.finalUrl?.toString();
+      this.snackBar.open(response.data.message, "Close");
+
+      if (previousRoute) {
+        this.router.navigate([previousRoute], navigationExtras);
+      } else {
+        this.location.back();
+      }
     }, (response: ErrorResponse) => {
       this.snackBar.open(response.error.message, "Close");
     });
