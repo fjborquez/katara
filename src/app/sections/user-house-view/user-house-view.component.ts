@@ -10,20 +10,22 @@ import { House } from 'src/app/models/house.model';
 import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserHousesService } from 'src/app/services/user-houses.service';
 
 @Component({
     selector: 'app-user-house-view',
     templateUrl: './user-house-view.component.html',
-    styleUrls: ['./user-house-view.component.sass'],
+    styleUrls: ['./user-house-view.component.scss'],
     standalone: true,
     imports: [
       RouterLink,
       MatTableModule,
       MatIconModule,
       RouterLink,
-      CommonModule
+      CommonModule,
+      MatProgressBarModule
     ]
 })
 export class UserHouseViewComponent implements OnInit {
@@ -33,7 +35,7 @@ export class UserHouseViewComponent implements OnInit {
   private dialog = inject(MatDialog);
 
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['house', 'city', 'is_default', 'options', 'residents'];
+  columnsToDisplay = ['house', 'city', 'is_default', 'options', 'residents', 'food_waste'];
   idUser = 0;
 
   ngOnInit(): void {
@@ -93,5 +95,19 @@ export class UserHouseViewComponent implements OnInit {
         });
       }
     });
+  }
+
+  foodWasteColor(percentage: number): string {
+    if (percentage > 30) {
+      return 'critical';
+    } else if( percentage > 20) {
+      return 'high';
+    } else if( percentage > 10) {
+      return 'moderate';
+    } else if (percentage > 0) {
+      return 'low';
+    } else {
+      return 'optimal';
+    }
   }
 }

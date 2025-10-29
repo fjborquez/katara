@@ -32,7 +32,10 @@
             "person_id": 1
           }
         }
-      ]
+      ],
+      "statistics": {
+        "food_waste_percentage": 12.5
+      }
     },
     {
       "id": 40,
@@ -66,7 +69,10 @@
             "person_id": 1
           }
         }
-      ]
+      ],
+      "statistics": {
+        "food_waste_percentage": 0
+      }
     },
     {
       "id": 42,
@@ -100,7 +106,10 @@
             "person_id": 1
           }
         }
-      ]
+      ],
+      "statistics": {
+        "food_waste_percentage": 55.55
+      }
     },
     {
       "id": 43,
@@ -134,7 +143,10 @@
             "person_id": 1
           }
         }
-      ]
+      ],
+      "statistics": {
+        "food_waste_percentage": 100
+      }
     },
     {
       "id": 44,
@@ -168,7 +180,10 @@
             "person_id": 1
           }
         }
-      ]
+      ],
+      "statistics": {
+        "food_waste_percentage": 6.75
+      }
     },
     {
       "id": 48,
@@ -202,7 +217,10 @@
             "person_id": 1
           }
         }
-      ]
+      ],
+      "statistics": {
+        "food_waste_percentage": 24.45
+      }
     }
   ]
 }
