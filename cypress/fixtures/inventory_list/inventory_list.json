@@ -1,6 +1,6 @@
 {
-  "message": [
-    {
+  "message": {
+    "items": [{
       "id": 1,
       "house_id": 1,
       "house_description": "Pallet Town",
@@ -164,6 +164,6 @@
           }
         }
       ]
-    }
-  ]
+    }]
+  }
 }
