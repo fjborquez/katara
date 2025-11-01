@@ -8,7 +8,6 @@ import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
 import { Inventory } from 'src/app/models/inventory.model';
 import { InventoryHousesService } from './../../services/inventory-houses.service';
-import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -45,8 +44,8 @@ export class HouseInventoryViewComponent implements OnInit {
   }
 
   getInventoryByHouseList(idUser: number, idHouse: number) {
-    return this.inventoryHousesService.getHousesByUser(idUser, idHouse).subscribe((response: ListResponse<Inventory>) => {
-      this.dataSource.data = response.message;
+    return this.inventoryHousesService.getHousesByUser(idUser, idHouse).subscribe((response: any) => {
+      this.dataSource.data = response.message.items;
     }, (response: ErrorResponse) => this.snackBar.open(response.error.message, 'Close'));
   }
 
