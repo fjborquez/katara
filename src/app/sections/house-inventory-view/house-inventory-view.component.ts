@@ -10,12 +10,13 @@ import { Inventory } from 'src/app/models/inventory.model';
 import { InventoryHousesService } from './../../services/inventory-houses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-house-inventory-view',
     templateUrl: './house-inventory-view.component.html',
-    styleUrls: ['./house-inventory-view.component.sass'],
+    styleUrls: ['./house-inventory-view.component.scss'],
     standalone: true,
     imports: [
       RouterLink,
@@ -23,7 +24,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
       DecimalPipe,
       DatePipe,
       MatIconModule,
-      CommonModule
+      CommonModule,
+      MatProgressBar,
     ]
 })
 export class HouseInventoryViewComponent implements OnInit {
@@ -36,6 +38,7 @@ export class HouseInventoryViewComponent implements OnInit {
   columnsToDisplay = ['increment', 'quantity', 'brand', 'product', 'purchase_date', 'expiration_date', 'status_icon', 'options'];
   userId = 0;
   houseId = 0;
+  foodWastePercentage = 0;
 
   ngOnInit(): void {
     this.userId = Number(this.activatedRoute.snapshot.params['id']);
@@ -46,6 +49,7 @@ export class HouseInventoryViewComponent implements OnInit {
   getInventoryByHouseList(idUser: number, idHouse: number) {
     return this.inventoryHousesService.getHousesByUser(idUser, idHouse).subscribe((response: any) => {
       this.dataSource.data = response.message.items;
+      this.foodWastePercentage = response.message.statistics.food_waste_percentage;
     }, (response: ErrorResponse) => this.snackBar.open(response.error.message, 'Close'));
   }
 
@@ -110,4 +114,17 @@ export class HouseInventoryViewComponent implements OnInit {
     }
   }
 
+  foodWasteColor(percentage: number): string {
+    if (percentage > 30) {
+      return 'critical';
+    } else if( percentage > 20) {
+      return 'high';
+    } else if( percentage > 10) {
+      return 'moderate';
+    } else if (percentage > 0) {
+      return 'low';
+    } else {
+      return 'optimal';
+    }
+  }
 }

@@ -1,0 +1,24 @@
+.critical {
+  --mat-progress-bar-active-indicator-color : #FF0E00 !important;
+  color: #FF0E00;
+}
+
+.high {
+  --mat-progress-bar-active-indicator-color : #EB5757 !important;
+  color: #EB5757;
+}
+
+.moderate {
+  --mat-progress-bar-active-indicator-color : #FF9500 !important;
+  color: #FF9500;
+}
+
+.low {
+  --mat-progress-bar-active-indicator-color : #6FCF97 !important;
+  color: #6FCF97;
+}
+
+.optimal {
+  --mat-progress-bar-active-indicator-color : #34C759 !important;
+  color: #34C759;
+}
