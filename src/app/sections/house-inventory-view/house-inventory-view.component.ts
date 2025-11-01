@@ -45,8 +45,8 @@ export class HouseInventoryViewComponent implements OnInit {
   }
 
   getInventoryByHouseList(idUser: number, idHouse: number) {
-    return this.inventoryHousesService.getHousesByUser(idUser, idHouse).subscribe((response: ListResponse<Inventory>) => {
-      this.dataSource.data = response.message;
+    return this.inventoryHousesService.getHousesByUser(idUser, idHouse).subscribe((response: any) => {
+      this.dataSource.data = response.message.items;
     }, (response: ErrorResponse) => this.snackBar.open(response.error.message, 'Close'));
   }
 
