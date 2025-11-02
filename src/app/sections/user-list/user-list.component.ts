@@ -6,8 +6,8 @@ import { Router, RouterLink } from '@angular/router';
 import { AlertDialogComponent } from '../../components/alert-dialog/alert-dialog.component';
 import { EditResponse } from 'src/app/models/edit-response.model';
 import { ErrorResponse } from 'src/app/models/error-response.model';
-import { ListResponse } from 'src/app/models/list-response.model';
 import { MatDialog } from '@angular/material/dialog';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
@@ -16,13 +16,14 @@ import { UserService } from '../../services/user.service';
 @Component({
     selector: 'app-user-list',
     templateUrl: './user-list.component.html',
-    styleUrls: ['./user-list.component.sass'],
+    styleUrls: ['./user-list.component.scss'],
     standalone: true,
     imports: [
       RouterLink,
       MatTableModule,
       DatePipe,
-      CommonModule
+      CommonModule,
+      MatProgressBar
     ]
 })
 export class UserListComponent implements OnInit {
@@ -33,6 +34,7 @@ export class UserListComponent implements OnInit {
 
   dataSource = new MatTableDataSource<User>();
   columnsToDisplay = ['id', 'fullname', 'date_of_birth', 'email', 'options', 'nutritional_profile'];
+  foodWastePercentage: number = 0;
 
   constructor() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -91,8 +93,23 @@ export class UserListComponent implements OnInit {
   }
 
   getPersonList(): Subscription {
-    return this.userService.list().subscribe((response: ListResponse<User>) => {
-      this.dataSource = new MatTableDataSource<User>(response.message);
+    return this.userService.list().subscribe((response: any) => {
+      this.dataSource = new MatTableDataSource<User>(response.message.items);
+      this.foodWastePercentage = response.message.statistics.food_waste_percentage;
     });
+  }
+
+  foodWasteColor(percentage: number): string {
+    if (percentage > 30) {
+      return 'critical';
+    } else if( percentage > 20) {
+      return 'high';
+    } else if( percentage > 10) {
+      return 'moderate';
+    } else if (percentage > 0) {
+      return 'low';
+    } else {
+      return 'optimal';
+    }
   }
 }

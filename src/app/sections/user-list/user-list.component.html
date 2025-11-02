@@ -1,4 +1,16 @@
-<a [routerLink]="['add']">Add</a>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div>
+    <a [routerLink]="['add']">Add</a>
+  </div>
+  <div style="display: flex; align-items: center; gap: 8px; width: 20%;">
+    <span>Food Waste:</span>
+    <div style="width: 100px;">
+      <mat-progress-bar mode="determinate" [value]="foodWastePercentage"
+        [ngClass]="foodWasteColor(foodWastePercentage)"></mat-progress-bar>
+    </div>
+    <span [ngClass]="foodWasteColor(foodWastePercentage)">{{foodWastePercentage | number:'1.0-0'}}%</span>
+  </div>
+</div>
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> # </th>
