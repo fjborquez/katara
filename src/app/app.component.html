@@ -1,8 +1,11 @@
-<mat-toolbar>
-    <mat-toolbar-row>
-      <span>Katara</span>
-      <div class="space"></div>
-      <a [routerLink]="['/users']" matButton="">Users</a>
-    </mat-toolbar-row>
-</mat-toolbar>
+@if (loginService.isLoggedIn() && loginService.isAdmin()) {
+  <mat-toolbar>
+      <mat-toolbar-row>
+        <span>Katara</span>
+        <div class="space"></div>
+        <a [routerLink]="['/users']" matButton="">Users</a>
+      </mat-toolbar-row>
+  </mat-toolbar>
+}
+
 <router-outlet></router-outlet>
