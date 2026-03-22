@@ -1,8 +1,9 @@
+import { TokenInterceptor } from './app/token.interceptor';
 import { AppComponent } from './app/app.component';
 import { Component } from '@angular/core';
 import { ROUTES } from './app/app-routing.module';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
 @Component({
@@ -17,6 +18,11 @@ export class MainComponent {
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(ROUTES),
-    provideHttpClient()
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ]
 });
