@@ -11,7 +11,6 @@ import { environment } from './../../environments/environment';
 export class CityService {
   private http = inject(HttpClient);
 
-
   list(): Observable<ListResponse<City>> {
     return this.http.get<ListResponse<City>>(environment.backendUrl + 'city')
   }

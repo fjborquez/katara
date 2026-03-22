@@ -1,8 +1,9 @@
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +14,6 @@ import { MatButton } from '@angular/material/button';
 })
 export class AppComponent {
   title = 'katara';
+  loginService: LoginService = inject(LoginService);
+
 }

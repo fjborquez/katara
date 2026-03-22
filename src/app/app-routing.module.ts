@@ -1,3 +1,5 @@
+import { AuthGuard } from './auth.guard';
+import { LoginComponent } from './sections/login/login.component';
 import { HouseInventoryCreateComponent } from './sections/house-inventory-create/house-inventory-create.component';
 import { HouseInventoryUpdateComponent } from './sections/house-inventory-update/house-inventory-update.component';
 import { HouseInventoryViewComponent } from './sections/house-inventory-view/house-inventory-view.component';
@@ -19,22 +21,24 @@ import { UserListComponent } from './sections/user-list/user-list.component';
 import { UserUpdateComponent } from './sections/user-update/user-update.component';
 
 export const ROUTES: Routes = [
-  {path: 'users', component: UserListComponent},
-  {path: 'users/add', component: UserCreateComponent},
-  {path: 'users/:id/update', component: UserUpdateComponent},
-  {path: 'users/:id/nutritional-profile', component: NutritionalProfileViewComponent},
-  {path: 'users/:id/houses', component: UserHouseViewComponent},
-  {path: 'users/:id/houses/add', component: UserHouseCreateComponent},
-  {path: 'users/:id/houses/:idHouse/update', component: UserHouseUpdateComponent},
-  {path: 'users/:id/houses/:idHouse/residents', component: HouseResidentsViewComponent},
-  {path: 'users/:id/houses/:idHouse/residents/add', component: HouseResidentsCreateComponent},
-  {path: 'users/:id/houses/:idHouse/residents/:idResident/update', component: HouseResidentsUpdateComponent},
-  {path: 'users/:id/houses/:idHouse/inventory', component: HouseInventoryViewComponent},
-  {path: 'users/:id/houses/:idHouse/inventory/add', component: HouseInventoryCreateComponent},
-  {path: 'users/:id/houses/:idHouse/inventory/:idInventory/update', component: HouseInventoryUpdateComponent},
-  {path: 'product-catalog/add', component: ProductCatalogCreateComponent},
-  {path: 'product-category/add', component: ProductCategoryCreateComponent},
-  {path: 'product-brand/add', component: ProductBrandCreateComponent},
-  {path: 'product-type/add', component: ProductTypeCreateComponent},
-  {path: 'product-presentation/add', component: ProductPresentationCreateComponent}
+  {path: 'users', component: UserListComponent, canActivate: [AuthGuard]},
+  {path: 'users/add', component: UserCreateComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/update', component: UserUpdateComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/nutritional-profile', component: NutritionalProfileViewComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses', component: UserHouseViewComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/add', component: UserHouseCreateComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/:idHouse/update', component: UserHouseUpdateComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/:idHouse/residents', component: HouseResidentsViewComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/:idHouse/residents/add', component: HouseResidentsCreateComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/:idHouse/residents/:idResident/update', component: HouseResidentsUpdateComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/:idHouse/inventory', component: HouseInventoryViewComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/:idHouse/inventory/add', component: HouseInventoryCreateComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id/houses/:idHouse/inventory/:idInventory/update', component: HouseInventoryUpdateComponent, canActivate: [AuthGuard]},
+  {path: 'product-catalog/add', component: ProductCatalogCreateComponent, canActivate: [AuthGuard]},
+  {path: 'product-category/add', component: ProductCategoryCreateComponent, canActivate: [AuthGuard]},
+  {path: 'product-brand/add', component: ProductBrandCreateComponent, canActivate: [AuthGuard]},
+  {path: 'product-type/add', component: ProductTypeCreateComponent, canActivate: [AuthGuard]},
+  {path: 'product-presentation/add', component: ProductPresentationCreateComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
