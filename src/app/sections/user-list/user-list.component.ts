@@ -112,4 +112,28 @@ export class UserListComponent implements OnInit {
       return 'optimal';
     }
   }
+
+  invite(userId: number) {
+    const message = 'Are you sure to invite this user?';
+    const dialogData = {
+      'title': 'Invite User',
+      'message': message,
+    };
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.userService.invite<EditResponse>(userId).subscribe((response: EditResponse) => {
+          this.snackBar.open(response.message, 'Close');
+          this.getPersonList();
+        },
+        (errorResponse: ErrorResponse) => {
+          this.snackBar.open(errorResponse.error.message, "Close");
+        });
+      }
+    });
+  }
 }

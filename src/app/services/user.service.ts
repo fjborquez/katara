@@ -39,4 +39,8 @@ export class UserService {
     return this.http.put<EditResponse>(environment.backendUrl + 'user' + '/' + userId + '/disable', {});
   }
 
+  invite<EditResponse>(userId: number): Observable<EditResponse> {
+    return this.http.post<EditResponse>(environment.backendUrl + 'user' + '/' + userId + '/invite', {});
+  }
+
 }
